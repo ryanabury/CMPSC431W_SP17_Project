@@ -1,1 +1,3 @@
 The location of all documents related to Phase 1 of the project. 
+
+- Try to make the individual sections in raw text format so compiling them in the end and maintaining formatting will be easier. 
