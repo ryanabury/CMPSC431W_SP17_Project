@@ -1,0 +1,11 @@
+Specifications for ER Diagrams:
+ - All diagrams will be created with draw.io (A very versatile graph/diagram drawing tool).
+ - Regular Line Thickness: All regular connections will be specified with a 2 point thickness line. 
+ - Bold Line Thickness: All full-participation connections will be 4 point thickness. 
+ - Arrow Specification: The arrow used is the first arrow listed in the right-context menu. 
+ - Attribute Specification: A simple oval will be used for attributes. 12 pt font (Helvetica). 
+ - Entity Specification: An Entity box will be used for Entities. 14 pt font (Helvetica).  
+ - Relationship Specification: A relationship diamond will be used for all relationships. 12 pt font (Helvetica).
+ - Everything else will use the default setting when selecting the item. (Such as all shapes will use 2 pt thickness borders). 
+ 
+ If any other specifications are needed, please add them. 
