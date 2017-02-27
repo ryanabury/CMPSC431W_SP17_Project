@@ -38,3 +38,10 @@ INSERT INTO Categories VALUES (31000, "Women", 30000);
 INSERT INTO Categories VALUES (32000, "Men", 30000);
 INSERT INTO Categories VALUES (33000, "Girls", 30000);
 INSERT INTO Categories VALUES (34000, "Boys", 30000);
+
+// Entertainment
+INSERT INTO Categories VALUES (41000, "Movies", 40000);
+INSERT INTO Categories VALUES (42000, "TV Shows", 40000);
+INSERT INTO Categories VALUES (43000, "Music", 40000);
+INSERT INTO Categories VALUES (44000, "Audiobooks", 40000);
+INSERT INTO Categories VALUES (45000, "Games", 40000);
