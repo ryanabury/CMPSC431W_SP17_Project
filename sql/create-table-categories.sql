@@ -45,3 +45,13 @@ INSERT INTO Categories VALUES (42000, "TV Shows", 40000);
 INSERT INTO Categories VALUES (43000, "Music", 40000);
 INSERT INTO Categories VALUES (44000, "Audiobooks", 40000);
 INSERT INTO Categories VALUES (45000, "Games", 40000);
+
+/* Electronics */
+INSERT INTO Categories VALUES (51000, "Home Theater", 50000);
+INSERT INTO Categories VALUES (52000, "Photo & Video", 50000);
+INSERT INTO Categories VALUES (53000, "Cell Phones", 50000);
+INSERT INTO Categories VALUES (54000, "Headphones", 50000);
+INSERT INTO Categories VALUES (55000, "Wearables", 50000);
+INSERT INTO Categories VALUES (56000, "Computers", 50000);
+INSERT INTO Categories VALUES (57000, "Accessories", 50000);
+INSERT INTO Categories VALUES (58000, "Software", 50000);
