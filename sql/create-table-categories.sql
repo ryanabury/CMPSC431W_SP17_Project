@@ -32,3 +32,9 @@ INSERT INTO Categories VALUES (210000, "Scientific", 200000);
 INSERT INTO Categories VALUES (220000, "Safety", 200000);
 INSERT INTO Categories VALUES (230000, "Food Service", 200000);
 INSERT INTO Categories VALUES (240000, "Material Handling", 200000);
+
+// Clothing
+INSERT INTO Categories VALUES (31000, "Women", 30000);
+INSERT INTO Categories VALUES (32000, "Men", 30000);
+INSERT INTO Categories VALUES (33000, "Girls", 30000);
+INSERT INTO Categories VALUES (34000, "Boys", 30000);
