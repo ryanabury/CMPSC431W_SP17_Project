@@ -11,18 +11,24 @@ CREATE TABLE Categories (
 /* Populate Table */
 
 /* Parent Categories */
-INSERT INTO Categories VALUES (10000, "Automotive", -1);
-INSERT INTO Categories VALUES (20000, "Industrial", -1);
-INSERT INTO Categories VALUES (30000, "Clothing", -1);
-INSERT INTO Categories VALUES (40000, "Entertainment", -1);
-INSERT INTO Categories VALUES (50000, "Electronics", -1);
-INSERT INTO Categories VALUES (60000, "Home", -1);
-INSERT INTO Categories VALUES (70000, "Sports & Outdoors", -1);
-INSERT INTO Categories VALUES (80000, "Health & Cosmetics", -1);
+INSERT INTO Categories VALUES (100000, "Automotive", -1);
+INSERT INTO Categories VALUES (200000, "Industrial", -1);
+INSERT INTO Categories VALUES (300000, "Clothing", -1);
+INSERT INTO Categories VALUES (400000, "Entertainment", -1);
+INSERT INTO Categories VALUES (500000, "Electronics", -1);
+INSERT INTO Categories VALUES (600000, "Home", -1);
+INSERT INTO Categories VALUES (700000, "Sports & Outdoors", -1);
+INSERT INTO Categories VALUES (800000, "Health & Cosmetics", -1);
 
 // Automotive
-INSERT INTO Categories VALUES (11000, "Parts & Accessories", 10000);
-INSERT INTO Categories VALUES (12000, "Tools Equiptment", 10000);
-INSERT INTO Categories VALUES (13000, "Vehicle Electronics", 10000);
-INSERT INTO Categories VALUES (14000, "Tires & Wheels", 10000);
-INSERT INTO Categories VALUES (15000, "Vehicles", 10000);
+INSERT INTO Categories VALUES (110000, "Parts & Accessories", 100000);
+INSERT INTO Categories VALUES (120000, "Tools Equiptment", 100000);
+INSERT INTO Categories VALUES (130000, "Vehicle Electronics", 100000);
+INSERT INTO Categories VALUES (140000, "Tires & Wheels", 100000);
+INSERT INTO Categories VALUES (150000, "Vehicles", 100000);
+
+// Industrial
+INSERT INTO Categories VALUES (210000, "Scientific", 200000);
+INSERT INTO Categories VALUES (220000, "Safety", 200000);
+INSERT INTO Categories VALUES (230000, "Food Service", 200000);
+INSERT INTO Categories VALUES (240000, "Material Handling", 200000);
