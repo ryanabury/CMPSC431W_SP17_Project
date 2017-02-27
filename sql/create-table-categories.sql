@@ -55,3 +55,13 @@ INSERT INTO Categories VALUES (55000, "Wearables", 50000);
 INSERT INTO Categories VALUES (56000, "Computers", 50000);
 INSERT INTO Categories VALUES (57000, "Accessories", 50000);
 INSERT INTO Categories VALUES (58000, "Software", 50000);
+
+/* Home */
+INSERT INTO Categories VALUES (61000, "Kitchen & Dining", 60000);
+INSERT INTO Categories VALUES (62000, "Furniture", 60000);
+INSERT INTO Categories VALUES (63000, "Bedding & Bath", 60000);
+INSERT INTO Categories VALUES (64000, "Appliances", 60000);
+INSERT INTO Categories VALUES (65000, "Lawn & Garden", 60000);
+INSERT INTO Categories VALUES (66000, "Arts & Crafts", 60000);
+INSERT INTO Categories VALUES (67000, "Pets", 60000);
+INSERT INTO Categories VALUES (68000, "Home Improvement", 60000);
