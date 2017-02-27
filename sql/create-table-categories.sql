@@ -19,3 +19,10 @@ INSERT INTO Categories VALUES (50000, "Electronics", -1);
 INSERT INTO Categories VALUES (60000, "Home", -1);
 INSERT INTO Categories VALUES (70000, "Sports & Outdoors", -1);
 INSERT INTO Categories VALUES (80000, "Health & Cosmetics", -1);
+
+// Automotive
+INSERT INTO Categories VALUES (11000, "Parts & Accessories", 10000);
+INSERT INTO Categories VALUES (12000, "Tools Equiptment", 10000);
+INSERT INTO Categories VALUES (13000, "Vehicle Electronics", 10000);
+INSERT INTO Categories VALUES (14000, "Tires & Wheels", 10000);
+INSERT INTO Categories VALUES (15000, "Vehicles", 10000);
