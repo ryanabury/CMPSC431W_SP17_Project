@@ -1,20 +1,36 @@
 USE fusion;
 
-CREATE TABLE reg_user(
-	username VARCHAR(50),
+/* active users table */
+CREATE TABLE active_user(
+	reg_id VARCHAR(20),
+	email VARCHAR(50),
+	username VARCHAR(50) NOT NULL,
 	first_name VARCHAR(25) NOT NULL,
 	last_name VARCHAR(25) NOT NULL,
 	password VARCHAR(20) NOT NULL,
-	PRIMARY KEY(username)
+	age integer(3),
+	phone_num VARCHAR(10),
+	gender VARCHAR(1),
+	annual_salary integer(12),
+
+	/* user profile page attributes*/
+	url_ext VARCHAR(30),		/* user specific URL extension */
+	profile_img VARCHAR(512),
+	about_description VARCHAR(250),
+
+	/* constraints */
+	PRIMARY KEY(reg_id, email)
 );
 
-CREATE TABLE email(
-	email_addr VARCHAR(50),
-	username VARCHAR(50),
-	PRIMARY KEY(email_addr),
-	FOREIGN KEY(username) REFERENCES reg_user(username)
-		ON DELETE CASCADE
-		ON UPDATE NO ACTION
+/* inactive users table */
+CREATE TABLE inactive_user(
+	reg_id VARCHAR(20),
+	email VARCHAR(50),
+	age integer(3),
+	phone_num VARCHAR(10),
+	gender VARCHAR(1),
+	annual_salary integer,
+	PRIMARY KEY(reg_id, email)
 );
 
 CREATE TABLE postal_addr(
@@ -22,10 +38,10 @@ CREATE TABLE postal_addr(
 	city VARCHAR(50),
 	state VARCHAR(50),
 	zip integer(9),
-	username VARCHAR(50),
-	PRIMARY KEY(street_addr, city, state, zip),
-	FOREIGN KEY(username) REFERENCES reg_user(username)
-		ON DELETE CASCADE
+	reg_id VARCHAR(20),
+	PRIMARY KEY(street_addr, city, state, zip, reg_id),
+	FOREIGN KEY(reg_id) REFERENCES active_user(reg_id)
+		ON DELETE SET NULL
 		ON UPDATE NO ACTION
 );
 
@@ -34,20 +50,9 @@ CREATE TABLE credit_card(
 	type VARCHAR(20) NOT NULL,
 	cvv integer(3) NOT NULL,
 	exp_date date NOT NULL,
-	username VARCHAR(50),
-	PRIMARY KEY(card_number),
-	FOREIGN KEY(username) REFERENCES reg_user(username)
-		ON DELETE CASCADE
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE profile_page(
-	pid VARCHAR(20),
-	banner_img VARCHAR(512),
-	about_description VARCHAR(250),
-	username VARCHAR(50),
-	PRIMARY KEY(pid),
-	FOREIGN KEY(username) REFERENCES reg_user(username)
+	reg_id VARCHAR(20),
+	PRIMARY KEY(card_number, reg_id),
+	FOREIGN KEY(reg_id) REFERENCES active_user(reg_id)
 		ON DELETE CASCADE
 		ON UPDATE NO ACTION
 );
@@ -55,9 +60,11 @@ CREATE TABLE profile_page(
 CREATE TABLE user_rating(
 	rid VARCHAR(20),
 	score integer(1) NOT NULL,
-	description varchar(50) NOT NULL,
-	comment varchar(250),
-	pid VARCHAR(20),
-	PRIMARY KEY(rid),
-	FOREIGN KEY(pid) REFERENCES profile_page(pid)
+	description VARCHAR(50) NOT NULL,
+	comment VARCHAR(250),
+	reg_id VARCHAR(20),
+	PRIMARY KEY(rid, reg_id),
+	FOREIGN KEY(reg_id) REFERENCES active_user(reg_id)
+		ON DELETE CASCADE
+		ON UPDATE NO ACTION
 );
