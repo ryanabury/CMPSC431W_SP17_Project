@@ -1,3 +1,5 @@
+USE fusion;
+
 CREATE TABLE sale_items (
 	id integer NOT NULL,
 	name varchar(50) NOT NULL,
