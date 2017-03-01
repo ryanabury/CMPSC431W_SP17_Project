@@ -58,11 +58,15 @@ INSERT INTO Categories VALUES (010501, "Trucks", 0501);
 INSERT INTO Categories VALUES (010501, "SUVs", 0501);
 INSERT INTO Categories VALUES (010501, "Vans", 0501);
 
+/*-------------------------------------------------------------------*/
+
 /* Industrial */
 INSERT INTO Categories VALUES (0102, "Scientific",          02);
 INSERT INTO Categories VALUES (0202, "Safety",              02);
 INSERT INTO Categories VALUES (0302, "Food Service",        02);
 INSERT INTO Categories VALUES (0402, "Material Handling",   02);
+
+/*-------------------------------------------------------------------*/
 
 /* Clothing */
 INSERT INTO Categories VALUES (0103, "Women",   03);
@@ -70,12 +74,16 @@ INSERT INTO Categories VALUES (0203, "Men",     03);
 INSERT INTO Categories VALUES (0403, "Girls",   03);
 INSERT INTO Categories VALUES (0503, "Boys",    03);
 
+/*-------------------------------------------------------------------*/
+
 /* Entertainment */
 INSERT INTO Categories VALUES (0104, "Movies",      04);
 INSERT INTO Categories VALUES (0204, "TV Shows",    04);
 INSERT INTO Categories VALUES (0304, "Music",       04);
 INSERT INTO Categories VALUES (0404, "Audiobooks",  04);
 INSERT INTO Categories VALUES (0504, "Games",       04);
+
+/*-------------------------------------------------------------------*/
 
 /* Electronics */
 INSERT INTO Categories VALUES (0105, "Home Theater",    05);
@@ -87,6 +95,8 @@ INSERT INTO Categories VALUES (0605, "Computers",       05);
 INSERT INTO Categories VALUES (0705, "Accessories",     05);
 INSERT INTO Categories VALUES (0805, "Software",        05);
 
+/*-------------------------------------------------------------------*/
+
 /* Home */
 INSERT INTO Categories VALUES (0106, "Kitchen & Dining",    06);
 INSERT INTO Categories VALUES (0206, "Furniture",           06);
@@ -97,6 +107,8 @@ INSERT INTO Categories VALUES (0706, "Arts & Crafts",       06);
 INSERT INTO Categories VALUES (0806, "Pets",                06);
 INSERT INTO Categories VALUES (0906, "Home Improvement",    06);
 
+/*-------------------------------------------------------------------*/
+
 /* Sports & Outdoors */
 INSERT INTO Categories VALUES (0107, "Athletic Clothing",   07);
 INSERT INTO Categories VALUES (0207, "Exercise & Fitness",  07);
@@ -106,6 +118,8 @@ INSERT INTO Categories VALUES (0507, "Outdoor Sports",      07);
 INSERT INTO Categories VALUES (0607, "Outdoor Clothing",    07);
 INSERT INTO Categories VALUES (0707, "Water Sports",        07);
 INSERT INTO Categories VALUES (0807, "Winter Sports",       07);
+
+/*-------------------------------------------------------------------*/
 
 /* Health & Cosmetics */
 INSERT INTO Categories VALUES (0108, "Luxury Beauty",           08);
