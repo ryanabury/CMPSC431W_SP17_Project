@@ -1,6 +1,7 @@
 USE fusion;
 
-/* Create Table */
+/* ------------------- Create Table ------------------- */
+
 CREATE TABLE Categories (
     id integer NOT NULL,
     name varchar(50) NOT NULL,
@@ -8,7 +9,7 @@ CREATE TABLE Categories (
     PRIMARY KEY (id)
 );
 
-/* Populate Table */
+/* ------------------ Populate Table ------------------ */
 
 /* Parent Categories */
 INSERT INTO Categories VALUES (01, "Automotive",            0);
