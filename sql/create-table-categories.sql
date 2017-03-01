@@ -27,6 +27,37 @@ INSERT INTO Categories VALUES (0301, "Vehicle Electronics",     01);
 INSERT INTO Categories VALUES (0401, "Tires & Wheels",          01);
 INSERT INTO Categories VALUES (0501, "Vehicles",                01);
 
+/* Parts & Accessories */
+INSERT INTO Categories VALUES (010101, "Performance Parts",     0101);
+INSERT INTO Categories VALUES (020101, "Replacement Parts",     0101);
+INSERT INTO Categories VALUES (030101, "Truck Accessories",     0101);
+INSERT INTO Categories VALUES (040101, "Interior",              0101);
+INSERT INTO Categories VALUES (050101, "Exterior",              0101);
+INSERT INTO Categories VALUES (060101, "Tires & Wheels",        0101);
+
+/* Tools & Equiptment */
+INSERT INTO Categories VALUES (010201, "Tool Boxes & Sets", 0201);
+INSERT INTO Categories VALUES (020201, "Measuring Tools", 0201);
+INSERT INTO Categories VALUES (030201, "Compressors", 0201);
+INSERT INTO Categories VALUES (040201, "Hand Tools", 0201);
+
+/* Vehicle Electronics */
+INSERT INTO Categories VALUES (010301, "GPS", 0301);
+INSERT INTO Categories VALUES (020301, "Car Electronics", 0301);
+INSERT INTO Categories VALUES (030301, "Avaion Electronics", 0301);
+
+/* Tires & Wheels */
+INSERT INTO Categories VALUES (010401, "Rims", 0401);
+INSERT INTO Categories VALUES (020401, "Accessories", 0401);
+INSERT INTO Categories VALUES (030401, "Tires", 0401);
+INSERT INTO Categories VALUES (040401, "Repair", 0401);
+
+/* Vehicles */
+INSERT INTO Categories VALUES (010501, "Cars", 0501);
+INSERT INTO Categories VALUES (010501, "Trucks", 0501);
+INSERT INTO Categories VALUES (010501, "SUVs", 0501);
+INSERT INTO Categories VALUES (010501, "Vans", 0501);
+
 /* Industrial */
 INSERT INTO Categories VALUES (0102, "Scientific",          02);
 INSERT INTO Categories VALUES (0202, "Safety",              02);
