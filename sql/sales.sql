@@ -11,7 +11,7 @@ CREATE TABLE sales (
 
 	PRIMARY KEY (item_id),
 	
-	FOREIGN KEY (buyer_id) REFERENCES active_user(reg_id),
+	FOREIGN KEY (buyer_id) REFERENCES user(reg_id),
 	
 	FOREIGN KEY (seller_id) REFERENCES suppliers(supplier_id),
 	
