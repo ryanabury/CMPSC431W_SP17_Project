@@ -1,6 +1,6 @@
 USE fusion;
 
-CREATE TABLE user(
+CREATE TABLE Users (
 	reg_id 				VARCHAR(20),
 	email 				VARCHAR(50),
 	active 				BOOLEAN,			/* active user == true, inactive user == false */
