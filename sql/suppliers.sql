@@ -13,7 +13,7 @@ CREATE TABLE suppliers (
 	about_description 	VARCHAR(250),
 
 	/* constraints */
-	PRIMARY KEY (supplier_id),
+	PRIMARY KEY (supplier_id)
 );
 
 CREATE TABLE contact_info(
@@ -31,7 +31,7 @@ CREATE TABLE contact_info(
 	FOREIGN KEY(supplier_id) REFERENCES suppliers(supplier_id)
 		ON DELETE CASCADE
 		ON UPDATE NO ACTION
-	)
+);
 
 CREATE TABLE suppliers_rating(
 	rid 				VARCHAR(20),

@@ -2,7 +2,7 @@ USE fusion;
 
 CREATE TABLE sales_transaction(
 	sale_id				INTEGER,
-	credit_card			INTEGER 	NOT NULL
+	credit_card			INTEGER 	NOT NULL,
 	status 				VARCHAR(10)	NOT NULL,
 	completion_date 	TIMESTAMP,
 	item_id				INTEGER 	NOT NULL,

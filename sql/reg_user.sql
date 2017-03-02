@@ -15,7 +15,7 @@ CREATE TABLE Users (
 
 	/* constraints */
 	UNIQUE (username, phone_num),
-	PRIMARY KEY(reg_id, email, url_ext)
+	PRIMARY KEY(reg_id, email)
 );
 
 CREATE TABLE postal_addr(
