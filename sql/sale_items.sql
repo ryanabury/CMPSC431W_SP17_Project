@@ -5,8 +5,8 @@ CREATE TABLE sale_items (
 	name 					VARCHAR(50) NOT NULL,
 	hasBeenSold 			BOOLEAN,
 	seller 					INTEGER,
-	price 					INTEGER 	NOT NULL, /* Given in Cents */
-	reservePrice 			INTEGER, /* Given in Cents */
+	price 					INTEGER 	NOT NULL, 	/* Given in Cents */
+	reservePrice 			INTEGER, 				/* Given in Cents */
 	quantity 				INTEGER 	NOT NULL,
 	category 				INTEGER 	NOT NULL,
 	detailedDescriptionURL 	VARCHAR(100),
@@ -18,12 +18,13 @@ CREATE TABLE sale_items (
 
 CREATE TABLE sale_items_rating(
 	rid 					VARCHAR(20),
-	score 					INTEGER(1) NOT NULL,
+	time_stamp				TIMESTAMP 	NOT NULL,
+	score 					INTEGER(1) 	NOT NULL,
 	description 			VARCHAR(50) NOT NULL,
 	comment 				VARCHAR(250),
 	id 						VARCHAR(20),
 	PRIMARY KEY(rid, id),
 	FOREIGN KEY(id) REFERENCES sale_items(id)
-		ON DELETE CASCADE
+		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );

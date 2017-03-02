@@ -40,10 +40,24 @@ CREATE TABLE credit_card(
 	type 				VARCHAR(20) NOT NULL,
 	cvv 				INTEGER(3) 	NOT NULL,
 	exp_date 			DATE 		NOT NULL,
+	first_name 			VARCHAR(25),	/* first name may be different from user's first name */
+	last_name 			VARCHAR(25),	/* last name may be different from user's last name */
 	reg_id 				VARCHAR(20),
 	PRIMARY KEY(card_number, reg_id),
 	FOREIGN KEY(reg_id) REFERENCES user(reg_id)
 		ON DELETE NO ACTION 		/* credit card tuple deleted if user account becomes inactive */
+		ON UPDATE NO ACTION
+);
+
+CREATE TABLE billing_addr(
+	street_addr 		VARCHAR(50),
+	city 				VARCHAR(50),
+	state 				VARCHAR(50),
+	zip 				INTEGER(9),
+	card_number 		INTEGER(16),
+	PRIMARY KEY(street_addr, city, state, zip, card_number),
+	FOREIGN KEY(card_number) REFERENCES credit_card(card_number)
+		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
 

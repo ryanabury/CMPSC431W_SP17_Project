@@ -17,5 +17,5 @@ CREATE TABLE sales (
 	
 	FOREIGN KEY (credit_card) REFERENCES credit_card(card_number),
 	
-	FOREIGN KEY	(item_id) REFERENCES sales_item(id)
+	FOREIGN KEY	(item_id) REFERENCES sale_items(id)
 );
