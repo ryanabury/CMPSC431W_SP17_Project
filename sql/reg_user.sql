@@ -13,14 +13,9 @@ CREATE TABLE Users (
 	gender 				VARCHAR(1),
 	annual_salary 		INTEGER(12),
 
-	/* user profile page attributes */
-	url_ext 			VARCHAR(30),		/* user specific URL extension */
-	profile_img 		VARCHAR(512),
-	about_description 	VARCHAR(250),
-
 	/* constraints */
 	UNIQUE (username, phone_num),
-	PRIMARY KEY(reg_id, email, url_ext)
+	PRIMARY KEY(reg_id, email)
 );
 
 CREATE TABLE postal_addr(
@@ -57,19 +52,6 @@ CREATE TABLE billing_addr(
 	card_number 		INTEGER(16),
 	PRIMARY KEY(street_addr, city, state, zip, card_number),
 	FOREIGN KEY(card_number) REFERENCES credit_card(card_number)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE user_rating(
-	rid 				VARCHAR(20),
-	time_stamp			TIMESTAMP NOT NULL,
-	score 				INTEGER(1) 	NOT NULL,
-	description 		VARCHAR(50) NOT NULL,
-	comment 			VARCHAR(250),
-	reg_id 				VARCHAR(20),
-	PRIMARY KEY(rid, reg_id),
-	FOREIGN KEY(reg_id) REFERENCES Users (reg_id)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
