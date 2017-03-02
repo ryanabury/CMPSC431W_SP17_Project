@@ -1,13 +1,9 @@
 USE fusion;
 
 CREATE TABLE suppliers (
+	supplier_id			INTEGER 	NOT NULL,
 	company_name 		VARCHAR(50) NOT NULL,
-	supplier_id			INTEGER 	NOT NULL,	/* primary key */
-	address 			VARCHAR(50),
 	password 			VARCHAR(20) NOT NULL,
-	point_of_contact 	VARCHAR(20),	
-	company_email		VARCHAR(35) NOT NULL,
-	phone_number		CHAR(10) 	NOT NULL,
 	category			VARCHAR(20) NOT NULL,
 	yearly_revenue		INTEGER,			/* monetary unit is cents */
 
@@ -18,19 +14,34 @@ CREATE TABLE suppliers (
 
 	/* constraints */
 	PRIMARY KEY (supplier_id),
-	CONSTRAINT fk_address FOREIGN KEY (address) 
-	REFERENCES postal_addr(address) ON DELETE CASCADE
 );
+
+CREATE TABLE contact_info(
+	point_of_contact 	VARCHAR(20),
+	street_addr 		VARCHAR(50),
+	city 				VARCHAR(50),
+	state 				VARCHAR(50),
+	zip 				INTEGER(9),
+	email				VARCHAR(35) NOT NULL,
+	phone_number		CHAR(10) 	NOT NULL,
+	supplier_id			INTEGER 	NOT NULL,
+
+	/* constraints */
+	PRIMARY KEY (point_of_contact, supplier_id),
+	FOREIGN KEY(supplier_id) REFERENCES suppliers(supplier_id)
+		ON DELETE CASCADE
+		ON UPDATE NO ACTION
+	)
 
 CREATE TABLE suppliers_rating(
 	rid 				VARCHAR(20),
-	time_stamp			TIMESTAMP NOT NULL,
-	score 				INTEGER(1) NOT NULL,
+	time_stamp			TIMESTAMP 	NOT NULL,
+	score 				INTEGER(1) 	NOT NULL,
 	description 		VARCHAR(50) NOT NULL,
 	comment 			VARCHAR(250),
 	supplier_id 		INTEGER(20),
 	PRIMARY KEY(rid, supplier_id),
 	FOREIGN KEY(supplier_id) REFERENCES suppliers(supplier_id)
-		ON DELETE NO ACTION
+		ON DELETE CASCADE
 		ON UPDATE NO ACTION
 );
