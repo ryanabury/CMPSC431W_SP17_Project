@@ -3,17 +3,23 @@ USE fusion;
 CREATE TABLE sale_items (
 	id 						INTEGER 	NOT NULL,
 	name 					VARCHAR(50) NOT NULL,
-	hasBeenSold 			BOOLEAN,
 	seller 					INTEGER,
 	price 					INTEGER 	NOT NULL, 	/* Given in Cents */
 	reservePrice 			INTEGER, 				/* Given in Cents */
 	quantity 				INTEGER 	NOT NULL,
 	category 				INTEGER 	NOT NULL,
 	detailedDescriptionURL 	VARCHAR(100),
-	shippedStateID 			INTEGER,
 	typeOfSale 				INTEGER 	NOT NULL,
 	description 			VARCHAR(500),
-	PRIMARY KEY (id)
+
+	/* constraints */
+	PRIMARY KEY (id, detailedDescriptionURL),
+	FOREIGN KEY(seller) REFERENCES suppliers(supplier_id),
+		ON DELETE CASCADE
+		ON UPDATE NO ACTION
+	FOREIGN KEY(category) REFERENCES Categories(id)
+		ON DELETE NO ACTION
+		ON UPDATE SET NULL
 );
 
 CREATE TABLE sale_items_rating(
