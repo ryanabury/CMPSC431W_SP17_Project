@@ -19,7 +19,8 @@ CREATE TABLE user(
 	about_description 	VARCHAR(250),
 
 	/* constraints */
-	PRIMARY KEY(reg_id, email)
+	UNIQUE (username, phone_num),
+	PRIMARY KEY(reg_id, email, url_ext)
 );
 
 CREATE TABLE postal_addr(
@@ -30,7 +31,7 @@ CREATE TABLE postal_addr(
 	reg_id 				VARCHAR(20),
 	PRIMARY KEY(street_addr, city, state, zip, reg_id),
 	FOREIGN KEY(reg_id) REFERENCES user(reg_id)
-		ON DELETE SET NULL
+		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
 
@@ -42,18 +43,19 @@ CREATE TABLE credit_card(
 	reg_id 				VARCHAR(20),
 	PRIMARY KEY(card_number, reg_id),
 	FOREIGN KEY(reg_id) REFERENCES user(reg_id)
-		ON DELETE CASCADE
+		ON DELETE NO ACTION 		/* credit card tuple deleted if user account becomes inactive */
 		ON UPDATE NO ACTION
 );
 
 CREATE TABLE user_rating(
 	rid 				VARCHAR(20),
+	time_stamp			TIMESTAMP NOT NULL,
 	score 				INTEGER(1) 	NOT NULL,
 	description 		VARCHAR(50) NOT NULL,
 	comment 			VARCHAR(250),
 	reg_id 				VARCHAR(20),
 	PRIMARY KEY(rid, reg_id),
 	FOREIGN KEY(reg_id) REFERENCES user(reg_id)
-		ON DELETE CASCADE
+		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
