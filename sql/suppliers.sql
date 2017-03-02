@@ -17,17 +17,20 @@ CREATE TABLE suppliers (
 	about_description 	VARCHAR(250),
 
 	/* constraints */
-	PRIMARY KEY supplier_id,
+	PRIMARY KEY (supplier_id),
 	CONSTRAINT fk_address FOREIGN KEY (address) 
 	REFERENCES postal_addr(address) ON DELETE CASCADE
 );
 
 CREATE TABLE suppliers_rating(
-	rid VARCHAR(20),
-	score INTEGER(1) NOT NULL,
-	description VARCHAR(50) NOT NULL,
-	comment VARCHAR(250),
-	supplier_id INTEGER(20),
+	rid 				VARCHAR(20),
+	time_stamp			TIMESTAMP NOT NULL,
+	score 				INTEGER(1) NOT NULL,
+	description 		VARCHAR(50) NOT NULL,
+	comment 			VARCHAR(250),
+	supplier_id 		INTEGER(20),
 	PRIMARY KEY(rid, supplier_id),
 	FOREIGN KEY(supplier_id) REFERENCES suppliers(supplier_id)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
 );
