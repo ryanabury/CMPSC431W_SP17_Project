@@ -30,7 +30,7 @@ CREATE TABLE postal_addr(
 	zip 				INTEGER(9),
 	reg_id 				VARCHAR(20),
 	PRIMARY KEY(street_addr, city, state, zip, reg_id),
-	FOREIGN KEY(reg_id) REFERENCES user(reg_id)
+	FOREIGN KEY(reg_id) REFERENCES Users(reg_id)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
@@ -42,7 +42,7 @@ CREATE TABLE credit_card(
 	exp_date 			DATE 		NOT NULL,
 	reg_id 				VARCHAR(20),
 	PRIMARY KEY(card_number, reg_id),
-	FOREIGN KEY(reg_id) REFERENCES user(reg_id)
+	FOREIGN KEY(reg_id) REFERENCES Users (reg_id)
 		ON DELETE NO ACTION 		/* credit card tuple deleted if user account becomes inactive */
 		ON UPDATE NO ACTION
 );
@@ -55,7 +55,7 @@ CREATE TABLE user_rating(
 	comment 			VARCHAR(250),
 	reg_id 				VARCHAR(20),
 	PRIMARY KEY(rid, reg_id),
-	FOREIGN KEY(reg_id) REFERENCES user(reg_id)
+	FOREIGN KEY(reg_id) REFERENCES Users (reg_id)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
