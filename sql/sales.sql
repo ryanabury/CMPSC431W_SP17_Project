@@ -6,6 +6,7 @@ CREATE TABLE sales_transaction(
 	status 				VARCHAR(10)	NOT NULL,
 	completion_date 	TIMESTAMP,
 	item_id				INTEGER 	NOT NULL,
+	quantity 			INTEGER 	NOT NULL,
 	sale_price			INTEGER		NOT NULL,	/* monetary unit: cents */
 
 	/* constraints */
@@ -28,6 +29,9 @@ CREATE TABLE shipping_addr(
 	PRIMARY KEY (sale_id, street_addr, city, state, zip),
 	FOREIGN KEY (sale_id) REFERENCES sales_transaction(sale_id)
 		ON DELETE CASCADE
+		ON UPDATE NO ACTION
+	FOREIGN KEY (buyer_id) REFERENCES Users(reg_id)
+		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
 
