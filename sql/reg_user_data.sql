@@ -2,26 +2,26 @@ USE fusion;
 
 /* --------------------- Populate User Table --------------------------*/
 
-INSERT INTO Users VALUES (1, "tincidunt@hendrerit.net", 1, "Jageoid", "Noelani", "Livingston", "ilovecats", 50, 8128816367, "f", 30000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (2, "eu@aliquameros.co.uk", 1, "Boedojek", "Chava", "Hughes", "6!n7N27!1Bpd", 42, 5619541349, "m", 70000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (3, "euismod.enim.Etiam@amet.co.uk", 1, "Jadazkic", "Calista", "Mccarthy", "wH3331e^$G2T", 39, 4152913638, "f", 60000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (4, "Quisque.nonummy.ipsum@velnislQuisque.edu", 1, "Chenjvhioi", "Audrey", "Carlson", "U54z2958xu", 27, 5574465760, "m", 90000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (5, "ligula@fermentumrisus.co.uk", 1, "Kacixone", "Hamilton", "Padilla", "T1w55G2f8!!v", 26, 5148510943, "m", 120000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (6, "dolor.nonummy.ac@tellusPhasellus.net", 1, "Ukegle", "Lysandra","Keith", "867pV3M%8Nxu", 38, 2069449894, "f", 90000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (7, "quam@imperdietnec.net", 1, "Jaxohoh", "Renee", "May", "iR75200@4Z4N", 31, 1394659924, "f", 40000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (8, "in.felis@nec.edu", 1, "Thexboh", "Alvin", "Robins", "5g1F08@3$R*9", 40, 9529865345, "m", 60000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (9, "dui.Suspendisse@adipiscing.co.uk", 1, "Thoeyeb", "Britanney", "Hutchinson", "k579M46&0&AL", 32, 4847235130, "f", 70000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (10, "et@necmollis.ca", 1,"Kapzytdubuj", "Lee", "Fernandez", "Ep04^%082Ikr", 66, 4428243635, "m", 50000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (11, "mauris.erat.eget@mollisdui.org", 1, "Jacdeva", "Tiger", "Curry", "2f0Z835***X1", 21, 2469925314, "m", 30000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (12, "volutpat.Nulla@magnisdisparturient.edu", 1, "Zolehe", "Dakota", "Nieves", "445L3&*g7UFg", 22, 7375808370, "f", 450000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (13, "elit.pede@aliquet.ca", 1, "Kacisen", "Raya", "Beasley", "31i1J33#^3bq", 25, 6534030213, "f", 20000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (14, "nunc.ac.mattis@necmalesuadaut.co.uk", 1, "Jarnqkg", "Aladdin", "Gilmore", "809xY196#&&f", 44, 3896314720, "m", 40000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (15, "ut.sem@nonlobortisquis.org", 1, "Kanaigw", "Janna", "Chaney", "9s2D9452%tq%", 45, 2436937130, "f", 60000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (16, "Cras.dictum.ultricies@Praesentinterdumligula.com", 1, "Kawzvjtpqmts", "Prescott", "Fox", "8Va%0k547l64", 54, 5715927790, "m", 70000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (17, "dui.nec@dignissimlacusAliquam.edu", 1, "Ihaqu", "Zane", "Castaneda", "P2p0009Wr26*", 18, 9125329335, "m", 60000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (18, "congue@magna.co.uk", 1, "Kavafou", "Iliana", "Haynes", "e1C2253$UtcD", 23, 3654248457, "f", 10000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (19, "Nunc.commodo@imperdietullamcorper.org", 1, "Thixxof", "Jane", "Ashley", "1J8o2^3W25c9", 54, 5148510943, "f", 20000, NULL, NULL, NULL);
-INSERT INTO Users VALUES (20, "Sed.eu@consequat.edu", 1, "Jiotrzcb", "Oscar", "Mayer", "Ho90%5h3N5O6", 34, 4045379695, "m", 80000, NULL, NULL, NULL);
+INSERT INTO Users VALUES (1, "tincidunt@hendrerit.net", 1, "Jageoid", "Noelani", "Livingston", "ilovecats", 50, 8128816367, "f", 30000);
+INSERT INTO Users VALUES (2, "eu@aliquameros.co.uk", 1, "Boedojek", "Chava", "Hughes", "6!n7N27!1Bpd", 42, 5619541349, "m", 70000);
+INSERT INTO Users VALUES (3, "euismod.enim.Etiam@amet.co.uk", 1, "Jadazkic", "Calista", "Mccarthy", "wH3331e^$G2T", 39, 4152913638, "f", 60000);
+INSERT INTO Users VALUES (4, "Quisque.nonummy.ipsum@velnislQuisque.edu", 1, "Chenjvhioi", "Audrey", "Carlson", "U54z2958xu", 27, 5574465760, "m", 90000);
+INSERT INTO Users VALUES (5, "ligula@fermentumrisus.co.uk", 1, "Kacixone", "Hamilton", "Padilla", "T1w55G2f8!!v", 26, 5148510943, "m", 120000);
+INSERT INTO Users VALUES (6, "dolor.nonummy.ac@tellusPhasellus.net", 1, "Ukegle", "Lysandra","Keith", "867pV3M%8Nxu", 38, 2069449894, "f", 90000);
+INSERT INTO Users VALUES (7, "quam@imperdietnec.net", 1, "Jaxohoh", "Renee", "May", "iR75200@4Z4N", 31, 1394659924, "f", 40000);
+INSERT INTO Users VALUES (8, "in.felis@nec.edu", 1, "Thexboh", "Alvin", "Robins", "5g1F08@3$R*9", 40, 9529865345, "m", 60000);
+INSERT INTO Users VALUES (9, "dui.Suspendisse@adipiscing.co.uk", 1, "Thoeyeb", "Britanney", "Hutchinson", "k579M46&0&AL", 32, 4847235130, "f", 70000);
+INSERT INTO Users VALUES (10, "et@necmollis.ca", 1,"Kapzytdubuj", "Lee", "Fernandez", "Ep04^%082Ikr", 66, 4428243635, "m", 50000);
+INSERT INTO Users VALUES (11, "mauris.erat.eget@mollisdui.org", 1, "Jacdeva", "Tiger", "Curry", "2f0Z835***X1", 21, 2469925314, "m", 30000);
+INSERT INTO Users VALUES (12, "volutpat.Nulla@magnisdisparturient.edu", 1, "Zolehe", "Dakota", "Nieves", "445L3&*g7UFg", 22, 7375808370, "f", 450000);
+INSERT INTO Users VALUES (13, "elit.pede@aliquet.ca", 1, "Kacisen", "Raya", "Beasley", "31i1J33#^3bq", 25, 6534030213, "f", 20000);
+INSERT INTO Users VALUES (14, "nunc.ac.mattis@necmalesuadaut.co.uk", 1, "Jarnqkg", "Aladdin", "Gilmore", "809xY196#&&f", 44, 3896314720, "m", 40000);
+INSERT INTO Users VALUES (15, "ut.sem@nonlobortisquis.org", 1, "Kanaigw", "Janna", "Chaney", "9s2D9452%tq%", 45, 2436937130, "f", 60000);
+INSERT INTO Users VALUES (16, "Cras.dictum.ultricies@Praesentinterdumligula.com", 1, "Kawzvjtpqmts", "Prescott", "Fox", "8Va%0k547l64", 54, 5715927790, "m", 70000);
+INSERT INTO Users VALUES (17, "dui.nec@dignissimlacusAliquam.edu", 1, "Ihaqu", "Zane", "Castaneda", "P2p0009Wr26*", 18, 9125329335, "m", 60000);
+INSERT INTO Users VALUES (18, "congue@magna.co.uk", 1, "Kavafou", "Iliana", "Haynes", "e1C2253$UtcD", 23, 3654248457, "f", 10000);
+INSERT INTO Users VALUES (19, "Nunc.commodo@imperdietullamcorper.org", 1, "Thixxof", "Jane", "Ashley", "1J8o2^3W25c9", 54, 5148510943, "f", 20000);
+INSERT INTO Users VALUES (20, "Sed.eu@consequat.edu", 1, "Jiotrzcb", "Oscar", "Mayer", "Ho90%5h3N5O6", 34, 4045379695, "m", 80000);
 
 
 
