@@ -1,4 +1,4 @@
-
+USE fusion;
 
 /* --------------------- Populate User Table --------------------------*/
 
@@ -30,8 +30,8 @@ INSERT INTO Users VALUES (20, "Sed.eu@consequat.edu", 1, "Jiotrzcb", "Oscar", "M
 
 INSERT INTO postal_addr VALUES ("305-3604 Magna Avenue", "Orbais", "WB", 22305-939, 1);
 INSERT INTO postal_addrVALUES ("P.O. Box 688, 1481 Blandit Av.", "Vienna", "Vienna", 56000, 2);
-INSERT INTO postal_addr VALUES ("P.O.Box 141, 8553 Scelerisque Rd.", "San Juan", "San JosÈ", 97283, 3);
-INSERT INTO postal_addr VALUES ("9667 Morbi Rd.", "Vallentuna", "Stockholms l‰n", 18577, 4);
+INSERT INTO postal_addr VALUES ("P.O.Box 141, 8553 Scelerisque Rd.", "San Juan", "San Jos√©", 97283, 3);
+INSERT INTO postal_addr VALUES ("9667 Morbi Rd.", "Vallentuna", "Stockholms l√§n", 18577, 4);
 INSERT INTO postal_addr VALUES ("647-9311 Iaculis Rd.", "Salt Spring Island", "British Columbia", 23432, 5);
 INSERT INTO postal_addr VALUES ("7784 Convallis Ave", "Worcester", "MA", 80373, 6);
 INSERT INTO postal_addr VALUES ("5462 Ipsum. Rd.", "Grey County", "ON", 8086XR, 7);
@@ -43,10 +43,10 @@ INSERT INTO postal_addr VALUES ("244-3317 Lorem Av.", "Galway", "Connacht", 3764
 INSERT INTO postal_addr VALUES ("Ap #915-2986 Aenean Rd.", "Chandler", "Arizona", 44527, 13);
 INSERT INTO postal_addr VALUES ("2490 In Avenue", "Saint Paul", "MN", P3J4Y5, 14);
 INSERT INTO postal_addr VALUES ("566-1057 Tellus St.", "Montreuil", "France", X5V1E0, 15);
-INSERT INTO postal_addr VALUES ("8712 Tempor Avenue", "Juazeiro do Norte", "Cear·", 30801, 16);
-INSERT INTO postal_addr VALUES ("628-6056 Metus St.", "ToltÈn", "IX", 94255, 17);
+INSERT INTO postal_addr VALUES ("8712 Tempor Avenue", "Juazeiro do Norte", "Cear√°", 30801, 16);
+INSERT INTO postal_addr VALUES ("628-6056 Metus St.", "Tolt√©n", "IX", 94255, 17);
 INSERT INTO postal_addr VALUES ("4178 Pellentesque Ave", "Lachine", "QC", 06509-941, 18);
-INSERT INTO postal_addr VALUES ("1161 Nunc St.", "S„o GonÁalo", "RJ", 60511, 19);
+INSERT INTO postal_addr VALUES ("1161 Nunc St.", "S√£o Gon√ßalo", "RJ", 60511, 19);
 INSERT INTO postal_addr VALUES ("1990 Iaculis Av.", "Morwell", "VIC", 54391, 20);
 
 
@@ -98,7 +98,7 @@ INSERT INTO billing_addr VALUES ("566-1057 Tellus St.", "Montreuil", "France", X
 INSERT INTO billing_addr VALUES ("8712 Tempor Avenue", "Juazeiro do Norte", "Ceara", 30801, 371076906188926);
 INSERT INTO billing_addr VALUES ("628-6056 Metus St.", "Tolten", "IX", 94255, 349290812195094);
 INSERT INTO billing_addr VALUES ("4178 Pellentesque Ave", "Lachine", "QC", 06509-941, 375933793515445);
-INSERT INTO billing_addr VALUES ("1161 Nunc St.", "S„o GonÁalo", "RJ", 60511, 371272374441158);
+INSERT INTO billing_addr VALUES ("1161 Nunc St.", "S√£o Gon√ßalo", "RJ", 60511, 371272374441158);
 INSERT INTO billing_addr VALUES ("1990 Iaculis Av.", "Morwell", "VIC", 54391, 372042594358436);
 
 
