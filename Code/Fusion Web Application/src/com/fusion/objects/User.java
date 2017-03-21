@@ -18,6 +18,7 @@ public class User {
 	private ArrayList<Address> addresses;
 	private byte age;
 	private double annualSalary;
+	private ArrayList<CreditCard> creditCards;
 	private String emailAddress;
 	private String firstName;
 	private char gender;
@@ -27,7 +28,7 @@ public class User {
 	private String phoneNumber;
 	private char[] regId;
 	private String username;
-
+	
 	/**
 	 * Creates a default user. Use the setter methods for this class to fill in
 	 * data.
@@ -45,7 +46,7 @@ public class User {
 		gender = 'm';
 		annualSalary = 0.0;
 	}
-
+	
 	/**
 	 * Adds a new address to the user's list of stored addresses.
 	 */
@@ -53,6 +54,13 @@ public class User {
 		getAddresses().add(address);
 	}
 	
+	/**
+	 * Adds a new credit card for this user.
+	 */
+	public void addCreditCard(CreditCard creditCard) {
+		creditCards.add(creditCard);
+	}
+
 	/**
 	 * @return a list of the user's addresses.
 	 */
@@ -66,12 +74,19 @@ public class User {
 	public byte getAge() {
 		return age;
 	}
-
+	
 	/**
 	 * @return the annual salary of the user
 	 */
 	public double getAnnualSalary() {
 		return annualSalary;
+	}
+
+	/**
+	 * @return the list of credit cards stored for this user
+	 */
+	public ArrayList<CreditCard> getCreditCards() {
+		return creditCards;
 	}
 
 	/**
@@ -142,6 +157,13 @@ public class User {
 	 */
 	public void removeAddress(Address address) {
 		getAddresses().remove(address);
+	}
+
+	/**
+	 * Removed a credit card from this user.
+	 */
+	public void removeCreditCard(CreditCard creditCard) {
+		creditCards.remove(creditCard);
 	}
 
 	/**
