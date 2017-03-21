@@ -1,5 +1,7 @@
 package com.fusion.objects;
 
+import java.util.ArrayList;
+
 /**
  * This class represents one user. This class contains the same data for a user
  * that would be found stored in the user table.
@@ -13,6 +15,7 @@ public class User {
 	 */
 	public static final int REG_ID_SIZE = 20;
 
+	private ArrayList<Address> addresses;
 	private byte age;
 	private double annualSalary;
 	private String emailAddress;
@@ -41,6 +44,20 @@ public class User {
 		phoneNumber = "";
 		gender = 'm';
 		annualSalary = 0.0;
+	}
+
+	/**
+	 * Adds a new address to the user's list of stored addresses.
+	 */
+	public void addAddress(Address address) {
+		getAddresses().add(address);
+	}
+	
+	/**
+	 * @return a list of the user's addresses.
+	 */
+	public ArrayList<Address> getAddresses() {
+		return addresses;
 	}
 
 	/**
@@ -118,6 +135,13 @@ public class User {
 	 */
 	public boolean isActive() {
 		return isActive;
+	}
+
+	/**
+	 * Removes and address from the user's list of stored addresses.
+	 */
+	public void removeAddress(Address address) {
+		getAddresses().remove(address);
 	}
 
 	/**
