@@ -86,6 +86,9 @@ public class CreditCard {
 	 * @param billingAddress
 	 */
 	public void setBillingAddress(Address billingAddress) {
+		if (billingAddress == null) {
+			throw new RuntimeException("Tried to set the billing address to null.");
+		}
 		this.billingAddress = billingAddress;
 	}
 
@@ -95,6 +98,12 @@ public class CreditCard {
 	 * and 9 or else a runtime exception will be thrown.
 	 */
 	public void setCardNumber(byte[] cardNumber) {
+		if (cardNumber == null) {
+			throw new RuntimeException("Tried to set the card number to null.");
+		}
+		if (cardNumber.length != CARD_NUMBER_SIZE) {
+			throw new RuntimeException("Tried to set the card number to a number of the incorrect length [" + cardNumber + "].");
+		}
 		this.cardNumber = cardNumber;
 	}
 
@@ -103,6 +112,12 @@ public class CreditCard {
 	 * @param cvv
 	 */
 	public void setCvv(byte[] cvv) {
+		if (cvv == null) {
+			throw new RuntimeException("Tried to set the cvv to null.");
+		}
+		if (cvv.length != CVV_SIZE) {
+			throw new RuntimeException("Tried to set the cvv to a number of the incorrect length [" + cvv + "].");
+		}
 		this.cvv = cvv;
 	}
 
@@ -111,6 +126,9 @@ public class CreditCard {
 	 * @param date
 	 */
 	public void setDate(Date date) {
+		if (date == null) {
+			throw new RuntimeException("Tried to set the card expiration date to null.");
+		}
 		this.date = date;
 	}
 
@@ -118,6 +136,9 @@ public class CreditCard {
 	 * Sets a new first name of the card owner
 	 */
 	public void setFirstName(String firstName) {
+		if (firstName == null) {
+			throw new RuntimeException("Tried to set the card owner's first name to null.");
+		}
 		this.firstName = firstName;
 	}
 
@@ -125,6 +146,9 @@ public class CreditCard {
 	 * Sets a new last name of the card owner
 	 */
 	public void setLastName(String lastName) {
+		if (lastName == null) {
+			throw new RuntimeException("Tried to set the card owner's last name to null.");
+		}
 		this.lastName = lastName;
 	}
 
@@ -133,6 +157,9 @@ public class CreditCard {
 	 * @param type
 	 */
 	public void setType(String type) {
+		if (type == null) {
+			throw new RuntimeException("Tried to set the card type to null.");
+		}
 		this.type = type;
 	}
 	

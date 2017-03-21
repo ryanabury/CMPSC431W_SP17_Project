@@ -51,6 +51,9 @@ public class User {
 	 * Adds a new address to the user's list of stored addresses.
 	 */
 	public void addAddress(Address address) {
+		if (address == null) {
+			throw new RuntimeException("Tried to a null address.");
+		}
 		getAddresses().add(address);
 	}
 	
@@ -58,6 +61,9 @@ public class User {
 	 * Adds a new credit card for this user.
 	 */
 	public void addCreditCard(CreditCard creditCard) {
+		if (creditCard == null) {
+			throw new RuntimeException("Tried to add a null credit card.");
+		}
 		creditCards.add(creditCard);
 	}
 
@@ -191,6 +197,9 @@ public class User {
 	 * Sets a new email address.
 	 */
 	public void setEmailAddress(String emailAddress) {
+		if (emailAddress == null) {
+			throw new RuntimeException("Tried to set the user's address to null.");
+		}
 		this.emailAddress = emailAddress;
 	}
 
@@ -198,6 +207,9 @@ public class User {
 	 * Sets a new first name for the user.
 	 */
 	public void setFirstName(String firstName) {
+		if (firstName == null) {
+			throw new RuntimeException("Tried to set the user's first name to null.");
+		}
 		this.firstName = firstName;
 	}
 
@@ -218,6 +230,9 @@ public class User {
 	 * Sets a new last name for the user.
 	 */
 	public void setLastName(String lastName) {
+		if (lastName == null) {
+			throw new RuntimeException("Tried to set the user's last name to null.");
+		}
 		this.lastName = lastName;
 	}
 
@@ -225,6 +240,9 @@ public class User {
 	 * Sets a new password for this user.
 	 */
 	public void setPassword(String password) {
+		if (password == null) {
+			throw new RuntimeException("Tried to set the user's password to null.");
+		}
 		this.password = password;
 	}
 
@@ -232,6 +250,9 @@ public class User {
 	 * Sets a new phone number for the user.
 	 */
 	public void setPhoneNumber(String phoneNumber) {
+		if (phoneNumber == null) {
+			throw new RuntimeException("Tried to set the user's phone number to null.");
+		}
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -239,6 +260,12 @@ public class User {
 	 * Sets a new user ID.
 	 */
 	public void setRegId(char[] regId) {
+		if (regId == null) {
+			throw new RuntimeException("Tried to set the user's ID to null.");
+		}
+		if (regId.length != REG_ID_SIZE) {
+			throw new RuntimeException("Tried to set the user's ID to an invalid value [" + regId + "].");
+		}
 		this.regId = regId;
 	}
 
@@ -246,6 +273,9 @@ public class User {
 	 * Sets a new username.
 	 */
 	public void setUsername(String username) {
+		if (username == null) {
+			throw new RuntimeException("Tried to set the user's username to null.");
+		}
 		this.username = username;
 	}
 
