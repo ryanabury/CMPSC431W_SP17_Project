@@ -1,5 +1,7 @@
 package com.fusion.objects;
 
+import java.util.ArrayList;
+
 public class SaleItem {
 	
 	private int id;
@@ -12,6 +14,7 @@ public class SaleItem {
 	private String detailedDescriptionURL;
 	private int typeOfSale;
 	private String description;
+	private ArrayList<ItemRating> ratings;
 	
 	public SaleItem() {
 		id = 0;
@@ -24,6 +27,15 @@ public class SaleItem {
 		detailedDescriptionURL = "";
 		typeOfSale = 0;
 		description = "";
+		ratings = new ArrayList<>();
+	}
+	
+	public ArrayList<ItemRating> getRatings() {
+		return ratings;
+	}
+	
+	public void addRating(ItemRating rating) {
+		ratings.add(rating);
 	}
 	
 	public int getId() {
