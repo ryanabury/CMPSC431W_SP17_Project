@@ -35,6 +35,14 @@ public class DBHelper {
 		}
 	}
 	
+	public void close() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static class DBHelperException extends Exception {
 		
 		public DBHelperException() {
