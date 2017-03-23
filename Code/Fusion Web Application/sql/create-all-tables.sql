@@ -38,7 +38,7 @@ CREATE TABLE postal_addr(
 );
 
 CREATE TABLE credit_card(
-	card_number 		INTEGER(16),
+	card_number 		VARCHAR(16),
 	type 				VARCHAR(20) NOT NULL,
 	cvv 				INTEGER(3) 	NOT NULL,
 	exp_date 			DATE 		NOT NULL,
