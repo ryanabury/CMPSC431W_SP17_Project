@@ -1,17 +1,5 @@
 USE fusion;
 
-/* ------------------- Create Table ------------------- */
-
-CREATE TABLE Categories (
-    id integer NOT NULL,
-    name varchar(50) NOT NULL,
-    parentID integer,
-    PRIMARY KEY (id)
-);
-
-/* ------------------ Populate Table ------------------ */
-
-/* Parent Categories */
 INSERT INTO Categories VALUES (1, "Electronics & Computers", 0);
 INSERT INTO Categories VALUES (2, "Home Audio & Theater", 1);
 INSERT INTO Categories VALUES (3, "Speakers", 2);
