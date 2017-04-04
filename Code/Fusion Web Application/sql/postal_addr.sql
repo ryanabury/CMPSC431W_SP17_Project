@@ -1,0 +1,21 @@
+/* --------------------- Populate postal_addr Table --------------------------*/
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("305-3604 Magna Avenue", "Orbais", "WB", 22305, "1");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("P.O. Box 688, 1481 Blandit Av.", "Vienna", "NY", 56000, "2");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("P.O.Box 141, 8553 Scelerisque Rd.", "San Juan", "SJ", 97283, "3");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("9667 Morbi Rd.", "Vallentuna", "Stockholms län", 18577, "4");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("647-9311 Iaculis Rd.", "Salt Spring Island", "British Columbia", 23432, "5");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("7784 Convallis Ave", "Worcester", "MA", 80373, "6");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("5462 Ipsum. Rd.", "Grey County", "ON", 808689, "7");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("820-647 Ac St.", "Van", "NY", 65275, "8");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("Ap #990-9474 Natoque Road", "Rangiora", "South Island", 16568, "9");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("4732 Erat. St.", "Alajuela", "AL", 05275, "10");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("7993 Sodales. Rd", "Benalla", "VIC", 31651, "11");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("244-3317 Lorem Av.", "Galway", "Connacht", 37646, "12");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("Ap #915-2986 Aenean Rd.", "Chandler", "Arizona", 44527, "13");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("2490 In Avenue", "Saint Paul", "MN", 99582, "14");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("566-1057 Tellus St.", "Montreuil", "France", 43231, "15");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("8712 Tempor Avenue", "Juazeiro do Norte", "Ceará", 30801, "16");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("628-6056 Metus St.", "Toltén", "IX", 94255, "17");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("4178 Pellentesque Ave", "Lachine", "QC", 06509, "18");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("1161 Nunc St.", "São Gonçalo", "RJ", 60511, "19");
+INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("1990 Iaculis Av.", "Morwell", "VIC", 54391, "20");
