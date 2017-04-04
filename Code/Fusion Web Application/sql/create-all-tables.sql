@@ -56,7 +56,7 @@ CREATE TABLE billing_addr(
 	city 				VARCHAR(50),
 	state 				VARCHAR(50),
 	zip 				INTEGER(9),
-	card_number 		INTEGER(16),
+	card_number 		VARCHAR(16),
 	PRIMARY KEY(street_addr, city, state, zip, card_number),
 	FOREIGN KEY(card_number) REFERENCES credit_card(card_number)
 		ON DELETE NO ACTION
@@ -146,7 +146,7 @@ CREATE TABLE sale_items_rating(
 
 CREATE TABLE sales_transaction(
 	sale_id				INTEGER,
-	credit_card			INTEGER 	NOT NULL,
+	credit_card			VARCHAR(16) 	NOT NULL,
 	status 				VARCHAR(10)	NOT NULL,
 	completion_date 	TIMESTAMP,
 	item_id				INTEGER 	NOT NULL,
