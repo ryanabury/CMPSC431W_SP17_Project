@@ -106,7 +106,7 @@
 						</Table>
 					<%
 						Thread.sleep(5000);
-						String site = new String("http://www.google.com"); /* TODO: Change redirect location to login page, prompt user to login */
+						String site = new String("http://localhost:8080/Fusion_Web_Application/getUserInformation.jsp"); /* TODO: Change redirect location to login page, prompt user to login */
 						response.setStatus(response.SC_MOVED_TEMPORARILY);
 						response.setHeader("Location", site);
 					}
