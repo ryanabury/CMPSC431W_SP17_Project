@@ -41,7 +41,7 @@
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 		
 	try{
-		connection = DriverManager.getConnection(connectionURL, "root", "sentence429&pattern&yes&"); /**** CHANGE PASSWORD TO YOUR LOCAL PASSWORD ****/ 
+		connection = DriverManager.getConnection(connectionURL, "fusion", "fusion_pass"); /**** CHANGE PASSWORD TO YOUR LOCAL PASSWORD ****/ 
 		String queryString = "SELECT * FROM fusion.users WHERE username = ?";
 		
 		pstatement = connection.prepareStatement(queryString);

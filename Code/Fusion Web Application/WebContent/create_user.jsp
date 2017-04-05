@@ -82,7 +82,7 @@
 		if(first_name != null && last_name != null && username != null && email != null && password != null && phone_num != null && age != null && gender != null && annual_salary != null){
 			if(first_name != "" && last_name != "" && username != "" && email != "" && password != "" && phone_num != "" && age != "" && gender != "" && annual_salary != ""){
 				try{
-					connection = DriverManager.getConnection(connectionURL, "root", "sentence429&pattern&yes&"); /**** CHANGE PASSWORD TO YOUR LOCAL PASSWORD ****/ 
+					connection = DriverManager.getConnection(connectionURL, "fusion", "fusion_pass"); /**** CHANGE PASSWORD TO YOUR LOCAL PASSWORD ****/ 
 					String queryString = "INSERT INTO fusion.users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 					
 					pstatement = connection.prepareStatement(queryString);
