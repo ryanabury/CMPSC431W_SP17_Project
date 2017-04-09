@@ -1,3 +1,5 @@
+USE fusion;
+
 /* --------------------- Populate billing_addr Table --------------------------*/
 
 INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("305-3604 Magna Avenue", "Orbais", "WB", 22305, "4485944851395678");
