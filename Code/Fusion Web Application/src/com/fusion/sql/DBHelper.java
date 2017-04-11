@@ -86,6 +86,52 @@ public class DBHelper {
 		
 	}
 	
+	/**
+	 * Fetches the billing address given the selected input.
+	 * @param cardNumber	the card number to use as a search term
+	 * @return	the address with the given card number. cannot return null
+	 * @throws DBHelperException	thrown if there is an issue fetching the address or if no address is found
+	 */
+	public Address getShippingAddress(int saleID) throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		Address address = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM billing_addr WHERE sale_id=" + saleID + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			address = new Address();
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for sale id [" + saleID + "]");
+			}
+			address.setStreetAddress(rs.getString(2));
+			address.setCity(rs.getString(3));
+			address.setState(rs.getString(4));
+			address.setZipCode(rs.getString(5).getBytes());
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return address;
+		
+	}
+	
 	public Category getCategory(String name) throws DBHelperException {
 		throw new RuntimeException("Not yet implemented...");
 	}
