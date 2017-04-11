@@ -14,7 +14,7 @@ public class DBHelper {
 	
 	// Database Credentials
 	private static final String USERNAME = "fusion";
-	private static final String PASSWORD = "fusion_password";
+	private static final String PASSWORD = "fusion_pass";
 	
 	private String address;
 	private int port;
