@@ -13,7 +13,7 @@ public class Header {
 	
 	public static String generate(User user) {
 		return div().with(								// Main Header Box
-				h1("Fusion.com"), 						// Title
+				h1("Fusion"), 						// Title
 				div().with(								// Menu / Login Box
 						generateMenu(),
 						generateAccountInfo(user)
