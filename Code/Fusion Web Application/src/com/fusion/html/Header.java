@@ -17,7 +17,7 @@ public class Header {
 						generateMenu(),
 						generateAccountInfo(user)
 				)
-		).render();
+		).withClass("header-main-box").render();
 	}
 	
 	private static ContainerTag generateMenu() {
@@ -25,7 +25,7 @@ public class Header {
 		for (int i = 0; i < MENU_ITEMS.length; i++) {
 			div.with(a(MENU_ITEMS[i]));
 		}
-		return div;
+		return div.withClass("header-menu-box");
 	}
 	
 	private static ContainerTag generateAccountInfo(User user) {
@@ -34,12 +34,12 @@ public class Header {
 					a("Login"), 
 					p(" / "), 
 					a("Create Account")
-			);
+			).withClass("header-account-box");
 		} else {
 			return div().with(
 					a("My Account"), 
 					p(" (" + user.getFullName() + ")")
-			);
+			).withClass("header-account-box");
 		}
 	}
 
