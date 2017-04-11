@@ -1,5 +1,7 @@
 package com.fusion.objects;
 
+import java.util.Arrays;
+
 /**
  * This class represents one user's postal address.
  * @author Ethan Raymond
@@ -68,6 +70,11 @@ public class Address {
 			throw new RuntimeException("Tried to set the zipcode value to an invalid zipcode [" + zipCode + "]");
 		}
 		this.zipCode = zipCode;
+	}
+	
+	@Override
+	public String toString() {
+		return "[" + streetAddress + ", " + city + ", " + state + " " + Arrays.toString(zipCode) + "]";
 	}
 	
 }
