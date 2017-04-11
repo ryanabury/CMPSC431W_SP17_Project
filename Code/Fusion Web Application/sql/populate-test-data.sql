@@ -1,27 +1,33 @@
 USE fusion;
 
-/* --------------------- Populate billing_addr Table --------------------------*/
+/* --------------------- Populate User Table --------------------------*/
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("1", "tincidunt@hendrerit.net", 1, "Jageoid", "Noelani", "Livingston", "ilovecats", 50, "8128816367", "f", 30000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("2", "eu@aliquameros.co.uk", 1, "Boedojek", "Chava", "Hughes", "6!n7N27!1Bpd", 42, "5619541349", "m", 70000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("3", "euismod.enim.Etiam@amet.co.uk", 1, "Jadazkic", "Calista", "Mccarthy", "wH3331e^$G2T", 39, "4152913638", "f", 60000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("4", "Quisque.nonummy.ipsum@velnislQuisque.edu", 1, "Chenjvhioi", "Audrey", "Carlson", "U54z2958xu", 27, "5574465760", "m", 90000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("5", "ligula@fermentumrisus.co.uk", 1, "Kacixone", "Hamilton", "Padilla", "T1w55G2f8!!v", 26, "5148510943", "m", 120000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("6", "dolor.nonummy.ac@tellusPhasellus.net", 1, "Ukegle", "Lysandra","Keith", "867pV3M%8Nxu", 38, "2069449894", "f", 90000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("7", "quam@imperdietnec.net", 1, "Jaxohoh", "Renee", "May", "iR75200@4Z4N", 31, "1394659924", "f", 40000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("8", "in.felis@nec.edu", 1, "Thexboh", "Alvin", "Robins", "5g1F08@3$R*9", 40, "9529865345", "m", 60000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("9", "dui.Suspendisse@adipiscing.co.uk", 1, "Thoeyeb", "Britanney", "Hutchinson", "k579M46&0&AL", 32, "4847235130", "f", 70000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("10", "et@necmollis.ca", 1,"Kapzytdubuj", "Lee", "Fernandez", "Ep04^%082Ikr", 66, "4428243635", "m", 50000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("11", "mauris.erat.eget@mollisdui.org", 1, "Jacdeva", "Tiger", "Curry", "2f0Z835***X1", 21, "2469925314", "m", 30000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("12", "volutpat.Nulla@magnisdisparturient.edu", 1, "Zolehe", "Dakota", "Nieves", "445L3&*g7UFg", 22, "7375808370", "f", 450000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("13", "elit.pede@aliquet.ca", 1, "Kacisen", "Raya", "Beasley", "31i1J33#^3bq", 25, "6534030213", "f", 20000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("14", "nunc.ac.mattis@necmalesuadaut.co.uk", 1, "Jarnqkg", "Aladdin", "Gilmore", "809xY196#&&f", 44, "3896314720", "m", 40000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("15", "ut.sem@nonlobortisquis.org", 1, "Kanaigw", "Janna", "Chaney", "9s2D9452%tq%", 45, "2436937130", "f", 60000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("16", "Cras.dictum.ultricies@Praesentinterdumligula.com", 1, "Kawzvjtpqmts", "Prescott", "Fox", "8Va%0k547l64", 54, "5715927790", "m", 70000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("17", "dui.nec@dignissimlacusAliquam.edu", 1, "Ihaqu", "Zane", "Castaneda", "P2p0009Wr26*", 18, "9125329335", "m", 60000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("18", "congue@magna.co.uk", 1, "Kavafou", "Iliana", "Haynes", "e1C2253$UtcD", 23, "3654248457", "f", 10000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("19", "Nunc.commodo@imperdietullamcorper.org", 1, "Thixxof", "Jane", "Ashley", "1J8o2^3W25c9", 54, "5148510943", "f", 20000);
+INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("20", "Sed.eu@consequat.edu", 1, "Jiotrzcb", "Oscar", "Mayer", "Ho90%5h3N5O6", 34, "4045379695", "m", 80000);
 
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("305-3604 Magna Avenue", "Orbais", "WB", 22305, "4485944851395678");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("P.O. Box 688, 1481 Blandit Av.", "Vienna", "NY", 56000, "4916578400997748");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("P.O.Box 141, 8553 Scelerisque Rd.", "San Juan", "SJ", 97283, "4532441178116682");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("9667 Morbi Rd.", "Vallentuna", "Stockholms Ian", 18577, "4556514508451499");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("647-9311 Iaculis Rd", "Salt Spring Island", "British Columbia", 23432, "4716842929158105");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("7784 Convallis Ave", "Worchester", "MA", 80373, "5467458744897179");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("5462 Ipsum. Rd.", "Grey County", "ON", 808689, "5222221493617800");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("820-647 Ac St.", "Van", "NY", 65275, "5308228056773109");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("Ap #990-9474 Natoque Road", "Rangiora", "South Island", 16568, "5466361732604543");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("4732 Erat. St.", "Alajuela", "AL", 05275, "5302568903822971");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("7993 Sodales. Rd", "Benalla", "VIC", 31651, "6011777415970927");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("244-3317 Lorem Av.", "Galway", "Connacht", 37646, "6011667669912974");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("Ap #915-2986 Aenean Rd.", "Chandler", "Arizona", 44527, "6011602317399415");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("2490 In Avenue", "Saint Paul", "MN", 99582, "6011058123251003");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("566-1057 Tellus St.", "Montreuil", "France", 43231, "6011959340055384");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("8712 Tempor Avenue", "Juazeiro do Norte", "Ceara", 30801, "3710769061889264");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("628-6056 Metus St.", "Tolten", "IX", 94255, "3492908121950946");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("4178 Pellentesque Ave", "Lachine", "QC", 06509-941, "3759337935154452");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("1161 Nunc St.", "São Gonçalo", "RJ", 60511, "3712723744411583");
-INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("1990 Iaculis Av.", "Morwell", "VIC", 54391, "3720425943584361");
+/* --------------------- Populate suppliers Table --------------------------*/
+
+INSERT INTO suppliers (supplier_id, company_name, password, category, yearly_revenue, url_ext, banner_img, about_description) VALUES (1, "Best Buy", "electronics123", 1, 1000090, NULL, NULL, NULL);
+INSERT INTO suppliers (supplier_id, company_name, password, category, yearly_revenue, url_ext, banner_img, about_description) VALUES (2, "Radio Shack", "headphones12", 1, 100203, NULL, NULL, NULL);
+INSERT INTO suppliers (supplier_id, company_name, password, category, yearly_revenue, url_ext, banner_img, about_description) VALUES (3, "Golf Galaxy", "golfisfun21", 255, 1020302, NULL, NULL, NULL);
+
 
 /* --------------------- Populate credit_card Table --------------------------*/
 
@@ -45,6 +51,30 @@ INSERT INTO credit_card (card_number, type, cvv, exp_date, first_name, last_name
 INSERT INTO credit_card (card_number, type, cvv, exp_date, first_name, last_name, reg_id) VALUES ("3759337935154452", "American Express", 832, "2019-11-01", "Iliana", "Haynes", "18");
 INSERT INTO credit_card (card_number, type, cvv, exp_date, first_name, last_name, reg_id) VALUES ("3712723744411583", "American Express", 592, "2019-07-12", "Jane", "Ashley", "19");
 INSERT INTO credit_card (card_number, type, cvv, exp_date, first_name, last_name, reg_id) VALUES ("3720425943584361", "American Express", 943, "2020-11-19", "Oscar", "Mayer", "20");
+
+
+/* --------------------- Populate billing_addr Table --------------------------*/
+
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("305-3604 Magna Avenue", "Orbais", "WB", 22305, "4485944851395678");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("P.O. Box 688, 1481 Blandit Av.", "Vienna", "NY", 56000, "4916578400997748");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("P.O.Box 141, 8553 Scelerisque Rd.", "San Juan", "SJ", 97283, "4532441178116682");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("9667 Morbi Rd.", "Vallentuna", "Stockholms Ian", 18577, "4556514508451499");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("647-9311 Iaculis Rd", "Salt Spring Island", "British Columbia", 23432, "4716842929158105");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("7784 Convallis Ave", "Worchester", "MA", 80373, "5467458744897179");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("5462 Ipsum. Rd.", "Grey County", "ON", 808689, "5222221493617800");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("820-647 Ac St.", "Van", "NY", 65275, "5308228056773109");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("Ap #990-9474 Natoque Road", "Rangiora", "South Island", 16568, "5466361732604543");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("4732 Erat. St.", "Alajuela", "AL", 05275, "5302568903822971");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("7993 Sodales. Rd", "Benalla", "VIC", 31651, "6011777415970927");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("244-3317 Lorem Av.", "Galway", "Connacht", 37646, "6011667669912974");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("Ap #915-2986 Aenean Rd.", "Chandler", "Arizona", 44527, "6011602317399415");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("2490 In Avenue", "Saint Paul", "MN", 99582, "6011058123251003");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("566-1057 Tellus St.", "Montreuil", "France", 43231, "6011959340055384");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("8712 Tempor Avenue", "Juazeiro do Norte", "Ceara", 30801, "3710769061889264");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("628-6056 Metus St.", "Tolten", "IX", 94255, "3492908121950946");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("4178 Pellentesque Ave", "Lachine", "QC", 06509-941, "3759337935154452");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("1161 Nunc St.", "São Gonçalo", "RJ", 60511, "3712723744411583");
+INSERT INTO billing_addr (street_addr, city, state, zip, card_number) VALUES ("1990 Iaculis Av.", "Morwell", "VIC", 54391, "3720425943584361");
 
 /* --------------------- Populate sale_items Table --------------------------*/
 
@@ -79,9 +109,6 @@ INSERT INTO sale_items (id, name, seller, price, reservePrice, quantity, categor
 INSERT INTO sale_items (id, name, seller, price, reservePrice, quantity, category, detailedDescriptionURL, typeOfSale, description) VALUES (28, "Anker Astro E1", 2, 1599, 1700, 3, 22, "Charger", 2, "The Anker Advantage: Join the 10 million+ powered by our leading technology. ");
 USE fusion;
 
-INSERT INTO suppliers (supplier_id, company_name, password, category, yearly_revenue, url_ext, banner_img, about_description) VALUES (1, "Best Buy", "electronics123", 1, 1000090, NULL, NULL, NULL);
-INSERT INTO suppliers (supplier_id, company_name, password, category, yearly_revenue, url_ext, banner_img, about_description) VALUES (2, "Radio Shack", "headphones12", 1, 100203, NULL, NULL, NULL);
-INSERT INTO suppliers (supplier_id, company_name, password, category, yearly_revenue, url_ext, banner_img, about_description) VALUES (3, "Golf Galaxy", "golfisfun21", 255, 1020302, NULL, NULL, NULL);
 
 /* --------------------- Populate postal_addr Table --------------------------*/
 INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("305-3604 Magna Avenue", "Orbais", "WB", 22305, "1");
@@ -104,26 +131,3 @@ INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("628-605
 INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("4178 Pellentesque Ave", "Lachine", "QC", 06509, "18");
 INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("1161 Nunc St.", "São Gonçalo", "RJ", 60511, "19");
 INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("1990 Iaculis Av.", "Morwell", "VIC", 54391, "20");
-
-/* --------------------- Populate User Table --------------------------*/
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("1", "tincidunt@hendrerit.net", 1, "Jageoid", "Noelani", "Livingston", "ilovecats", 50, "8128816367", "f", 30000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("2", "eu@aliquameros.co.uk", 1, "Boedojek", "Chava", "Hughes", "6!n7N27!1Bpd", 42, "5619541349", "m", 70000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("3", "euismod.enim.Etiam@amet.co.uk", 1, "Jadazkic", "Calista", "Mccarthy", "wH3331e^$G2T", 39, "4152913638", "f", 60000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("4", "Quisque.nonummy.ipsum@velnislQuisque.edu", 1, "Chenjvhioi", "Audrey", "Carlson", "U54z2958xu", 27, "5574465760", "m", 90000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("5", "ligula@fermentumrisus.co.uk", 1, "Kacixone", "Hamilton", "Padilla", "T1w55G2f8!!v", 26, "5148510943", "m", 120000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("6", "dolor.nonummy.ac@tellusPhasellus.net", 1, "Ukegle", "Lysandra","Keith", "867pV3M%8Nxu", 38, "2069449894", "f", 90000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("7", "quam@imperdietnec.net", 1, "Jaxohoh", "Renee", "May", "iR75200@4Z4N", 31, "1394659924", "f", 40000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("8", "in.felis@nec.edu", 1, "Thexboh", "Alvin", "Robins", "5g1F08@3$R*9", 40, "9529865345", "m", 60000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("9", "dui.Suspendisse@adipiscing.co.uk", 1, "Thoeyeb", "Britanney", "Hutchinson", "k579M46&0&AL", 32, "4847235130", "f", 70000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("10", "et@necmollis.ca", 1,"Kapzytdubuj", "Lee", "Fernandez", "Ep04^%082Ikr", 66, "4428243635", "m", 50000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("11", "mauris.erat.eget@mollisdui.org", 1, "Jacdeva", "Tiger", "Curry", "2f0Z835***X1", 21, "2469925314", "m", 30000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("12", "volutpat.Nulla@magnisdisparturient.edu", 1, "Zolehe", "Dakota", "Nieves", "445L3&*g7UFg", 22, "7375808370", "f", 450000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("13", "elit.pede@aliquet.ca", 1, "Kacisen", "Raya", "Beasley", "31i1J33#^3bq", 25, "6534030213", "f", 20000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("14", "nunc.ac.mattis@necmalesuadaut.co.uk", 1, "Jarnqkg", "Aladdin", "Gilmore", "809xY196#&&f", 44, "3896314720", "m", 40000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("15", "ut.sem@nonlobortisquis.org", 1, "Kanaigw", "Janna", "Chaney", "9s2D9452%tq%", 45, "2436937130", "f", 60000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("16", "Cras.dictum.ultricies@Praesentinterdumligula.com", 1, "Kawzvjtpqmts", "Prescott", "Fox", "8Va%0k547l64", 54, "5715927790", "m", 70000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("17", "dui.nec@dignissimlacusAliquam.edu", 1, "Ihaqu", "Zane", "Castaneda", "P2p0009Wr26*", 18, "9125329335", "m", 60000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("18", "congue@magna.co.uk", 1, "Kavafou", "Iliana", "Haynes", "e1C2253$UtcD", 23, "3654248457", "f", 10000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("19", "Nunc.commodo@imperdietullamcorper.org", 1, "Thixxof", "Jane", "Ashley", "1J8o2^3W25c9", 54, "5148510943", "f", 20000);
-INSERT INTO Users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES ("20", "Sed.eu@consequat.edu", 1, "Jiotrzcb", "Oscar", "Mayer", "Ho90%5h3N5O6", 34, "4045379695", "m", 80000);
-
