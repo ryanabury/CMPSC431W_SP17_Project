@@ -32,7 +32,7 @@ public class DBHelper {
 		
 		try {
 			connection = DriverManager.getConnection(
-					DEFAULT_ADDRESS + ":" + DEFAULT_PORT + "/" + DB_NAME, 
+					"jdbc:mysql://" + DEFAULT_ADDRESS + ":" + DEFAULT_PORT + "/" + DB_NAME, 
 					USERNAME, 
 					PASSWORD
 			);
