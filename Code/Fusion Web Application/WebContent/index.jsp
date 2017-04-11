@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% out.println(Header.generate(null, null)); %>
+<% out.println(Header.generate(null)); %>
 </body>
 </html>

@@ -122,6 +122,10 @@ public class User {
 	public String getLastName() {
 		return lastName;
 	}
+	
+	public String getFullName() {
+		return getFirstName() + " " + getLastName();
+	}
 
 	/**
 	 * @return the user's password
