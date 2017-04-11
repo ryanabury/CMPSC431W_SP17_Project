@@ -2,7 +2,9 @@ package com.fusion.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.fusion.objects.*;
 
@@ -38,8 +40,50 @@ public class DBHelper {
 		}
 	}
 	
-	public Address getAddress(char[] userid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+	/**
+	 * Fetches the billing address given the selected input.
+	 * @param cardNumber	the card number to use as a search term
+	 * @return	the address with the given card number. cannot return null
+	 * @throws DBHelperException	thrown if there is an issue fetching the address or if no address is found
+	 */
+	public Address getBillingAddress(char[] cardNumber) throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		Address address = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM billing_addr WHERE card_number=" + new String(cardNumber) + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			address = new Address();
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for card number [" + new String(cardNumber) + "]");
+			}
+			address.setStreetAddress(rs.getString(1));
+			address.setCity(rs.getString(2));
+			address.setState(rs.getString(3));
+			address.setZipCode(rs.getString(4).getBytes());
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return address;
+		
 	}
 	
 	public Category getCategory(String name) throws DBHelperException {
@@ -87,6 +131,22 @@ public class DBHelper {
 			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private static void closeQuietly(Statement s) {
+		if (s != null) {
+			try {
+				s.close();
+			} catch (SQLException e) {}
+		}
+	}
+	
+	private static void closeQuietly(ResultSet r) {
+		if (r != null) {
+			try {
+				r.close();
+			} catch (SQLException e) {}
 		}
 	}
 	
