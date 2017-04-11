@@ -32,18 +32,18 @@ public class Header {
 	}
 	
 	private static ContainerTag generateAccountInfo(User user) {
+		ContainerTag div = div();
 		if (user == null) {
-			return div().with(
-					a("Login"), 
-					p(" / "), 
-					a("Create Account")
-			).withClass("header-account-box");
+			div.with(a("Login"));
+			div.withText(" / "); 
+			div.with(a("Create Account"));
 		} else {
 			return div().with(
 					a("My Account"), 
-					p(" (" + user.getFullName() + ")")
+					text(" (" + user.getFullName() + ")")
 			).withClass("header-account-box");
 		}
+		return div.withClass("header-account-box");
 	}
 
 }
