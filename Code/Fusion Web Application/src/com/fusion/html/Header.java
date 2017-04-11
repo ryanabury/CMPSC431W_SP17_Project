@@ -9,6 +9,7 @@ import static j2html.TagCreator.*;
 public class Header {
 	
 	private static final String[] MENU_ITEMS = {"Home", "Browse", "About"};
+	private static final String[] MENU_ITEM_LINKS = {"./", "./browse", "./about"};
 	
 	public static String generate(User user) {
 		return div().with(								// Main Header Box
@@ -23,7 +24,9 @@ public class Header {
 	private static ContainerTag generateMenu() {
 		ContainerTag div = div();
 		for (int i = 0; i < MENU_ITEMS.length; i++) {
-			div.with(a(MENU_ITEMS[i]));
+			div.with(
+					a(MENU_ITEMS[i]).withHref(MENU_ITEM_LINKS[i])
+			);
 		}
 		return div.withClass("header-menu-box");
 	}
