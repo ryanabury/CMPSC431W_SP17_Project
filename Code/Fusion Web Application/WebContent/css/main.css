@@ -1,3 +1,22 @@
+<!-- Header -->
+
+div.header-main-box {
+	width:100%; 
+	overflow: hidden;
+}
+
+div.header-menu-box {
+	float: left;
+	width:50%; 
+	overflow: hidden;
+}
+
+div.header-account-box {
+	float: right;
+	width:50%; 
+	overflow: hidden;
+}
+
 <!-- Footer -->
 
 p.footer {
