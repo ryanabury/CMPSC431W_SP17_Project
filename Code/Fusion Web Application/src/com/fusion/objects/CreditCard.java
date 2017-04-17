@@ -1,7 +1,5 @@
 package com.fusion.objects;
 
-import java.sql.Date;
-
 /**
  * This represents one credit card.
  * @author Ethan Raymond
@@ -14,7 +12,7 @@ public class CreditCard {
 	private Address billingAddress;
 	private byte[] cardNumber;
 	private byte[] cvv;
-	private Date date; // We might want to change this to something simpler to use.
+	private short[] expirationDate; // [month, year]
 	private String firstName;
 	private String lastName;
 	private String type;
@@ -26,7 +24,7 @@ public class CreditCard {
 		cardNumber = new byte[CARD_NUMBER_SIZE];
 		type = "";
 		cvv = new byte[CVV_SIZE];
-		date = new Date(System.currentTimeMillis());
+		expirationDate = new short[] {12, 2100};
 		firstName = "";
 		lastName = "";
 		billingAddress = new Address();
@@ -56,8 +54,8 @@ public class CreditCard {
 	/**
 	 * @return the expiration date for this card.
 	 */
-	public Date getDate() {
-		return date;
+	public short[] getDate() {
+		return expirationDate;
 	}
 
 	/**
@@ -125,11 +123,9 @@ public class CreditCard {
 	 * Sets a new expiration date for this card.
 	 * @param date
 	 */
-	public void setDate(Date date) {
-		if (date == null) {
-			throw new RuntimeException("Tried to set the card expiration date to null.");
-		}
-		this.date = date;
+	public void setDate(short month, short year) {
+		this.expirationDate[0] = month;
+		this.expirationDate[1] = year;
 	}
 
 	/**
