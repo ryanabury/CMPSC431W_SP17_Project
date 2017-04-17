@@ -11,6 +11,16 @@ public abstract class AbstractPage {
 	private static final String[] MENU_ITEMS = {"Home", "Browse", "About"};
 	private static final String[] MENU_ITEM_LINKS = {"./", "./browse", "./about"};
 	
+	protected User myUser;
+	
+	public AbstractPage() {
+		myUser = null;
+	}
+	
+	public AbstractPage(User user) {
+		myUser = user;
+	}
+	
 	private ContainerTag generateHeader(User user) {
 		return div().with(							// Main Header Box
 				h1("Fusion"), 						// Title
@@ -54,7 +64,7 @@ public abstract class AbstractPage {
 	
 	public final String render() {
 		return html().with(
-				generateHeader(null), 
+				generateHeader(myUser), 
 				generageBody(), 
 				generateFooter()
 		).render();
