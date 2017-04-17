@@ -1,10 +1,6 @@
 package com.fusion.html;
 
-import static j2html.TagCreator.a;
-import static j2html.TagCreator.div;
-import static j2html.TagCreator.h1;
-import static j2html.TagCreator.p;
-import static j2html.TagCreator.text;
+import static j2html.TagCreator.*;
 
 import com.fusion.objects.User;
 
@@ -16,9 +12,9 @@ public abstract class AbstractPage {
 	private static final String[] MENU_ITEM_LINKS = {"./", "./browse", "./about"};
 	
 	private ContainerTag generateHeader(User user) {
-		return div().with(								// Main Header Box
+		return div().with(							// Main Header Box
 				h1("Fusion"), 						// Title
-				div().with(								// Menu / Login Box
+				div().with(							// Menu / Login Box
 						generateMenu(),
 						generateAccountInfo(user)
 				)
@@ -54,6 +50,14 @@ public abstract class AbstractPage {
 			).withClass("header-account-box");
 		}
 		return div.withClass("header-account-box");
+	}
+	
+	public final String render() {
+		return html().with(
+				generateHeader(null), 
+				generageBody(), 
+				generateFooter()
+		).render();
 	}
 
 }
