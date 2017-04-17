@@ -10,7 +10,7 @@ import com.fusion.objects.User;
 
 import j2html.tags.ContainerTag;
 
-public abstract class Page {
+public abstract class AbstractPage {
 	
 	private static final String[] MENU_ITEMS = {"Home", "Browse", "About"};
 	private static final String[] MENU_ITEM_LINKS = {"./", "./browse", "./about"};
