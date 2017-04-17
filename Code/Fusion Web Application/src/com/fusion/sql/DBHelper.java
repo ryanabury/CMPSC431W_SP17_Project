@@ -181,8 +181,52 @@ public class DBHelper {
 		throw new RuntimeException("Not yet implemented...");
 	}
 	
+	/**
+	 * Fetches credit card info from db.
+	 * @param userid	the user ID to use for searching
+	 * @return
+	 * @throws DBHelperException
+	 */
 	public CreditCard getCreditCard(char[] userid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		CreditCard creditCard = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM credit_card WHERE reg_id=" + new String(userid) + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			creditCard = new CreditCard();
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for id [" + userid + "]");
+			}
+			creditCard.setCardNumber(rs.getString(1));
+			creditCard.setType(rs.getString(2));
+			creditCard.setCvv(rs.getString(3));
+			creditCard.setDate((short) rs.getInt(4), (short) rs.getInt(5));
+			creditCard.setFirstName(rs.getString(6));
+			creditCard.setLastName(rs.getString(7));
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return creditCard;
+		
 	}
 	
 	public EmailAddress getEmailAddress(char[] userid) throws DBHelperException {
