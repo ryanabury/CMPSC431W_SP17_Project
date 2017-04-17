@@ -237,8 +237,47 @@ public class DBHelper {
 		throw new RuntimeException("Not yet implemented...");
 	}
 	
-	public PhoneNumber getPhoneNumber(char[] supplierid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+	/**
+	 * Fetches a user's phone number.
+	 * @param userid
+	 * @return
+	 * @throws DBHelperException
+	 */
+	public PhoneNumber getPhoneNumber(char[] userid) throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		PhoneNumber number = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT phone_num FROM Users WHERE reg_id=" 
+					+ new String(userid) + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			if (!rs.next()) {
+				throw new DBHelperException("No phone number found for user id [" + userid + "]");
+			}
+			number = new PhoneNumber(rs.getString(1));
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return number;
+		
 	}
 	
 	public SaleItem getSaleItem(char[] itemid) throws DBHelperException {
