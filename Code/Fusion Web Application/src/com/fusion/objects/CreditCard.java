@@ -10,8 +10,8 @@ public class CreditCard {
 	public static final int CVV_SIZE = 3;
 	
 	private Address billingAddress;
-	private byte[] cardNumber;
-	private byte[] cvv;
+	private String cardNumber;
+	private String cvv;
 	private short[] expirationDate; // [month, year]
 	private String firstName;
 	private String lastName;
@@ -21,9 +21,9 @@ public class CreditCard {
 	 * Sets the default values.
 	 */
 	public CreditCard() {
-		cardNumber = new byte[CARD_NUMBER_SIZE];
+		cardNumber = "0000000000000000";
 		type = "";
-		cvv = new byte[CVV_SIZE];
+		cvv = "000";
 		expirationDate = new short[] {12, 2100};
 		firstName = "";
 		lastName = "";
@@ -40,14 +40,14 @@ public class CreditCard {
 	/**
 	 * @return the 16 digit credit card number
 	 */
-	public byte[] getCardNumber() {
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
 	/**
 	 * @return the three digit cvv
 	 */
-	public byte[] getCvv() {
+	public String getCvv() {
 		return cvv;
 	}
 
@@ -95,11 +95,11 @@ public class CreditCard {
 	 * 16 digits and each digit must be between 0 
 	 * and 9 or else a runtime exception will be thrown.
 	 */
-	public void setCardNumber(byte[] cardNumber) {
+	public void setCardNumber(String cardNumber) {
 		if (cardNumber == null) {
 			throw new RuntimeException("Tried to set the card number to null.");
 		}
-		if (cardNumber.length != CARD_NUMBER_SIZE) {
+		if (cardNumber.length() != CARD_NUMBER_SIZE) {
 			throw new RuntimeException("Tried to set the card number to a number of the incorrect length [" + cardNumber + "].");
 		}
 		this.cardNumber = cardNumber;
@@ -109,11 +109,11 @@ public class CreditCard {
 	 * Sets a new three digit cvv for this card.
 	 * @param cvv
 	 */
-	public void setCvv(byte[] cvv) {
+	public void setCvv(String cvv) {
 		if (cvv == null) {
 			throw new RuntimeException("Tried to set the cvv to null.");
 		}
-		if (cvv.length != CVV_SIZE) {
+		if (cvv.length() != CVV_SIZE) {
 			throw new RuntimeException("Tried to set the cvv to a number of the incorrect length [" + cvv + "].");
 		}
 		this.cvv = cvv;
@@ -157,6 +157,17 @@ public class CreditCard {
 			throw new RuntimeException("Tried to set the card type to null.");
 		}
 		this.type = type;
+	}
+	
+	@Override
+	public String toString() {
+		String s = "";
+		s += "[ ";
+		s += getFirstName() + ", ";
+		s += getLastName() + ", ";
+		s += getCardNumber();
+		s += " ]";
+		return s;
 	}
 	
 }
