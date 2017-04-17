@@ -3,6 +3,7 @@ package com.fusion.html;
 import static j2html.TagCreator.a;
 import static j2html.TagCreator.div;
 import static j2html.TagCreator.h1;
+import static j2html.TagCreator.p;
 import static j2html.TagCreator.text;
 
 import com.fusion.objects.User;
@@ -27,7 +28,7 @@ public abstract class Page {
 	protected abstract ContainerTag generageBody();
 	
 	private ContainerTag generateFooter() {
-		
+		return p("(C) 2017, Fusion Ltd.").withClass("footer");
 	}
 	
 	private static ContainerTag generateMenu() {
