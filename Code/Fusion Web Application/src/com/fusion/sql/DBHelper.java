@@ -133,8 +133,48 @@ public class DBHelper {
 		
 	}
 	
-	public Category getCategory(String name) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+	/**
+	 * Fetches a category from the DB.
+	 * @param id	the id of the category
+	 * @return	the fetched category
+	 * @throws DBHelperException	thrown if there is an issue fetching the category or if no category is found
+	 */
+	public Category getCategory(int id) throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		Category category = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM Categories WHERE id=" + id + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			category = new Category();
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for id [" + id + "]");
+			}
+			category.setId(id);
+			category.setName(rs.getString(2));
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return category;
+		
 	}
 	
 	public ContactInfo getContact(char[] supplierid) throws DBHelperException {
