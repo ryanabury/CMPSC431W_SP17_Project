@@ -296,6 +296,10 @@ public class DBHelper {
 		throw new RuntimeException("Not yet implemented...");
 	}
 	
+	public User[] getUsersFromSearchTerms(String[] searchTerms) {
+		throw new RuntimeException("Not yet implemented...");
+	}
+	
 	public void close() {
 		try {
 			connection.close();
