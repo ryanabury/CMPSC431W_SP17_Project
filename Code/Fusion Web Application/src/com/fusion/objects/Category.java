@@ -80,5 +80,16 @@ public class Category {
 		category.setParent(this);
 		this.children.add(category);
 	}
+	
+	@Override
+	public String toString() {
+		String s = "";
+		s += "[ ";
+		s += "id: " + getId() + ", ";
+		s += "name: " + getName() + ", ";
+		s += "parent: " + (getParent() == null ? "N/A" : getParent().getName());
+		s += " ]";
+		return s;
+	}
 
 }

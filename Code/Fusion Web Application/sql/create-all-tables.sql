@@ -41,7 +41,8 @@ CREATE TABLE credit_card(
 	card_number 		VARCHAR(16),
 	type 				VARCHAR(20) NOT NULL,
 	cvv 				INTEGER(3) 	NOT NULL,
-	exp_date 			DATE 		NOT NULL,
+	exp_date_month 		INTEGER 	NOT NULL,
+	exp_date_year 		INTEGER 	NOT NULL,
 	first_name 			VARCHAR(25),	/* first name may be different from user's first name */
 	last_name 			VARCHAR(25),	/* last name may be different from user's last name */
 	reg_id 				VARCHAR(20),
