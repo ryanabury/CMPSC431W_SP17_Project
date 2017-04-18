@@ -300,7 +300,7 @@ public class DBHelper {
 		throw new RuntimeException("Not yet implemented...");
 	}
 	
-	public ArrayList<SaleItem> getSaleItemsFromSearchTerms(String[] searchTerms) throws DBHelperException {
+	public SaleItem[] getSaleItemsFromSearchTerms(String[] searchTerms) throws DBHelperException {
 		
 		ArrayList<SaleItem> itemList = new ArrayList<>();
 		Statement statement = null;
@@ -379,7 +379,9 @@ public class DBHelper {
 			closeQuietly(rs);
 		}
 		
-		return itemList;
+		SaleItem[] saleItems = new SaleItem[itemList.size()];
+		itemList.toArray(saleItems);
+		return saleItems;
 		
 	}
 	

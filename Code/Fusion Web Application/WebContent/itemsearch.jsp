@@ -21,7 +21,17 @@
 		user = db.getUser(userID.toCharArray());
 	}
 	
-	out.println(new ItemSearchPage(user, new String[0], new SaleItem[0]).render());
+	// Get the search parameters from the page parameters.
+	String searchParameters = request.getParameter(PostParameters.SEARCH_TERMS);
+	String[] params = null;
+	if (searchParameters != null) {
+		params = searchParameters.split("+");
+	}
+	
+	// Get the search results.
+	SaleItem[] searchResults = db.getSaleItemsFromSearchTerms(params);
+	
+	out.println(new ItemSearchPage(user, params, searchResults).render());
 	
 	db.close();
 	
