@@ -32,13 +32,15 @@ public class DBHelper {
 	
 	public DBHelper(String address, int port) throws DBHelperException {
 		
+		
 		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection(
 					"jdbc:mysql://" + DEFAULT_ADDRESS + ":" + DEFAULT_PORT + "/" + DB_NAME, 
 					USERNAME, 
 					PASSWORD
 			);
-		} catch (SQLException e) {
+		} catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			throw new DBHelperException("Failed to initialize the database connection.", e);
 		}
 	}
