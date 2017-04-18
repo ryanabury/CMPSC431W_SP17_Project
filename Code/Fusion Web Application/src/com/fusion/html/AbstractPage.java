@@ -1,24 +1,40 @@
 package com.fusion.html;
 
+import static j2html.TagCreator.*;
+
 import com.fusion.objects.User;
 
 import j2html.tags.ContainerTag;
 
-import static j2html.TagCreator.*;
-
-public class Header {
+public abstract class AbstractPage {
 	
 	private static final String[] MENU_ITEMS = {"Home", "Browse", "About"};
 	private static final String[] MENU_ITEM_LINKS = {"./", "./browse", "./about"};
 	
-	public static String generate(User user) {
-		return div().with(								// Main Header Box
+	protected User myUser;
+	
+	public AbstractPage() {
+		myUser = null;
+	}
+	
+	public AbstractPage(User user) {
+		myUser = user;
+	}
+	
+	private ContainerTag generateHeader(User user) {
+		return div().with(							// Main Header Box
 				h1("Fusion"), 						// Title
-				div().with(								// Menu / Login Box
+				div().with(							// Menu / Login Box
 						generateMenu(),
 						generateAccountInfo(user)
 				)
-		).withClass("header-main-box").render();
+		).withClass("header-main-box");
+	}
+	
+	protected abstract ContainerTag generageBody();
+	
+	private ContainerTag generateFooter() {
+		return p("(C) 2017, Fusion Ltd.").withClass("footer");
 	}
 	
 	private static ContainerTag generateMenu() {
@@ -44,6 +60,14 @@ public class Header {
 			).withClass("header-account-box");
 		}
 		return div.withClass("header-account-box");
+	}
+	
+	public final String render() {
+		return html().with(
+				generateHeader(myUser), 
+				generageBody(), 
+				generateFooter()
+		).render();
 	}
 
 }
