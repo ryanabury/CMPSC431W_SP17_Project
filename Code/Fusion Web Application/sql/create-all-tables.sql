@@ -16,7 +16,7 @@ CREATE TABLE Users (
 	last_name 			VARCHAR(25),		/* active user must have last_name; enforced in front end */
 	password 			VARCHAR(20),		/* active user must have password; enforced in front end */
 	age 				INTEGER(3),
-	phone_num 			VARCHAR(10),
+	phone_num 			VARCHAR(14),
 	gender 				VARCHAR(1),
 	annual_salary 		INTEGER(12),
 
