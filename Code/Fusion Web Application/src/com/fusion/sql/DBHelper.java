@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.fusion.objects.*;
 
@@ -296,8 +298,87 @@ public class DBHelper {
 		throw new RuntimeException("Not yet implemented...");
 	}
 	
-	public User[] getUsersFromSearchTerms(String[] searchTerms) {
-		throw new RuntimeException("Not yet implemented...");
+	public ArrayList<SaleItem> getSaleItemsFromSearchTerms(String[] searchTerms) throws DBHelperException {
+		
+		ArrayList<SaleItem> itemList = new ArrayList<>();
+		Statement statement = null;
+		ResultSet rs = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM sale_items WHERE ";
+			for (int i = 0; i < searchTerms.length; i++) {
+				sql += "\n\t(name LIKE '%" + searchTerms[i] + "%' )";
+				if (i < searchTerms.length - 1) {
+					sql += " OR ";
+				}
+			}
+			sql += ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			while (rs.next()) {
+				SaleItem saleItem = new SaleItem();
+				saleItem.setId(rs.getInt(1));
+				saleItem.setName(rs.getString(2));
+				saleItem.setSellerID(rs.getInt(3));
+				saleItem.setPrice(rs.getInt(4));
+				saleItem.setReservePrice(rs.getInt(5));
+				saleItem.setQuantity(rs.getInt(6));
+				saleItem.setCategory(getCategory(rs.getInt(7)));
+				saleItem.setDetailedDescriptionURL(rs.getString(8));
+				saleItem.setTypeOfSale(rs.getInt(9));
+				saleItem.setDescription(rs.getString(10));
+				itemList.add(saleItem);
+			}
+			
+			// Close first result set
+			rs.close();
+			
+			// Execute Statement
+			sql = "SELECT * FROM sale_items WHERE ";
+			for (int i = 0; i < searchTerms.length; i++) {
+				sql += "\n\t(description LIKE '%" + searchTerms[i] + "%' )";
+				if (i < searchTerms.length - 1) {
+					sql += " OR ";
+				}
+			}
+			sql += ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			while (rs.next()) {
+				SaleItem saleItem = new SaleItem();
+				saleItem.setId(rs.getInt(1));
+				saleItem.setName(rs.getString(2));
+				saleItem.setSellerID(rs.getInt(3));
+				saleItem.setPrice(rs.getInt(4));
+				saleItem.setReservePrice(rs.getInt(5));
+				saleItem.setQuantity(rs.getInt(6));
+				saleItem.setCategory(getCategory(rs.getInt(7)));
+				saleItem.setDetailedDescriptionURL(rs.getString(8));
+				saleItem.setTypeOfSale(rs.getInt(9));
+				saleItem.setDescription(rs.getString(10));
+				itemList.add(saleItem);
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return itemList;
+		
 	}
 	
 	public void close() {
