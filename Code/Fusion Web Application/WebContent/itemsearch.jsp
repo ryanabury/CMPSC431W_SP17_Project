@@ -21,7 +21,7 @@
 		user = db.getUser(userID.toCharArray());
 	}
 	
-	out.println(new ItemSearchPage(user, new SaleItem[0]).render());
+	out.println(new ItemSearchPage(user, new String[0], new SaleItem[0]).render());
 	
 	db.close();
 	

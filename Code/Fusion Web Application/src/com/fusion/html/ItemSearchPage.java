@@ -9,10 +9,16 @@ import j2html.tags.ContainerTag;
 
 public class ItemSearchPage extends AbstractPage {
 
+	private String[] searchParameters;
 	private SaleItem[] searchResults;
 
-	public ItemSearchPage(User user, SaleItem[] searchResults) {
+	public ItemSearchPage(User user, String[] searchParameters, SaleItem[] searchResults) {
 		super(user);
+		if (searchParameters == null) {
+			this.searchParameters = new String[0];
+		} else {
+			this.searchParameters = searchParameters;
+		}
 		if (searchResults == null) {
 			this.searchResults = new SaleItem[0];
 		} else {
