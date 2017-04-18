@@ -13,7 +13,11 @@ public class ItemSearchPage extends AbstractPage {
 
 	public ItemSearchPage(User user, SaleItem[] searchResults) {
 		super(user);
-		this.searchResults = searchResults;
+		if (searchResults == null) {
+			this.searchResults = new SaleItem[0];
+		} else {
+			this.searchResults = searchResults;
+		}
 	}
 
 	@Override
