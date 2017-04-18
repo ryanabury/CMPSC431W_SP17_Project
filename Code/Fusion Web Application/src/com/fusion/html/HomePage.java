@@ -8,6 +8,10 @@ import com.fusion.objects.User;
 
 public class HomePage extends AbstractPage {
 	
+	public HomePage() {
+		super();
+	}
+	
 	public HomePage(User user) {
 		super(user);
 	}
