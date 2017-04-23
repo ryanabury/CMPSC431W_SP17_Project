@@ -42,7 +42,7 @@
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	
 	try{
-		connection = DriverManager.getConnection(ConnectionURL, "root", "JDsdljad2340!"); /* CHANGE TO LOCAL PASSWORD */ 
+		connection = DriverManager.getConnection(ConnectionURL, "root", "sentence429&pattern&yes&"); /* CHANGE TO LOCAL PASSWORD */ 
 		String sql = "SELECT * FROM fusion.users WHERE username = ? AND password = ?";
 		
 		pst = connection.prepareStatement(sql);
