@@ -65,7 +65,7 @@ public abstract class AbstractPage {
 	public final String render() {
 		return html().with(
 				generateHeader(myUser), 
-				generageBody(), 
+				generateBody(), 
 				generateFooter()
 		).render();
 	}
