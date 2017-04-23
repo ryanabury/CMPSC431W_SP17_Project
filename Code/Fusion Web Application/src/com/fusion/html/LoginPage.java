@@ -10,7 +10,7 @@ public class LoginPage extends AbstractPage {
 	}
 	
 	@Override
-	protected ContainerTag generageBody() {
+	protected ContainerTag generateBody() {
 		// TODO Auto-generated method stub
 		return div();
 	}

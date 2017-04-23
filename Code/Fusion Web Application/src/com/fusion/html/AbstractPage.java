@@ -31,7 +31,7 @@ public abstract class AbstractPage {
 		).withClass("header-main-box");
 	}
 	
-	protected abstract ContainerTag generageBody();
+	protected abstract ContainerTag generateBody();
 	
 	private ContainerTag generateFooter() {
 		return p("(C) 2017, Fusion Ltd.").withClass("footer");
