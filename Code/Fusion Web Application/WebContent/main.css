@@ -3,7 +3,12 @@
 div.header-main-box {
 	width:100%; 
 	overflow: hidden;
-	background_color: yellow;
+	background-color: yellow;
+}
+
+h1.header {
+	text-align: center;
+	background-color: 30499b;
 }
 
 div.header-menu-box {

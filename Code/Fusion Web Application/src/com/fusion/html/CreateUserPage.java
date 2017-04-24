@@ -15,4 +15,9 @@ public class CreateUserPage extends AbstractPage {
 		return div();
 	}
 
+	@Override
+	protected String pageTitle() {
+		return "Create User";
+	}
+
 }

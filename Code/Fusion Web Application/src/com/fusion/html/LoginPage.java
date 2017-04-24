@@ -15,4 +15,9 @@ public class LoginPage extends AbstractPage {
 		return div();
 	}
 
+	@Override
+	protected String pageTitle() {
+		return "Login";
+	}
+
 }
