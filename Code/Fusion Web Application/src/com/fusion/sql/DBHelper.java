@@ -345,15 +345,15 @@ public class DBHelper {
 				throw new DBHelperException("No value found for id [" + itemid + "]");
 			}
 			
-			si.setId(rs.getString(1));
+			si.setId(Integer.parseInt(rs.getString(1)));
 			si.setName(rs.getString(2));
-			si.setSellerId(rs.getString(3));
-			si.setPrice(rs.getString(4));
-			si.setReservePrice(rs.getString(5));
-			si.setQuantity(rs.getString(6));
-			si.setCategory(rs.getString(7));
+			si.setSellerID(Integer.parseInt(rs.getString(3)));
+			si.setPrice(Integer.parseInt(rs.getString(4)));
+			si.setReservePrice(Integer.parseInt(rs.getString(5)));
+			si.setQuantity(Integer.parseInt(rs.getString(6)));
+			si.setCategory(getCategory(Integer.parseInt(rs.getString(7))));
 			si.setDetailedDescriptionURL(rs.getString(8));
-			si.setTypeOfSale(rs.getString(9));
+			si.setTypeOfSale(Integer.parseInt(rs.getString(9)));
 			si.setDescription(rs.getString(10));
 			
 		} catch (SQLException e) {
