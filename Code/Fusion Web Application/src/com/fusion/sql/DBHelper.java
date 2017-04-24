@@ -16,8 +16,8 @@ public class DBHelper {
 	
 	// Database Credentials
 	private static final String DB_NAME = "fusion";
-	private static final String USERNAME = "fusion";
-	private static final String PASSWORD = "fusion_pass";
+	private static final String USERNAME = "root";
+	private static final String PASSWORD = "$tyro24F0am";
 	
 	private String address;
 	private int port;
@@ -259,7 +259,7 @@ public class DBHelper {
 			statement = connection.createStatement();
 			
 			// Execute Statement
-			String sql = "SELECT phone_num FROM Users WHERE reg_id=" 
+			String sql = "SELECT phone_num FROM users WHERE reg_id=" 
 					+ new String(userid) + ";";
 			rs = statement.executeQuery(sql);
 			
@@ -293,7 +293,49 @@ public class DBHelper {
 	}
 	
 	public User getUser(char[] userid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		User user = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM users WHERE username='" + new String(userid) + "';";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			user= new User();
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for id [" + new String(userid) + "]");
+			}
+			user.setRegId(rs.getString(1).toCharArray());
+			user.setEmailAddress(rs.getString(2));
+			user.setActive(rs.getBoolean(3));
+			user.setUsername(rs.getString(4));
+			user.setFirstName(rs.getString(5));
+			user.setLastName(rs.getString(6));
+			user.setPassword(rs.getString(7));
+			user.setAge(rs.getByte(8));
+			user.setPhoneNumber(rs.getString(9));
+			user.setGender(rs.getString(10));
+			user.setAnnualSalary(rs.getDouble(11));
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return user;
 	}
 	
 	public void close() {
