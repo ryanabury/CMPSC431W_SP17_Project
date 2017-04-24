@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import com.fusion.objects.*;
 
@@ -17,7 +19,7 @@ public class DBHelper {
 	// Database Credentials
 	private static final String DB_NAME = "fusion";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "$tyro24F0am";
+	private static final String PASSWORD = "sentence429&pattern&yes&";
 	
 	private String address;
 	private int port;
@@ -300,7 +302,7 @@ public class DBHelper {
 			
 			// Assemble Data Structure
 			if (!rs.next()) {
-				throw new DBHelperException("No phone number found for user id [" + userid + "]");
+				throw new DBHelperException("No phone number found for user id [" + userid.toString() + "]");
 			}
 			number = new PhoneNumber(rs.getString(1));
 			
@@ -313,6 +315,37 @@ public class DBHelper {
 		
 		return number;
 		
+	}
+	
+	/**
+	 * Returns a list of transactions that ocurred in the last week of sales.
+	 * @return l	list of Transactions to be printed in a table format. 
+	 */
+	public ArrayList<SaleTransaction> getTransactionReport() {
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<SaleTransaction> l = new ArrayList<SaleTransaction>();
+		
+		try {
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			statement = connection.createStatement();
+			
+			String sql = "SELECT * FROM sales_transaction WHERE completion_date>*OneWeekAgo*";
+			rs = statement.executeQuery(sql);
+			
+			while(rs.next()) {
+				Timestamp date = rs.getTimestamp(4);
+				l.add(new SaleTransaction(rs.getInt("sale_id"), new CreditCard(), rs.getString("status"), 
+						rs.getTimestamp("completion_date"), getSaleItem(rs.getString("item_id").toCharArray()),
+						rs.getInt("quantity"), rs.getInt("sale_price"), new Address()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;		
 	}
 	
 	/**
@@ -353,7 +386,7 @@ public class DBHelper {
 			si.setQuantity(Integer.parseInt(rs.getString(6)));
 			si.setCategory(getCategory(Integer.parseInt(rs.getString(7))));
 			si.setDetailedDescriptionURL(rs.getString(8));
-			si.setTypeOfSale(Integer.parseInt(rs.getString(9)));
+			si.setTypeOfSale(SaleItem.TypeOfSale.fromInt(Integer.parseInt(rs.getString(9))));
 			si.setDescription(rs.getString(10));
 			
 		} catch (SQLException e) {
