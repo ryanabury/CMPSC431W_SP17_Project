@@ -2,8 +2,33 @@ package com.fusion.objects;
 
 import java.util.ArrayList;
 
+
+
 public class SaleItem {
 	
+	public enum TypeOfSale {
+		direct, bid;
+		public static TypeOfSale fromInt(int i) {
+			switch(i) {
+				case 0:
+					return direct;
+				case 1:
+					return bid;
+				default:
+					return direct; // I know it's superfluous, but it makes it slightly more readable. 
+			}
+		}
+		public static int toInt(TypeOfSale i) {
+			switch(i) {
+			case direct:
+				return 0;
+			case bid:
+				return 1;
+			default:
+				return 0;
+			}
+		}
+	}
 	private int id;
 	private String name;
 	private int sellerID;
@@ -12,7 +37,7 @@ public class SaleItem {
 	private int quantity;
 	private Category category;
 	private String detailedDescriptionURL;
-	private int typeOfSale;
+	private TypeOfSale typeOfSale;
 	private String description;
 	private ArrayList<ItemRating> ratings;
 	
@@ -25,7 +50,7 @@ public class SaleItem {
 		quantity = 0;
 		category = null;
 		detailedDescriptionURL = "";
-		typeOfSale = 0;
+		typeOfSale = TypeOfSale.direct;
 		description = "";
 		ratings = new ArrayList<>();
 	}
@@ -86,10 +111,10 @@ public class SaleItem {
 	public void setDetailedDescriptionURL(String detailedDescriptionURL) {
 		this.detailedDescriptionURL = detailedDescriptionURL;
 	}
-	public int getTypeOfSale() {
+	public TypeOfSale getTypeOfSale() {
 		return typeOfSale;
 	}
-	public void setTypeOfSale(int typeOfSale) {
+	public void setTypeOfSale(TypeOfSale typeOfSale) {
 		this.typeOfSale = typeOfSale;
 	}
 	public String getDescription() {
