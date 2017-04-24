@@ -1,14 +1,21 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "Garamond", Serif;
+}/* Allows us to define our specific spacing between elements */
+
 <!-- Header -->
 
-header {
+div#header {
 	width:100%; 
 	overflow: hidden;
-	background-color: #30499b;
 }
 
 h1.header {
 	text-align: center;
-	/*background-color: #30499b;*/
+	background-color: #54418c;
+	padding-top: 25px;
+	padding-bottom: 25px;
 }
 
 ul#menu {
@@ -21,6 +28,7 @@ ul#menu {
 
 ul#menu li {
 	float: left;
+	border-right: 1px solid #aaa;
 }
 
 ul#menu li a{

@@ -29,12 +29,12 @@ public abstract class AbstractPage {
 	}
 	
 	private ContainerTag generateHeader(User user) {
-		return header().with(							// Main Header Box
+		return div().with(							// Main Header Box
 				h1("Fusion LTD.").withClass("header"), 						// Title
 				div().with(							// Menu / Login Box
 						generateMenu(),
 						generateAccountInfo(user)
-				)
+				).withId("header")
 		);
 	}
 	
