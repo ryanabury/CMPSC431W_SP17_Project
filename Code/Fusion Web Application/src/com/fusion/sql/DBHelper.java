@@ -440,8 +440,52 @@ public class DBHelper {
 		return si;
 	}
 	
+	/**
+	 * Fetches a sale transaction from db.
+	 * @param	saleid			sale ID used to find transaction
+	 * @return 	st			sale transaction object
+	 * @throws	DBHelperException 	thrown if there's an error fetching or the saleid is absent in the db
+	 */	
 	public SaleTransaction getSaleTransaction(char[] saleid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+		Statement statement = null;
+		ResultSet rs = null;
+		SaleTransaction st = null;
+		
+		try {
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM sales_transaction WHERE sale_id=" + new String(saleid) + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			st = new SaleTransaction();
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for id [" + saleid + "]");
+			}
+			
+			st.setSaleID(rs.getString(1));
+			st.setCreditCard(rs.getString(2));
+			st.setStatus(rs.getString(3));
+			st.setCompletionDate((short) rs.getInt(4), (short) rs.getInt(5));
+			st.setSaleItem(rs.getString(5));
+			st.setSalePrice(rs.getString(6));
+			st.setShippingAddress(rs.getString(7));
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return st;
 	}
 	
 	public Supplier getSupplier(char[] supplierid) throws DBHelperException {
