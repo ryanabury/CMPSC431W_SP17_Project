@@ -29,13 +29,13 @@ public abstract class AbstractPage {
 	}
 	
 	private ContainerTag generateHeader(User user) {
-		return div().with(							// Main Header Box
+		return header().with(							// Main Header Box
 				h1("Fusion LTD.").withClass("header"), 						// Title
 				div().with(							// Menu / Login Box
 						generateMenu(),
 						generateAccountInfo(user)
 				)
-		).withClass("header-main-box");
+		);
 	}
 	
 	protected abstract ContainerTag generateBody();
@@ -43,17 +43,21 @@ public abstract class AbstractPage {
 	protected abstract String pageTitle();
 	
 	private ContainerTag generateFooter() {
-		return p("(C) 2017, Fusion Ltd.").withClass("footer");
+		return footer().with(
+				p("(C) 2017, Fusion Ltd.").withClass("footer")
+				);
 	}
 	
 	private static ContainerTag generateMenu() {
-		ContainerTag div = div();
+		ContainerTag ul = ul();
 		for (int i = 0; i < MENU_ITEMS.length; i++) {
-			div.with(
-					a(MENU_ITEMS[i]).withHref(MENU_ITEM_LINKS[i])
+			ul.with(
+					li().with(
+						a(MENU_ITEMS[i]).withHref(MENU_ITEM_LINKS[i])
+					)
 			);
 		}
-		return div.withClass("header-menu-box");
+		return ul.withId("menu");
 	}
 	
 	private static ContainerTag generateAccountInfo(User user) {

@@ -1,20 +1,38 @@
 <!-- Header -->
 
-div.header-main-box {
+header {
 	width:100%; 
 	overflow: hidden;
-	background-color: yellow;
+	background-color: #30499b;
 }
 
 h1.header {
 	text-align: center;
-	background-color: 30499b;
+	/*background-color: #30499b;*/
 }
 
-div.header-menu-box {
-	float: left;
-	width:50%; 
+ul#menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 	overflow: hidden;
+	background-color: #333;
+}
+
+ul#menu li {
+	float: left;
+}
+
+ul#menu li a{
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+ul#menu li a:hover {
+	background-color: #111;
 }
 
 div.header-account-box {
