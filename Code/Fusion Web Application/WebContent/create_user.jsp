@@ -1,6 +1,7 @@
 <%@page import="com.fusion.sql.DBHelper"%>
 <%@page import="com.fusion.html.LoginPage"%>
 <%@page import="com.fusion.objects.User"%>
+<%@page import="com.fusion.objects.PhoneNumber"%>
 <%@page import="java.sql.*" %>
 <%@page import="java.io.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -118,7 +119,7 @@
 				%>
 				<td><input type="text" name="phone_num" style="border:2px solid #000000"size="30"></td>
 			<%
-			}else if(phone_num.length() != 10 || phone_num == ""){
+			}else if(!PhoneNumber.validPhoneNumber(phone_num)){
 				isvalid = false;
 				%><td><input type="text" name="phone_num" style="border:2px solid #ff0000" size="30"></td><%
 			}
@@ -128,21 +129,13 @@
 			 %>
 		</tr>
 		<tr>
-			<td> Gender: </td><%
-			String gender = request.getParameter("gender");
-			if (gender == null){
-				%>
-				<td><input type="text" name="gender" style="border:2px solid #000000"size="30"></td>
-			<%
-			}else if(!gender.equals("m") && !gender.equals("M") && !gender.equals("f") && !gender.equals("F")){
-				isvalid = false;
-				%><td><input type="text" name="gender" style="border:2px solid #ff0000" size="30"></td><%
-			}
-			else{
-				gender = gender.toUpperCase();
-				%><td><input type="text" name="gender" style="border:2px solid #000000" size="30"></td><%
-			}
-			 %>
+			<td> Gender: </td>
+			<% String gender = request.getParameter("gender"); %>
+			<td>
+					<input type="radio" name="gender" value="m" style="color: #000000" size="30"> Male
+					<input type="radio" name="gender" value="f" style="color: #000000" size="30"> Female
+					<input type="radio" name="gender" value="o" checked="checked" style="color: #000000" size="30"> Other
+			</td>
 		<tr>
 			<td> Annual salary: </td><%
 			String annual_salary = request.getParameter("annual_salary");
@@ -180,7 +173,7 @@
 	int updateQuery = 0;
 
 	try{
-		connection = DriverManager.getConnection(ConnectionURL, "root", "JDsdljad2340!"); /* CHANGE TO LOCAL PASSWORD */ 
+		connection = DriverManager.getConnection(ConnectionURL, "root", "$tyro24F0am"); /* CHANGE TO LOCAL PASSWORD */ 
 		String sql = "Select U1.reg_id FROM fusion.users U1 WHERE U1.reg_id >= ALL (SELECT U2.reg_id FROM fusion.users U2)";
 		
 		pst = connection.prepareStatement(sql);
@@ -200,12 +193,13 @@
 		pst = null;
 		rs = null;
 		connection = null;
+		
 		if(!isvalid){
 			%><th><font color="red">Invalid entry</font></th><%
 		}
 		
 		if(email != null && username != null && first_name != null && last_name != null && password != null && age != null && phone_num != null && gender != null && annual_salary != null && isvalid){					
-			connection = DriverManager.getConnection(ConnectionURL, "root", "JDsdljad2340!"); /* CHANGE TO LOCAL PASSWORD */ 
+			connection = DriverManager.getConnection(ConnectionURL, "root", "$tyro24F0am"); /* CHANGE TO LOCAL PASSWORD */ 
 			sql = "INSERT INTO fusion.users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 						
 	    	pst = connection.prepareStatement(sql);

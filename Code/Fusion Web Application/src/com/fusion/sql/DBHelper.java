@@ -16,8 +16,8 @@ public class DBHelper {
 	
 	// Database Credentials
 	private static final String DB_NAME = "fusion";
-	private static final String USERNAME = "fusion";
-	private static final String PASSWORD = "fusion_pass";
+	private static final String USERNAME = "root";
+	private static final String PASSWORD = "$tyro24F0am";
 	
 	private String address;
 	private int port;
@@ -43,9 +43,9 @@ public class DBHelper {
 	
 	/**
 	 * Fetches the billing address given the selected input.
-	 * @param cardNumber	the card number to use as a search term
-	 * @return	the address with the given card number. cannot return null
-	 * @throws DBHelperException	thrown if there is an issue fetching the address or if no address is found
+	 * @param 	cardNumber		the card number to use as a search term
+	 * @return	address 		the address with the given card number, cannot return null
+	 * @throws 	DBHelperException	thrown if there is an issue fetching the address or if no address is found
 	 */
 	public Address getBillingAddress(char[] cardNumber) throws DBHelperException {
 		
@@ -89,9 +89,9 @@ public class DBHelper {
 	
 	/**
 	 * Fetches the billing address given the selected input.
-	 * @param cardNumber	the card number to use as a search term
-	 * @return	the address with the given card number. cannot return null
-	 * @throws DBHelperException	thrown if there is an issue fetching the address or if no address is found
+	 * @param 	cardNumber		the card number to use as a search term
+	 * @return	address 		the address with the given card number, cannot return null
+	 * @throws 	DBHelperException	thrown if there is an issue fetching the address or if no address is found
 	 */
 	public Address getShippingAddress(int saleID) throws DBHelperException {
 		
@@ -135,9 +135,9 @@ public class DBHelper {
 	
 	/**
 	 * Fetches a category from the DB.
-	 * @param id	the id of the category
-	 * @return	the fetched category
-	 * @throws DBHelperException	thrown if there is an issue fetching the category or if no category is found
+	 * @param 	id			the id of the category
+	 * @return	category		category object
+	 * @throws 	DBHelperException	thrown if there is an issue fetching the category or if no category is found
 	 */
 	public Category getCategory(int id) throws DBHelperException {
 		
@@ -173,19 +173,54 @@ public class DBHelper {
 			closeQuietly(rs);
 		}
 		
-		return category;
-		
+		return category;	
 	}
 	
+	/**
+	 * Fetches contact info from db.
+	 * @param	supplierid		the supplier ID to use for searching
+	 * @return	ci			contact info object (contains e-mail, address, poc)
+	 * @throws	DBHelperException	thrown if there is an issue fetching or contact info can't be found
+	 */
 	public ContactInfo getContact(char[] supplierid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+		Statement statement = null;
+		ResultSet rs = null;
+		ContactInfo ci = null;
+		
+		try {
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM contact_info WHERE supplier_id=" + new String(supplierid) + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for id [" + supplierid + "]");
+			}
+			ci = new ContactInfo(rs.getString(1), rs.getString(2), rs.getString(3));
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return ci;
 	}
 	
 	/**
 	 * Fetches credit card info from db.
-	 * @param userid	the user ID to use for searching
-	 * @return
-	 * @throws DBHelperException
+	 * @param 	userid			the user ID to use for searching
+	 * @return 	creditCard		credit card object
+	 * @throws 	DBHelperException	thrown if there's an issue fetching or the userid is absent in the db
 	 */
 	public CreditCard getCreditCard(char[] userid) throws DBHelperException {
 		
@@ -239,9 +274,9 @@ public class DBHelper {
 	
 	/**
 	 * Fetches a user's phone number.
-	 * @param userid
+	 * @param 	userid
 	 * @return
-	 * @throws DBHelperException
+	 * @throws 	DBHelperException
 	 */
 	public PhoneNumber getPhoneNumber(char[] userid) throws DBHelperException {
 		
@@ -259,7 +294,7 @@ public class DBHelper {
 			statement = connection.createStatement();
 			
 			// Execute Statement
-			String sql = "SELECT phone_num FROM Users WHERE reg_id=" 
+			String sql = "SELECT phone_num FROM users WHERE reg_id=" 
 					+ new String(userid) + ";";
 			rs = statement.executeQuery(sql);
 			
@@ -280,8 +315,55 @@ public class DBHelper {
 		
 	}
 	
+	/**
+	 * Fetches sale item from db.
+	 * @param	itemid			item ID used to find item
+	 * @return 	si 			sale item object
+	 * @throws	DBHelperException 	thrown if there's an error fetching or the itemid is absent in the db
+	 */	
 	public SaleItem getSaleItem(char[] itemid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+		Statement statement = null;
+		ResultSet rs = null;
+		SaleItem si = null;
+		
+		try {
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM sale_items WHERE id=" + new String(itemid) + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			si = new SaleItem();
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for id [" + itemid + "]");
+			}
+			
+			si.setId(rs.getString(1));
+			si.setName(rs.getString(2));
+			si.setSellerId(rs.getString(3));
+			si.setPrice(rs.getString(4));
+			si.setReservePrice(rs.getString(5));
+			si.setQuantity(rs.getString(6));
+			si.setCategory(rs.getString(7));
+			si.setDetailedDescriptionURL(rs.getString(8));
+			si.setTypeOfSale(rs.getString(9));
+			si.setDescription(rs.getString(10));
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return si;
 	}
 	
 	public SaleTransaction getSaleTransaction(char[] saleid) throws DBHelperException {
@@ -293,7 +375,49 @@ public class DBHelper {
 	}
 	
 	public User getUser(char[] userid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		User user = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM users WHERE username='" + new String(userid) + "';";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			user= new User();
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for id [" + new String(userid) + "]");
+			}
+			user.setRegId(rs.getString(1).toCharArray());
+			user.setEmailAddress(rs.getString(2));
+			user.setActive(rs.getBoolean(3));
+			user.setUsername(rs.getString(4));
+			user.setFirstName(rs.getString(5));
+			user.setLastName(rs.getString(6));
+			user.setPassword(rs.getString(7));
+			user.setAge(rs.getByte(8));
+			user.setPhoneNumber(rs.getString(9));
+			user.setGender(rs.getString(10));
+			user.setAnnualSalary(rs.getDouble(11));
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return user;
 	}
 	
 	public void close() {
@@ -332,8 +456,6 @@ public class DBHelper {
 		
 		public DBHelperException(String message, Throwable cause) {
 			super(message, cause);
-		}
-		
+		}	
 	}
-
 }

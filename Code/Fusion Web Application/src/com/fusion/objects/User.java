@@ -223,11 +223,11 @@ public class User {
 	 * @param gender
 	 *            only 'm' and 'f' are allowed. All else will be ignored.
 	 */
-	public void setGender(char gender) {
-		if (gender != 'm' && gender != 'f') {
+	public void setGender(String gender) {
+		if (gender != "m" && gender != "f") {
 			return;
 		}
-		this.gender = gender;
+		this.gender = gender.charAt(0);
 	}
 
 	/**
@@ -267,8 +267,8 @@ public class User {
 		if (regId == null) {
 			throw new RuntimeException("Tried to set the user's ID to null.");
 		}
-		if (regId.length != REG_ID_SIZE) {
-			throw new RuntimeException("Tried to set the user's ID to an invalid value [" + regId + "].");
+		if (regId.length >= REG_ID_SIZE) {
+			throw new RuntimeException("Tried to set the user's ID to an invalid value [" + regId.toString() + "].");
 		}
 		this.regId = regId;
 	}
