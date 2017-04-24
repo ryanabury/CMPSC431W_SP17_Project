@@ -42,7 +42,7 @@
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	
 	try{
-		connection = DriverManager.getConnection(ConnectionURL, "root", "JDsdljad2340!"); /* CHANGE TO LOCAL PASSWORD */ 
+		connection = DriverManager.getConnection(ConnectionURL, "root", "$tyro24F0am"); /* CHANGE TO LOCAL PASSWORD */ 
 		String sql = "SELECT * FROM fusion.users WHERE username = ? AND password = ?";
 		
 		pst = connection.prepareStatement(sql);
@@ -54,6 +54,7 @@
 		if(!rs.next()){
 			//Refreshes page after failed login attempt
 			out.println(new LoginPage().render());
+			out.println("Incorrect username or password.");
 			throw new DBHelper.DBHelperException("No such username [" + username + "]");
 		}
 		else{
