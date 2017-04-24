@@ -204,9 +204,9 @@ public class DBHelper {
 			
 			// Assemble Data Structure
 			if (!rs.next()) {
-				throw new DBHelperException("No value found for id [" + supplierid + "]");
+				throw new DBHelperException("No value found for id [" + String.valueOf(supplierid) + "]");
 			}
-			ci = new ContactInfo(rs.getString(1), rs.getString(2), rs.getString(3));
+			ci = new ContactInfo(new EmailAddress("test", "yahoo.com"), new Address(), ContactInfo.PointOfContact.EMAIL);
 			
 		} catch (SQLException e) {
 			throw new DBHelperException("Encountered an error.", e);
@@ -337,7 +337,6 @@ public class DBHelper {
 			rs = statement.executeQuery(sql);
 			
 			while(rs.next()) {
-				Timestamp date = rs.getTimestamp(4);
 				l.add(new SaleTransaction(rs.getInt("sale_id"), new CreditCard(), rs.getString("status"), 
 						rs.getTimestamp("completion_date"), getSaleItem(rs.getString("item_id").toCharArray()),
 						rs.getInt("quantity"), rs.getInt("sale_price"), new Address()));
@@ -375,7 +374,7 @@ public class DBHelper {
 			// Assemble Data Structure
 			si = new SaleItem();
 			if (!rs.next()) {
-				throw new DBHelperException("No value found for id [" + itemid + "]");
+				throw new DBHelperException("No value found for id [" + String.valueOf(itemid) + "]");
 			}
 			
 			si.setId(Integer.parseInt(rs.getString(1)));
