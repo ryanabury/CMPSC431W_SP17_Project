@@ -21,4 +21,9 @@ public class HomePage extends AbstractPage {
 		return div();
 	}
 
+	@Override
+	protected String pageTitle() {
+		return "Home Page";
+	}
+
 }

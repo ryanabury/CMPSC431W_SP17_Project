@@ -9,7 +9,7 @@ import j2html.tags.ContainerTag;
 public abstract class AbstractPage {
 	
 	private static final String[] MENU_ITEMS = {"Home", "Browse", "About"};
-	private static final String[] MENU_ITEM_LINKS = {"./", "./browse", "./about"};
+	private static final String[] MENU_ITEM_LINKS = {"./", "./browse.jsp", "./about.jsp"};
 	
 	protected User myUser;
 	
@@ -21,30 +21,43 @@ public abstract class AbstractPage {
 		myUser = user;
 	}
 	
+	private ContainerTag generateHead() {
+		return head().with(
+				title(pageTitle()),
+				link().withRel("Stylesheet").withHref("main.css")
+				);
+	}
+	
 	private ContainerTag generateHeader(User user) {
 		return div().with(							// Main Header Box
-				h1("Fusion"), 						// Title
+				h1("Fusion LTD.").withClass("header"), 						// Title
 				div().with(							// Menu / Login Box
 						generateMenu(),
 						generateAccountInfo(user)
-				)
-		).withClass("header-main-box");
+				).withId("header")
+		);
 	}
 	
 	protected abstract ContainerTag generateBody();
 	
+	protected abstract String pageTitle();
+	
 	private ContainerTag generateFooter() {
-		return p("(C) 2017, Fusion Ltd.").withClass("footer");
+		return footer().with(
+				p("(C) 2017, Fusion Ltd.").withClass("footer")
+				);
 	}
 	
 	private static ContainerTag generateMenu() {
-		ContainerTag div = div();
+		ContainerTag ul = ul();
 		for (int i = 0; i < MENU_ITEMS.length; i++) {
-			div.with(
-					a(MENU_ITEMS[i]).withHref(MENU_ITEM_LINKS[i])
+			ul.with(
+					li().with(
+						a(MENU_ITEMS[i]).withHref(MENU_ITEM_LINKS[i])
+					)
 			);
 		}
-		return div.withClass("header-menu-box");
+		return ul.withId("menu");
 	}
 	
 	private static ContainerTag generateAccountInfo(User user) {
@@ -64,6 +77,7 @@ public abstract class AbstractPage {
 	
 	public final String render() {
 		return html().with(
+				generateHead(),
 				generateHeader(myUser), 
 				generateBody(), 
 				generateFooter()

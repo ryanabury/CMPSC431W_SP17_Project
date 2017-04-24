@@ -3,6 +3,7 @@
 div.header-main-box {
 	width:100%; 
 	overflow: hidden;
+	background_color: yellow;
 }
 
 div.header-menu-box {
