@@ -19,9 +19,6 @@ public class DBHelper {
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "$tyro24F0am";
 	
-	private String address;
-	private int port;
-	
 	private Connection connection;
 	
 	public DBHelper() throws DBHelperException {
@@ -31,6 +28,7 @@ public class DBHelper {
 	public DBHelper(String address, int port) throws DBHelperException {
 		
 		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection(
 					"jdbc:mysql://" + DEFAULT_ADDRESS + ":" + DEFAULT_PORT + "/" + DB_NAME, 
 					USERNAME, 
@@ -38,6 +36,15 @@ public class DBHelper {
 			);
 		} catch (SQLException e) {
 			throw new DBHelperException("Failed to initialize the database connection.", e);
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 	
@@ -209,7 +216,7 @@ public class DBHelper {
 			// Assemble Data Structure
 			creditCard = new CreditCard();
 			if (!rs.next()) {
-				throw new DBHelperException("No value found for id [" + userid + "]");
+				throw new DBHelperException("No value found for id [" + userid.toString() + "]");
 			}
 			creditCard.setCardNumber(rs.getString(1));
 			creditCard.setType(rs.getString(2));
@@ -265,7 +272,7 @@ public class DBHelper {
 			
 			// Assemble Data Structure
 			if (!rs.next()) {
-				throw new DBHelperException("No phone number found for user id [" + userid + "]");
+				throw new DBHelperException("No phone number found for user id [" + userid.toString() + "]");
 			}
 			number = new PhoneNumber(rs.getString(1));
 			
@@ -308,13 +315,13 @@ public class DBHelper {
 			statement = connection.createStatement();
 			
 			// Execute Statement
-			String sql = "SELECT * FROM users WHERE username='" + new String(userid) + "';";
+			String sql = "SELECT * FROM users WHERE reg_id='" + new String(userid) + "';";
 			rs = statement.executeQuery(sql);
 			
 			// Assemble Data Structure
 			user= new User();
 			if (!rs.next()) {
-				throw new DBHelperException("No value found for id [" + new String(userid) + "]");
+				throw new DBHelperException("No value found for reg_id [" + new String(userid) + "]");
 			}
 			user.setRegId(rs.getString(1).toCharArray());
 			user.setEmailAddress(rs.getString(2));
@@ -336,6 +343,42 @@ public class DBHelper {
 		}
 		
 		return user;
+	}
+	
+	public String getUserID(String username, String password) throws DBHelperException {
+			
+		Statement statement = null;
+		ResultSet rs = null;
+		String UserID = new String();
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT reg_id FROM users WHERE username='" + username + "' AND password='" + password + "';";
+			rs = statement.executeQuery(sql);
+			
+			// Get UserID
+			if (!rs.next()) {
+				System.out.println("No reg_id matches [" + username + ", " + password + "]");
+			} else{
+				UserID = rs.getString(1);
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return UserID;
 	}
 	
 	public void close() {
@@ -364,6 +407,8 @@ public class DBHelper {
 	
 	public static class DBHelperException extends Exception {
 		
+		private static final long serialVersionUID = 1L;
+
 		public DBHelperException() {
 			super();
 		}

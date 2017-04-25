@@ -1,12 +1,32 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
 
-    <servlet>
+	<servlet>
         <servlet-name>Home</servlet-name>
         <jsp-file>index.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.fusion.servlets.LogIn</servlet-class>
+        <jsp-file>login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>com.fusion.servlets.LogOut</servlet-class>
+        <jsp-file>index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     
 </web-app>

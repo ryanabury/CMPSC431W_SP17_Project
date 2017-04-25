@@ -50,14 +50,14 @@ public abstract class AbstractPage {
 	private static ContainerTag generateAccountInfo(User user) {
 		ContainerTag div = div();
 		if (user == null) {
-			div.with(a("Login"));
+			div.with(a("Login").withHref("./login.jsp"));
 			div.withText(" / "); 
-			div.with(a("Create Account"));
+			div.with(a("Create Account").withHref("./create_user.jsp"));
 		} else {
-			return div().with(
-					a("My Account"), 
-					text(" (" + user.getFullName() + ")")
-			).withClass("header-account-box");
+			div.with(a("My Account ").withHref("./account"));
+			div.with(text(" (" + user.getFullName() + ")"));
+			div.withText(" / "); 
+			div.with(a("Log Out").withHref("./logout"));
 		}
 		return div.withClass("header-account-box");
 	}
