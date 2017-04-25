@@ -12,7 +12,38 @@ public class LoginPage extends AbstractPage {
 	@Override
 	protected ContainerTag generateBody() {
 		// TODO Auto-generated method stub
-		return div();
+		return div().with(
+				table().with(
+						thead().with(
+								tr().with(
+										th("Login")
+										)
+								),
+						tbody().with(
+								tr().with(
+										td("Username: "),
+										td().with(input()
+												.withType("text")
+												.withName("username")
+												)												
+										)
+								),
+								tr().with(
+										td("Password: "),
+										td().with(input()
+												.withType("password")
+												.withName("password")
+												)
+										)
+								),
+								tr().with(
+										td().with(
+												input()
+												.withType("submit")
+												.withValue("Login")
+												.withName("Login")
+												)
+										));
 	}
 
 	@Override
