@@ -17,8 +17,13 @@ public class HomePage extends AbstractPage {
 	}
 
 	@Override
-	protected ContainerTag generageBody() {
+	protected ContainerTag generateBody() {
 		return div();
+	}
+
+	@Override
+	protected String pageTitle() {
+		return "Home Page";
 	}
 
 }

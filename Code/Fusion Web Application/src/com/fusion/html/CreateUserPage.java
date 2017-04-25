@@ -10,9 +10,14 @@ public class CreateUserPage extends AbstractPage {
 	}
 	
 	@Override
-	protected ContainerTag generageBody() {
+	protected ContainerTag generateBody() {
 		// TODO Auto-generated method stub
 		return div();
+	}
+
+	@Override
+	protected String pageTitle() {
+		return "Create User";
 	}
 
 }

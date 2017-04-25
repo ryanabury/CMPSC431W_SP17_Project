@@ -1,25 +1,30 @@
 package com.fusion.objects;
+import java.sql.Timestamp;
 
 public class SaleTransaction {
 	
 	private int saleID;
 	private CreditCard creditCard;
 	private String status;
-	private long completionDate;
+	private Timestamp completionDate;
 	private SaleItem saleItem;
 	private int quantity;
 	private int salePrice; // cents
 	private Address shippingAddress;
 	
 	public SaleTransaction() {
-		saleID = 0;
-		creditCard = new CreditCard();
-		status = "";
-		completionDate = 0;
-		saleItem = new SaleItem();
-		quantity = 0;
-		salePrice = 0;
-		shippingAddress = new Address();
+		this(0, new CreditCard(), "", new Timestamp(0), new SaleItem(), 0, 0, new Address());
+	}
+	
+	public SaleTransaction(int saleID, CreditCard creditCard, String status, Timestamp completionDate, SaleItem saleItem, int quantity, int salePrice, Address shippingAddress) {
+		this.saleID = saleID;
+		this.creditCard = creditCard;
+		this.status = status;
+		this.completionDate = completionDate;
+		this.saleItem = saleItem;
+		this.quantity = quantity;
+		this.salePrice = salePrice;
+		this.shippingAddress = shippingAddress;
 	}
 	
 	public int getSaleID() {
@@ -31,7 +36,7 @@ public class SaleTransaction {
 	public String getStatus() {
 		return status;
 	}
-	public long getCompletionDate() {
+	public Timestamp getCompletionDate() {
 		return completionDate;
 	}
 	public SaleItem getSaleItem() {
@@ -55,7 +60,7 @@ public class SaleTransaction {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public void setCompletionDate(long completionDate) {
+	public void setCompletionDate(Timestamp completionDate) {
 		this.completionDate = completionDate;
 	}
 	public void setSaleItem(SaleItem saleItem) {

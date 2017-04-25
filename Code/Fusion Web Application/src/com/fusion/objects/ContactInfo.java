@@ -24,7 +24,7 @@ public class ContactInfo {
 		return pointOfContact;
 	}
 
-	enum PointOfContact {
+	public enum PointOfContact {
 		EMAIL,
 		POSTAL
 	};
