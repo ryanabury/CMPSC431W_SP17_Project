@@ -1,3 +1,4 @@
+
 package com.fusion.objects;
 
 public class Supplier {
@@ -5,7 +6,7 @@ public class Supplier {
 	private int supplierID;
 	private String companyName;
 	private String password;
-	private String cat;
+	private String category;
 	private int yearlyRevenue;
 	private String urlExtention;
 	private String description;
@@ -15,7 +16,7 @@ public class Supplier {
 		supplierID = 0;
 		companyName = "";
 		password = "";
-		cat = "";
+		category = "";
 		yearlyRevenue = 0;
 		urlExtention = "";
 		banner_img = "";
@@ -47,11 +48,11 @@ public class Supplier {
 	}
 
 	public String getCategory() {
-		return cat;
+		return category;
 	}
 	
-	public void setCategory(String cat){
-		this.cat = cat;
+	public void setCategory(String category){
+		this.category = category;
 	}
 
 	public int getYearlyRevenue() {
@@ -73,8 +74,8 @@ public class Supplier {
 		return banner_img;
 	}
 	
-	public void setBannerImg(String bannerImg){
-		this.banner_img = bannerImg;
+	public void setBannerImg(String banner_img){
+		this.banner_img = banner_img;
 	}
 
 	public String getDescription() {
