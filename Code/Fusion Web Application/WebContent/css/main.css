@@ -116,6 +116,24 @@ a.item-link:active {color: #888;}
 
 a.item-link {text-decoration: none;} /* Remove Underline */
 
+table.sale-report {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+table.sale-report th, td {
+	border: 1px solid black;
+}
+
+table.telemarketer-report {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+tabel.telemarketer-report th, td {
+	border: 1px solid black;
+}
+
 /* Footer */
 
 iframe.share-button {
@@ -138,7 +156,7 @@ iframe.share-button {
 }
 
 .push {
-	height: 37px;
+	height: 35px;
 }
 
 div#footer {

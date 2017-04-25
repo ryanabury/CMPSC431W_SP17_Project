@@ -48,7 +48,7 @@ public class TelemarketerPage extends AbstractPage{
 									td(Double.toString(user.getAnnualSalary()))
 									)
 								)
-							).withClass("telemarketerReport")
+							).withClass("telemarketer-report")
 						);
 			}
 		} catch (DBHelperException e) {

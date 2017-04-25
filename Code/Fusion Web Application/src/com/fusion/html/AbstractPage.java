@@ -49,7 +49,7 @@ public abstract class AbstractPage {
 					iframe().withSrc("https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.google.com&layout=button_count&size=small&mobile_iframe=true&width=86&height=20&appId")
 					.withClass("share-button")
 				),
-				p("(C) 2017, Fusion Ltd.").withClass("footer")
+				p("\u00a9 2017 Fusion Ltd.").withClass("footer")
 				).withId("footer");
 	}
 	

@@ -41,7 +41,7 @@ public class SaleReportPage extends AbstractPage{
 							td(transaction.getShippingAddress().toString())
 							)
 						)	
-					).withClass("saleReport")
+					).withClass("sale-report")
 				);
 		}
 		return div().with(
