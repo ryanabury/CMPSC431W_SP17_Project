@@ -7,6 +7,23 @@
 html, body {
 	height: 100%;
 	margin: 0;
+	background-color: #fff7ec;
+}
+
+p {
+	line-height: 1.2;
+	margin: 5px 2px 5px 2px; /* top right bottom left */
+	text-indent: 50px;
+}
+
+h3 {
+	padding: 7px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+}
+
+hr {
+	margin: 8px;
 }
 
 /* Header */
@@ -117,15 +134,15 @@ iframe.share-button {
 .wrapper {
 	min-height: 100%;
 	
-	margin-bottom: -31px;
+	margin-bottom: -42px;
 }
 
 .push {
-	height: 28px;
+	height: 37px;
 }
 
 div#footer {
-	height: 28px;
+	height: 35px;
 	clear: both;
 	text-align: center;
 	z-index: 1;
