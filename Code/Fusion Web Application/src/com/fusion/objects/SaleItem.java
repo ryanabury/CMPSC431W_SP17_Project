@@ -10,7 +10,7 @@ public class SaleItem {
 	private int price; // Given in cents
 	private int reservePrice; // Given in cents
 	private int quantity;
-	private Category category;
+	private int categoryID;
 	private String detailedDescriptionURL;
 	private int typeOfSale;
 	private String description;
@@ -23,7 +23,7 @@ public class SaleItem {
 		price = 0;
 		reservePrice = 0;
 		quantity = 0;
-		category = null;
+		categoryID = null;
 		detailedDescriptionURL = "";
 		typeOfSale = 0;
 		description = "";
@@ -74,11 +74,11 @@ public class SaleItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Category getCategory() {
-		return category;
+	public int getCategory() {
+		return categoryID;
 	}
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategory(int categoryID) {
+		this.categoryID = categoryID;
 	}
 	public String getDetailedDescriptionURL() {
 		return detailedDescriptionURL;
