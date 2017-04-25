@@ -92,6 +92,13 @@ div.header-account-box {
 	padding: 20px;
 }
 
+a.item-link:link {color: black;}
+a.item-link:visited {color: black;}
+a.item-link:hover {color: #555;}
+a.item-link:active {color: #888;}
+
+a.item-link {text-decoration: none;} /* Remove Underline */
+
 /* Footer */
 
 iframe.share-button {

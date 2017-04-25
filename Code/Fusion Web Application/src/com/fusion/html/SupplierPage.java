@@ -27,44 +27,45 @@ public class SupplierPage extends AbstractPage {
 			ArrayList<SaleItem> l = db.getSaleItemBySeller(supplierID);
 			
 			return div().attr("align", "center").with(
-					table()
-					.with(
+				table()
+				.with(
+					tr().with(
+						h1(supplierInfo.getCompanyName())
+					),
+					each(l,saleItem ->
+						table().with(
 							tr().with(
-									h1(supplierInfo.getCompanyName())
-									)
-							,
-							each(l,saleItem ->
-									table().with(
-											tr().with(
-													h3(saleItem.getName()).attr("width","300")
-													),
-											tr().with(
-													td(saleItem.getDescription()).attr("width","300")
-													),
-											tr().with(
-													td("$" + Integer.toString(saleItem.getPrice())).attr("width","300")
-													),
-											tr().with(
-													td().with(
-															input()
-															.withType("submit")
-															.withValue("Buy Now")
-															.withName("buy")
-													)),
-											tr().with(
-													td().with(
-															input()
-															.withType("text")
-															.withValue("Bid Amount")
-															.withName("bid amount")
-													),
-													td().with(
-															input()
-															.withType("submit")
-															.withValue("Bid")
-															.withName("Bid")
-													))
-											))));
+								a().with(h3(saleItem.getName()).attr("width","300"))
+								.withHref("./item.jsp?item_ID="+saleItem.getId())
+								.withClass("item-link")
+							),
+							tr().with(
+								td(saleItem.getDescription()).attr("width","300")
+							),
+							tr().with(
+								td("$" + Integer.toString(saleItem.getPrice())).attr("width","300")
+							),
+								tr().with(
+								td().with(
+									input()
+										.withType("submit")
+										.withValue("Buy Now")
+										.withName("buy")
+								)),
+								tr().with(
+								td().with(
+									input()
+										.withType("text")
+										.withValue("Bid Amount")
+										.withName("bid amount")
+								),
+								td().with(
+									input()
+										.withType("submit")
+										.withValue("Bid")
+										.withName("Bid")
+								))
+						))));
 									
 					
 		}catch(DBHelperException e){
