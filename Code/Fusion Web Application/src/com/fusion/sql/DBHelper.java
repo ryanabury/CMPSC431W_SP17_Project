@@ -87,9 +87,9 @@ public class DBHelper {
 	}
 	
 	/**
-	 * Fetches the billing address given the selected input.
-	 * @param 	cardNumber		the card number to use as a search term
-	 * @return	address 		the address with the given card number, cannot return null
+	 * Fetches the shipping address given the selected input.
+	 * @param 	saleID			the sale ID to use as a search term
+	 * @return	address 		the address with the given sale ID, cannot return null
 	 * @throws 	DBHelperException	thrown if there is an issue fetching the address or if no address is found
 	 */
 	public Address getShippingAddress(int saleID) throws DBHelperException {
@@ -108,7 +108,7 @@ public class DBHelper {
 			statement = connection.createStatement();
 			
 			// Execute Statement
-			String sql = "SELECT * FROM billing_addr WHERE sale_id=" + saleID + ";";
+			String sql = "SELECT * FROM shipping_addr WHERE sale_id=" + saleID + ";";
 			rs = statement.executeQuery(sql);
 			
 			// Assemble Data Structure
@@ -185,6 +185,7 @@ public class DBHelper {
 		Statement statement = null;
 		ResultSet rs = null;
 		ContactInfo ci = null;
+		Address addr = null;
 		
 		try {
 			// Check for Open Connection
@@ -203,7 +204,13 @@ public class DBHelper {
 			if (!rs.next()) {
 				throw new DBHelperException("No value found for id [" + supplierid + "]");
 			}
-			ci = new ContactInfo(rs.getString(1), rs.getString(2), rs.getString(3));
+			
+			addr.setStreetAddress(rs.getString(2));
+			addr.setCity(rs.getString(3));
+			addr.setState(rs.getString(4));
+			addr.setZipCode(rs.getString(5).getBytes());
+			
+			ci = new ContactInfo(rs.getString(6), addr, rs.getString(1));
 			
 		} catch (SQLException e) {
 			throw new DBHelperException("Encountered an error.", e);
@@ -268,7 +275,7 @@ public class DBHelper {
 	 * @return 	<email> 		the email address of any user(s) with a matching user ID
 	 * @throws	DBHelperException	thrown if there's an issue fetching or the userid is absent in the db
 	 */
-	public EmailAddress getEmailAddress(char[] userid) throws DBHelperException {
+	public String getEmailAddress(char[] userid) throws DBHelperException {
 		
 		Statement statement = null;
 		ResultSet rs = null;
@@ -330,12 +337,12 @@ public class DBHelper {
 			if (!rs.next()) {
 				throw new DBHelperException("No value found for id [" + itemid + "]");
 			}
-			ir.setRatingID(rs.getString(1));
-			ir.setTimestamp(rs.getString(2));
-			ir.setScore(rs.getString(3));
+			ir.setRatingID(itemid);
+			ir.setTimestamp(rs.getLong(2));
+			ir.setScore(rs.getString(3).getBytes());
 			ir.setDescription(rs.getString(4));
 			ir.setComment(rs.getString(5));
-			ir.setUserID(rs.getString(6));
+			ir.setUserID(rs.getString(6).toCharArray());
 			
 		} catch (SQLException e) {
 			throw new DBHelperException("Encountered an error.", e);
@@ -419,15 +426,15 @@ public class DBHelper {
 				throw new DBHelperException("No value found for id [" + itemid + "]");
 			}
 			
-			si.setId(rs.getString(1));
+			si.setId(itemid);
 			si.setName(rs.getString(2));
-			si.setSellerId(rs.getString(3));
-			si.setPrice(rs.getString(4));
-			si.setReservePrice(rs.getString(5));
-			si.setQuantity(rs.getString(6));
-			si.setCategory(rs.getString(7));
+			si.setSellerId(rs.getInt(3));
+			si.setPrice(rs.getInt(4));
+			si.setReservePrice(rs.getInt(5));
+			si.setQuantity(rs.getInt(6));
+			si.setCategory(rs.getInt(7));
 			si.setDetailedDescriptionURL(rs.getString(8));
-			si.setTypeOfSale(rs.getString(9));
+			si.setTypeOfSale(rs.getInt(9));
 			si.setDescription(rs.getString(10));
 			
 		} catch (SQLException e) {
@@ -470,13 +477,13 @@ public class DBHelper {
 				throw new DBHelperException("No value found for id [" + saleid + "]");
 			}
 			
-			st.setSaleID(rs.getString(1));
+			st.setSaleID(saleid);
 			st.setCreditCard(rs.getString(2));
 			st.setStatus(rs.getString(3));
-			st.setCompletionDate((short) rs.getInt(4), (short) rs.getInt(5));
-			st.setSaleItem(rs.getString(5));
-			st.setSalePrice(rs.getString(6));
-			st.setShippingAddress(rs.getString(7));
+			st.setCompletionDate(rs.getLong(4));
+			st.setSaleItemID(rs.getInt(5));
+			st.setQuantity(rs.getInt(6));
+			st.setSalePrice(rs.getInt(7));
 			
 		} catch (SQLException e) {
 			throw new DBHelperException("Encountered an error.", e);
