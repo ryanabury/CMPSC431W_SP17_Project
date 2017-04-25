@@ -353,6 +353,42 @@ public class DBHelper {
 		}
 		return l;		
 	}
+
+	/**
+	 * Returnes a list of users for the telemarketer report
+	 * @return l	list of Users to be printed in a table report
+	 */
+	public ArrayList<User> getTelemarketerReport() {
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<User> l = new ArrayList<User>();
+		
+		try {
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed");
+			}
+			
+			statement = connection.createStatement();
+			
+			boolean active;
+			String sql = "SELECT * FROM users";
+			rs = statement.executeQuery(sql);
+			System.out.println("Received Telemarketer Report");
+			while(rs.next()) {
+				if (rs.getInt("active") == 1)
+					active = true;
+				else
+					active = false;
+				l.add(new User(Integer.toString(rs.getInt("reg_id")).toCharArray(), rs.getString("email"),
+						active, rs.getString("username"), rs.getString("password"),
+						rs.getString("first_name"), rs.getString("last_name"), (byte) rs.getInt("age"), 
+						rs.getString("phone_num"), rs.getString("gender").charAt(0), rs.getFloat("annual_salary")));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return l;
+	}
 	
 	/**
 	 * Fetches sale item from db.

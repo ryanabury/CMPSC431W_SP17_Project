@@ -29,22 +29,27 @@ public class User {
 	private char[] regId;
 	private String username;
 	
+	public User(char[] regID, String emailAddress, boolean isActive, String username, String password, String firstName, String lastName, byte age, String phoneNumber, char gender, float annualSalary) {
+		this.regId = regID;
+		this.emailAddress = emailAddress;
+		this.isActive = isActive;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.phoneNumber = phoneNumber;
+		this.gender = gender;
+		this.annualSalary = annualSalary;
+		addresses = new ArrayList<Address>();
+	}
+	
 	/**
 	 * Creates a default user. Use the setter methods for this class to fill in
 	 * data.
 	 */
 	public User() {
-		regId = new char[REG_ID_SIZE];
-		emailAddress = "";
-		isActive = false;
-		username = "";
-		password = "";
-		firstName = "";
-		lastName = "";
-		age = 0;
-		phoneNumber = "";
-		gender = 'm';
-		annualSalary = 0.0;
+		this(new char[REG_ID_SIZE], "", false, "", "", "", "", (byte) 0, "", 'm', (float) 0.0);
 	}
 	
 	/**
@@ -67,6 +72,16 @@ public class User {
 		creditCards.add(creditCard);
 	}
 
+	/**
+	 * Returns the first entry in Addresses if it exists
+	 */
+	public String getPrimaryAddress() {
+		if (addresses.isEmpty()) {
+			return "No Address";
+		}
+		return addresses.get(0).toString();
+	}
+	
 	/**
 	 * @return a list of the user's addresses.
 	 */
