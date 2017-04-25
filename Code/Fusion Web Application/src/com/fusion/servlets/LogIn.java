@@ -18,7 +18,7 @@ import com.fusion.sql.DBHelper.DBHelperException;
 /**
  * Servlet implementation class LogIn
  */
-@WebServlet("/LogIn")
+@WebServlet("/login")
 public class LogIn extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
 	

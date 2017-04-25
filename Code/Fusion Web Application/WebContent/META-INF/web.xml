@@ -22,7 +22,6 @@
     <servlet>
         <servlet-name>LogOut</servlet-name>
         <servlet-class>com.fusion.servlets.LogOut</servlet-class>
-        <jsp-file>index.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>LogOut</servlet-name>
