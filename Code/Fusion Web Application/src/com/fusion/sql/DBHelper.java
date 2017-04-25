@@ -446,7 +446,45 @@ public class DBHelper {
 	}
 	
 	public Supplier getSupplier(char[] supplierid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+		Statement statement = null;
+		ResultSet rs = null;
+		Supplier supplier = null;
+		try{
+			//Check for Open Connection
+			if(connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed");
+			}
+			
+			//Create statement
+			statement = connection.createStatement();
+			
+			//Execute statement
+			String sql = "SELECT * FROM suppliers WHERE supplier_id=" + new String(supplierid) + ";";
+			rs = statement.executeQuery(sql);
+			
+			supplier = new Supplier();
+			if (!rs.next()){
+				throw new DBHelperException("No value found for id [" + String.valueOf(supplierid) + "]");
+			}
+			
+			supplier.setSupplierID(rs.getInt(1));
+			supplier.setCompanyName(rs.getString(2));
+			supplier.setPassword(rs.getString(3));
+			supplier.setCategory(rs.getInt(4));
+			supplier.setYearlyRevenue(rs.getInt(5));
+			supplier.setUrlExtention(rs.getString(6));
+			supplier.setBannerImg(rs.getString(7));
+			supplier.setDescription(rs.getString(8));
+			
+		}catch(SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		}
+		finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return supplier;
 	}
 	
 	public User getUser(char[] userid) throws DBHelperException {
