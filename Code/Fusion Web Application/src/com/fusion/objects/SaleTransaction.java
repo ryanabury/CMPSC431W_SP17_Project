@@ -3,20 +3,20 @@ package com.fusion.objects;
 public class SaleTransaction {
 	
 	private int saleID;
-	private CreditCard creditCard;
+	private String creditCard;
 	private String status;
 	private long completionDate;
-	private SaleItem saleItem;
+	private int saleItemID;
 	private int quantity;
 	private int salePrice; // cents
 	private Address shippingAddress;
 	
 	public SaleTransaction() {
 		saleID = 0;
-		creditCard = new CreditCard();
+		creditCard = "";
 		status = "";
 		completionDate = 0;
-		saleItem = new SaleItem();
+		saleItemID = 0;
 		quantity = 0;
 		salePrice = 0;
 		shippingAddress = new Address();
@@ -25,7 +25,7 @@ public class SaleTransaction {
 	public int getSaleID() {
 		return saleID;
 	}
-	public CreditCard getCreditCard() {
+	public String getCreditCard() {
 		return creditCard;
 	}
 	public String getStatus() {
@@ -34,8 +34,8 @@ public class SaleTransaction {
 	public long getCompletionDate() {
 		return completionDate;
 	}
-	public SaleItem getSaleItem() {
-		return saleItem;
+	public int getSaleItem() {
+		return saleItemID;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -49,7 +49,7 @@ public class SaleTransaction {
 	public void setSaleID(int saleID) {
 		this.saleID = saleID;
 	}
-	public void setCreditCard(CreditCard creditCard) {
+	public void setCreditCard(String creditCard) {
 		this.creditCard = creditCard;
 	}
 	public void setStatus(String status) {
@@ -58,8 +58,8 @@ public class SaleTransaction {
 	public void setCompletionDate(long completionDate) {
 		this.completionDate = completionDate;
 	}
-	public void setSaleItem(SaleItem saleItem) {
-		this.saleItem = saleItem;
+	public void setSaleItemID(int saleItemID) {
+		this.saleItemID = saleItemID;
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
