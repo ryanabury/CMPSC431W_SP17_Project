@@ -2,25 +2,25 @@ package com.fusion.objects;
 
 public class ContactInfo {
 	
-	private EmailAddress emailAddress;
-	private Address postalAddress;
-	private PointOfContact pointOfContact;
+	private String emailAddress;
+	private String postalAddress;
+	private String pointOfContact;
 	
-	public ContactInfo(EmailAddress emailAddress, Address address, PointOfContact poc) {
+	public ContactInfo(String emailAddress, String address, String poc) {
 		this.emailAddress = emailAddress;
 		this.postalAddress = address;
 		this.pointOfContact = poc;
 	}
 	
-	public EmailAddress getEmailAddress() {
+	public String getEmailAddress() {
 		return emailAddress;
 	}
 
-	public Address getPostalAddress() {
+	public String getPostalAddress() {
 		return postalAddress;
 	}
 
-	public PointOfContact getPointOfContact() {
+	public String getPointOfContact() {
 		return pointOfContact;
 	}
 
