@@ -391,6 +391,48 @@ public class DBHelper {
 	}
 	
 	/**
+	 * Returns a list of Sales Items from a particular seller
+	 * @return siL 	list of sales items to be displayed on supplier page
+	 */
+	public ArrayList<SaleItem> getSaleItemBySeller(char[] seller) throws DBHelperException {
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<SaleItem> siL = new ArrayList<SaleItem>();
+		
+		try{
+			
+			//Check for Open Connection
+			if (connection.isClosed()){
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			//Create Statement
+			statement = connection.createStatement();
+			
+			//Execute Statement
+			String sql = "SELECT * FROM sale_items WHERE seller=" + new String(seller) + ";";
+			rs = statement.executeQuery(sql);
+			
+			//Assemble Data Structure
+			while(rs.next()){
+				siL.add(new SaleItem(rs.getInt("id"),rs.getString("name"),rs.getInt("seller"),
+						rs.getInt("price"),rs.getInt("reservePrice"), rs.getInt("quantity"),
+						getCategory(Integer.parseInt(rs.getString("category"))),rs.getString("detailedDescriptionURL"),
+						SaleItem.TypeOfSale.fromInt(Integer.parseInt(rs.getString("typeOfSale"))),
+						rs.getString("description")));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return siL;
+	}
+	
+	/**
 	 * Fetches sale item from db.
 	 * @param	itemid			item ID used to find item
 	 * @return 	si 			sale item object
@@ -445,6 +487,13 @@ public class DBHelper {
 		throw new RuntimeException("Not yet implemented...");
 	}
 	
+	
+	/**
+	 * Fetches supplier from db.
+	 * @param	supplierid			supplier ID to find supplier
+	 * @return 	supplier 		supplier object
+	 * @throws	DBHelperException 	thrown if there's an error fetching or the supplierid is absent in the db
+	 */	
 	public Supplier getSupplier(char[] supplierid) throws DBHelperException {
 		Statement statement = null;
 		ResultSet rs = null;
@@ -503,7 +552,7 @@ public class DBHelper {
 			statement = connection.createStatement();
 			
 			// Execute Statement
-			String sql = "SELECT * FROM users WHERE username='" + new String(userid) + "';";
+			String sql = "SELECT * FROM users WHERE reg_id=" + new String(userid) + ";";
 			rs = statement.executeQuery(sql);
 			
 			// Assemble Data Structure
