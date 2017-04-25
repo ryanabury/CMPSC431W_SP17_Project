@@ -121,17 +121,24 @@ table.sale-report {
 	border: 1px solid black;
 }
 
-table.sale-report th, td {
+table.sale-report th, table.sale-report td {
 	border: 1px solid black;
+	padding: 3px;
 }
 
 table.telemarketer-report {
 	border-collapse: collapse;
 	border: 1px solid black;
+	background-color: #f0f0f0;
 }
 
-tabel.telemarketer-report th, td {
+table.telemarketer-report th, table.telemarketer-report td {
 	border: 1px solid black;
+	padding: 3px;
+}
+
+table.telemarketer-report tr:nth-child(even) {
+	background-color: #dadada;
 }
 
 /* Footer */

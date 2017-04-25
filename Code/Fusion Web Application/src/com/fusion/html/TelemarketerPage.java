@@ -26,7 +26,7 @@ public class TelemarketerPage extends AbstractPage{
 				return div().with(
 						table().with(
 							tr().with(
-								th("User ID"),
+								th("Username"),
 								th("Name"),
 								th("Address"),
 								th("Email"),
@@ -38,14 +38,14 @@ public class TelemarketerPage extends AbstractPage{
 							,
 							each(l, user ->
 								tr().with(
-									td(user.getRegId().toString()),
+									td(user.getUsername()),
 									td(user.getFullName()),
 									td(user.getPrimaryAddress()),
 									td(user.getEmailAddress()),
 									td(user.getPhoneNumber()),
 									td(Byte.toString(user.getAge())),
 									td(Character.toString(user.getGender())),
-									td(Double.toString(user.getAnnualSalary()))
+									td("$" + Integer.toString((int)user.getAnnualSalary()))
 									)
 								)
 							).withClass("telemarketer-report")
