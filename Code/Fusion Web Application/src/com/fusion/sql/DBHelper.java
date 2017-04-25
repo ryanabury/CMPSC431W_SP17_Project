@@ -33,6 +33,7 @@ public class DBHelper {
 	public DBHelper(String address, int port) throws DBHelperException {
 		
 		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection(
 					"jdbc:mysql://" + DEFAULT_ADDRESS + ":" + DEFAULT_PORT + "/" + DB_NAME, 
 					USERNAME, 
@@ -40,6 +41,12 @@ public class DBHelper {
 			);
 		} catch (SQLException e) {
 			throw new DBHelperException("Failed to initialize the database connection.", e);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -333,9 +340,9 @@ public class DBHelper {
 			
 			statement = connection.createStatement();
 			
-			String sql = "SELECT * FROM sales_transaction WHERE completion_date>*OneWeekAgo*";
+			String sql = "SELECT * FROM sales_transaction WHERE completion_date >= curdate() - INTERVAL 1 WEEK";
 			rs = statement.executeQuery(sql);
-			
+			System.out.println("Received Transaction Report");
 			while(rs.next()) {
 				l.add(new SaleTransaction(rs.getInt("sale_id"), new CreditCard(), rs.getString("status"), 
 						rs.getTimestamp("completion_date"), getSaleItem(rs.getString("item_id").toCharArray()),
@@ -344,7 +351,7 @@ public class DBHelper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;		
+		return l;		
 	}
 	
 	/**
