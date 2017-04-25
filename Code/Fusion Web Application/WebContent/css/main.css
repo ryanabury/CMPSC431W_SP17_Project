@@ -1,15 +1,46 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "Garamond", Serif;
+}/* Allows us to define our specific spacing between elements */
+
 <!-- Header -->
 
-div.header-main-box {
+div#header {
 	width:100%; 
 	overflow: hidden;
-	background_color: yellow;
 }
 
-div.header-menu-box {
-	float: left;
-	width:50%; 
+h1.header {
+	text-align: center;
+	background-color: #ffc97f;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+ul#menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 	overflow: hidden;
+	background-color: #333;
+}
+
+ul#menu li {
+	float: left;
+	border-right: 1px solid #aaa;
+}
+
+ul#menu li a{
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+ul#menu li a:hover {
+	background-color: #111;
 }
 
 div.header-account-box {
@@ -20,6 +51,12 @@ div.header-account-box {
 
 <!-- Footer -->
 
-p.footer {
+div#footer {
+	clear: both;
 	text-align: center;
 }
+
+p.footer {
+	clear: both;
+	text-align: center;
+}}

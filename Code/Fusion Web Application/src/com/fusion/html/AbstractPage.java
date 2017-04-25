@@ -24,7 +24,7 @@ public abstract class AbstractPage {
 	private ContainerTag generateHead() {
 		return head().with(
 				title(pageTitle()),
-				link().withRel("Stylesheet").withHref("main.css")
+				link().withRel("Stylesheet").withHref("css/main.css")
 				);
 	}
 	
@@ -43,9 +43,9 @@ public abstract class AbstractPage {
 	protected abstract String pageTitle();
 	
 	private ContainerTag generateFooter() {
-		return footer().with(
+		return div().with(
 				p("(C) 2017, Fusion Ltd.").withClass("footer")
-				);
+				).withId("footer");
 	}
 	
 	private static ContainerTag generateMenu() {
