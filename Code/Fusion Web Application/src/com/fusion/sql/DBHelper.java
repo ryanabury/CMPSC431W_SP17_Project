@@ -465,7 +465,7 @@ public class DBHelper {
 			statement = connection.createStatement();
 			
 			// Execute Statement
-			String sql = "SELECT * FROM users WHERE username='" + new String(userid) + "';";
+			String sql = "SELECT * FROM users WHERE reg_id=" + new String(userid) + ";";
 			rs = statement.executeQuery(sql);
 			
 			// Assemble Data Structure
