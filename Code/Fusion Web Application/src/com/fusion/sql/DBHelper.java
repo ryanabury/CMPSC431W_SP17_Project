@@ -20,7 +20,7 @@ public class DBHelper {
 	// Database Credentials
 	private static final String DB_NAME = "fusion";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "$tyro24F0am";
+	private static final String PASSWORD = "sentence429&pattern&yes&";
 	
 	private Connection connection;
 	

@@ -15,24 +15,7 @@
 		 userID = request.getSession().getAttribute("userID").toString();
 		 System.out.println("Session userID: " + userID);
 	 }
-
-	if (userID.isEmpty()) {
-		
-		System.out.println("userID is empty");
-		
-		// Render the page.
-		out.println(new HomePage().render());
-		
-	} else {
-		
-		System.out.println("userID is not empty");
-		// Get the user from the DB using the user ID.
-		DBHelper db = new DBHelper();
-		User user = db.getUser(userID.toCharArray());
-
-		// Render the page.
-		out.println(new HomePage(user).render());
-		
-	}
+	 
+	 out.println(new HomePage(userID.toCharArray()).render());
 	
 %>

@@ -3,6 +3,8 @@ package com.fusion.html;
 import static j2html.TagCreator.*;
 
 import com.fusion.objects.User;
+import com.fusion.sql.DBHelper;
+import com.fusion.sql.DBHelper.DBHelperException;
 
 import j2html.tags.ContainerTag;
 
@@ -19,6 +21,18 @@ public abstract class AbstractPage {
 	
 	public AbstractPage(User user) {
 		myUser = user;
+	}
+	
+	public AbstractPage(char[] userID) {
+		DBHelper db;
+		try {
+			db = new DBHelper();
+			
+			myUser = db.getUser(userID);
+			
+		} catch (DBHelperException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private ContainerTag generateHead() {
@@ -75,7 +89,7 @@ public abstract class AbstractPage {
 		} else {
 			ul.with(
 					li().withClass("floatRight").with(
-						a("My Account").withHref("./account_page.jsp")
+						a("My Account").withHref("./userpage.jsp")
 					)
 			);
 		}

@@ -15,16 +15,6 @@
 		 System.out.println("Session userID: " + userID);
 	}
 	
-	if (userID.isEmpty()) {
-		
-		out.println("userID is empty");
-		
-	} else {
-		
-		System.out.println("userID is not empty");
-	
-		// Render the page.
-		out.println(new UserPage(userID.toCharArray()).render());
-		
-	}
+	out.println(new UserPage(userID.toCharArray()).render());
+
 %>

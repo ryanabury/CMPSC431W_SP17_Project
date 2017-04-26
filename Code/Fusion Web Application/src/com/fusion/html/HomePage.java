@@ -15,6 +15,10 @@ public class HomePage extends AbstractPage {
 	public HomePage(User user) {
 		super(user);
 	}
+	
+	public HomePage(char[] userID) {
+		super(userID);
+	}
 
 	@Override
 	protected ContainerTag generateBody() {

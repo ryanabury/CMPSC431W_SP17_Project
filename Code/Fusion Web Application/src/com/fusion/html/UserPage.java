@@ -12,6 +12,16 @@ public class UserPage extends AbstractPage {
 	private char[] userID;
 	
 	public UserPage(char[] userID){
+		DBHelper db;
+		try {
+			db = new DBHelper();
+			
+			myUser = db.getUser(userID);
+			
+		} catch (DBHelperException e) {
+			e.printStackTrace();
+		}
+			
 		this.userID = userID;
 	}
 	
