@@ -1,31 +1,37 @@
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
-
-	<servlet>
-        <servlet-name>Home</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Home</servlet-name>
-        <url-pattern>/index.jsp</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-    	<display-name>LogIn</display-name>
-        <servlet-name>LogIn</servlet-name>
-        <servlet-class>com.fusion.servlets.LogIn</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogIn</servlet-name>
-        <url-pattern>/LogIn</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>LogOut</servlet-name>
-        <servlet-class>com.fusion.servlets.LogOut</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogOut</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee" version="2.5">
+  <servlet>
+    <servlet-name>Home</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>CreateUser</display-name>
+    <servlet-name>CreateUser</servlet-name>
+    <servlet-class>com.fusion.servlets.CreateUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateUser</servlet-name>
+    <url-pattern>/CreateUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>LogIn</display-name>
+    <servlet-name>LogIn</servlet-name>
+    <servlet-class>com.fusion.servlets.LogIn</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogIn</servlet-name>
+    <url-pattern>/LogIn</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>com.fusion.servlets.LogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
 </web-app>

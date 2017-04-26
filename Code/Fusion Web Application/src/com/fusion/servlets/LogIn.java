@@ -2,12 +2,8 @@ package com.fusion.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,40 +32,21 @@ public class LogIn extends HttpServlet implements Servlet {
 			reg_id = db.getUserID(username, password);
 			
 		} catch (DBHelperException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		if(reg_id.isEmpty()){
-			/*
-			RequestDispatcher rd = null;
-			rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
-			*/
-			
+			// incorrect login, go back to login page
 			response.sendRedirect("/Fusion_Web_Application/login.jsp");
 		} else{
-			// set cookies
-			Cookie userCookie = new Cookie("reg_id", reg_id);
-			
-			//set cookie expiration times
-			userCookie.setMaxAge(60);
-			
-			response.addCookie(userCookie);
 			
 			// set session
 			HttpSession session = request.getSession();
 			session.setAttribute("userID", reg_id);
 			session.setMaxInactiveInterval(60);
 			System.out.println("Set session");
-	
-			/*
-			RequestDispatcher rd = null;
-			rd = request.getRequestDispatcher("/index.jsp");
-			rd.forward(request, response);
-			*/
 			
-			response.sendRedirect("/Fusion_Web_Application/index.jsp");
+			response.sendRedirect("/Fusion_Web_Application/userpage.jsp");
 		}
 		
 	}

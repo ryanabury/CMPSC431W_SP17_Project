@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.fusion.objects.*;
+import com.mysql.jdbc.PreparedStatement;
 
 public class DBHelper {
 	
@@ -138,6 +139,102 @@ public class DBHelper {
 		return address;
 		
 	}
+	
+	public int checkLogin(String username, String password) throws DBHelperException {
+		
+		java.sql.PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try{
+			String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+			
+			pst = connection.prepareStatement(sql);
+			pst.setString(1, username);
+			pst.setString(2, password);
+			
+			rs = pst.executeQuery();
+			
+			if(!rs.next()){
+				pst.close();
+				rs.close();
+				throw new DBHelper.DBHelperException("No such username [" + username + "]");
+			}else{
+				pst.close();
+				rs.close();
+				return 0;
+			}
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return 1;
+	}
+	
+	/**
+	 * Creates a new user and enters it into the database
+	 * @return	0 on success, 1 on failure	
+	 * @throws 	DBHelperException	thrown if there is an issue entering data into db
+	 */
+	public int setCreateUser(String first_name,String last_name,String username,String email,String password, String age, String phone_num,String gender, String annual_salary) throws DBHelperException {
+		
+		java.sql.PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try{
+			//Check for Open Connection
+			if (connection.isClosed()){
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			String sql = "Select U1.reg_id FROM users U1 WHERE U1.reg_id >= ALL (SELECT U2.reg_id FROM fusion.users U2)";
+			
+			pst = connection.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			int reg_id = 0;
+			int updateQuery = 0;
+			
+			while(rs.next()){
+				reg_id = rs.getInt("reg_id") + 1;
+			}
+			
+			pst.close();
+			rs.close();
+			
+			pst = null;
+			rs = null;
+			
+			if(email != null && username != null && first_name != null && last_name != null && password != null && age != null && phone_num != null && gender != null && annual_salary != null){
+				sql = "INSERT INTO users (reg_id, email, active, username, first_name, last_name, password, age, phone_num, gender, annual_salary) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+				
+				pst = connection.prepareStatement(sql);
+				pst.setInt(1,reg_id);
+				pst.setString(2,email);
+				pst.setInt(3,1);
+				pst.setString(4,username);
+				pst.setString(5,first_name);
+				pst.setString(6,last_name);
+				pst.setString(7,password);
+				pst.setString(8,age);
+				pst.setString(9,phone_num);
+				pst.setString(10,gender);
+				pst.setString(11,annual_salary);
+				updateQuery = pst.executeUpdate();
+				
+				if(updateQuery == 0){
+					throw new DBHelperException("Unable to create your Fusion account");	
+				}
+				pst.close();
+				return 0;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 1;
+	}
+	
 	
 	/**
 	 * Fetches a category from the DB.
