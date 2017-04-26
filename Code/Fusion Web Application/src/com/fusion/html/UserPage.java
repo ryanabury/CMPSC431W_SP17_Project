@@ -8,56 +8,39 @@ import j2html.tags.ContainerTag;
 import static j2html.TagCreator.*;
 
 public class UserPage extends AbstractPage {
-
-	private char[] userID;
 	
 	public UserPage(char[] userID){
-		DBHelper db;
-		try {
-			db = new DBHelper();
-			
-			myUser = db.getUser(userID);
-			
-		} catch (DBHelperException e) {
-			e.printStackTrace();
-		}
-			
-		this.userID = userID;
+		super(userID);
 	}
 	
 	@Override
 	protected ContainerTag generateBody() {
 		//Generate body based on userID
 		
-		try{
-			DBHelper db = new DBHelper();
-			
-			User userInfo = db.getUser(userID);
+		if (myUser != null){
 			
 			return div().with(
 					table().with(
 							thead().with(
 									tr().with(
-											th(userInfo.getUsername())
+											th(myUser.getUsername())
 											)
 									),
 							tbody().with(
 									tr().with(
-											td(userInfo.getEmailAddress())
+											td(myUser.getEmailAddress())
 											)
 									),
 									tr().with(
-											td(userInfo.getPhoneNumber())
+											td(myUser.getPhoneNumber())
 											)
 									));
 		}
-		catch(DBHelperException e){
-			e.printStackTrace();
+		else {
+			return div().with(
+					p("Error retrieving User.")
+					);
 		}
-		
-		return div().with(
-				p("Error retrieving User.")
-				);
 	}
 
 	@Override

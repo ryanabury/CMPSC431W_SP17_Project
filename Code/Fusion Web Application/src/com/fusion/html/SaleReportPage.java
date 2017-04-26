@@ -3,6 +3,8 @@ package com.fusion.html;
 import java.util.ArrayList;
 
 import com.fusion.objects.SaleTransaction;
+import com.fusion.sql.DBHelper;
+import com.fusion.sql.DBHelper.DBHelperException;
 
 import j2html.tags.ContainerTag;
 import static j2html.TagCreator.*;
@@ -11,12 +13,19 @@ public class SaleReportPage extends AbstractPage{
 	
 	private ArrayList<SaleTransaction> transaction_list;
 
-	public SaleReportPage(ArrayList<SaleTransaction> transaction_list) {
-		this.transaction_list = transaction_list;
+	public SaleReportPage(char[] userID) {
 	}
 	
 	@Override
 	protected ContainerTag generateBody() {
+		
+		transaction_list = null;
+		
+		try {
+			transaction_list = new DBHelper().getTransactionReport();
+		} catch (DBHelperException e) {
+			e.printStackTrace();
+		}
 		
 		if (transaction_list != null) {
 		return div().with(
