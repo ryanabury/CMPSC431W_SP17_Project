@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.fusion.objects.*;
+import com.mysql.jdbc.PreparedStatement;
 
 public class DBHelper {
 	
@@ -19,10 +20,7 @@ public class DBHelper {
 	// Database Credentials
 	private static final String DB_NAME = "fusion";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "sentence429&pattern&yes&";
-	
-	private String address;
-	private int port;
+	private static final String PASSWORD = "$tyro24F0am";
 	
 	private Connection connection;
 	
@@ -144,7 +142,7 @@ public class DBHelper {
 	
 	public int checkLogin(String username, String password) throws DBHelperException {
 		
-		PreparedStatement pst = null;
+		java.sql.PreparedStatement pst = null;
 		ResultSet rs = null;
 		
 		try{
@@ -180,7 +178,7 @@ public class DBHelper {
 	 */
 	public int setCreateUser(String first_name,String last_name,String username,String email,String password, String age, String phone_num,String gender, String annual_salary) throws DBHelperException {
 		
-		PreparedStatement pst = null;
+		java.sql.PreparedStatement pst = null;
 		ResultSet rs = null;
 		
 		try{
@@ -349,7 +347,7 @@ public class DBHelper {
 			// Assemble Data Structure
 			creditCard = new CreditCard();
 			if (!rs.next()) {
-				throw new DBHelperException("No value found for id [" + userid + "]");
+				throw new DBHelperException("No value found for id [" + userid.toString() + "]");
 			}
 			creditCard.setCardNumber(rs.getString(1));
 			creditCard.setType(rs.getString(2));
@@ -654,7 +652,7 @@ public class DBHelper {
 			// Assemble Data Structure
 			user= new User();
 			if (!rs.next()) {
-				throw new DBHelperException("No value found for id [" + new String(userid) + "]");
+				throw new DBHelperException("No value found for reg_id [" + new String(userid) + "]");
 			}
 			user.setRegId(rs.getString(1).toCharArray());
 			user.setEmailAddress(rs.getString(2));
@@ -676,6 +674,42 @@ public class DBHelper {
 		}
 		
 		return user;
+	}
+	
+	public String getUserID(String username, String password) throws DBHelperException {
+			
+		Statement statement = null;
+		ResultSet rs = null;
+		String UserID = new String();
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT reg_id FROM users WHERE username='" + username + "' AND password='" + password + "';";
+			rs = statement.executeQuery(sql);
+			
+			// Get UserID
+			if (!rs.next()) {
+				System.out.println("No reg_id matches [" + username + ", " + password + "]");
+			} else{
+				UserID = rs.getString(1);
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return UserID;
 	}
 	
 	public void close() {
@@ -704,6 +738,8 @@ public class DBHelper {
 	
 	public static class DBHelperException extends Exception {
 		
+		private static final long serialVersionUID = 1L;
+
 		public DBHelperException() {
 			super();
 		}

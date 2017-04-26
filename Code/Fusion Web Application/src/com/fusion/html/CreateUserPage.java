@@ -13,12 +13,11 @@ public class CreateUserPage extends AbstractPage {
 	
 	@Override
 	protected ContainerTag generateBody() {
-		// TODO Auto-generated method stub
 		return form()
 				.withMethod("post")
-				.withAction("create_user.jsp")
+				.withAction("CreateUser")
 				.with(
-						table()..with(
+						table().with(
 								thead().with(
 										tr().with(
 												th("Create Fusion Account")
@@ -101,14 +100,14 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("radio")
 														.withName("gender")
-														.withValue("M")
+														.withValue("m")
 														.withStyle("color: #000000")
 														.attr("size", "30"),
 														p("Male"),
 														input()
 														.withType("radio")
 														.withName("gender")
-														.withValue("F")
+														.withValue("f")
 														.withStyle("color: #000000")
 														.attr("size", "30"),
 														p("Female"),
@@ -116,7 +115,7 @@ public class CreateUserPage extends AbstractPage {
 														.withType("radio")
 														.withName("gender")
 														.attr("checked","checked")
-														.withValue("O")
+														.withValue("o")
 														.withStyle("color: #000000")
 														.attr("size", "30"),
 														p("Other")

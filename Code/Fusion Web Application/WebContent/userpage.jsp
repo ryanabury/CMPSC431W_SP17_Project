@@ -8,6 +8,23 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-	char[] userID = ("21").toCharArray(); // Testing page for user ID 21 in db
-	out.println(new UserPage(userID).render());
+	// Get session userID
+	String userID = new String();
+	if(request.getSession().getAttribute("userID") != null){
+		 userID = request.getSession().getAttribute("userID").toString();
+		 System.out.println("Session userID: " + userID);
+	}
+	
+	if (userID.isEmpty()) {
+		
+		out.println("userID is empty");
+		
+	} else {
+		
+		System.out.println("userID is not empty");
+	
+		// Render the page.
+		out.println(new UserPage(userID.toCharArray()).render());
+		
+	}
 %>
