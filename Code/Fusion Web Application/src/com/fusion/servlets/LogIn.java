@@ -16,10 +16,6 @@ import javax.servlet.http.HttpSession;
 import com.fusion.sql.DBHelper;
 import com.fusion.sql.DBHelper.DBHelperException;
 
-/**
- * Servlet implementation class LogIn
- */
-//@WebServlet("/login.jsp")
 public class LogIn extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
     
