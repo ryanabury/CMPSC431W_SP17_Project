@@ -44,8 +44,7 @@ public abstract class AbstractPage {
 	
 	private ContainerTag generateHeader(User user) {
 		return div().with(
-				img().withSrc("images/Logo.png"),
-				h1("Fusion LTD.").withClass("header"), 	
+				img().withSrc("images/TitleImage.png"), 	
 				div().with(					
 						generateMenu(user)
 				).withId("menu")
