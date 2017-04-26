@@ -15,7 +15,6 @@ import com.fusion.helpers.CookieHelper;
 /**
  * Servlet implementation class LogOut
  */
-@WebServlet("/logout")
 public class LogOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

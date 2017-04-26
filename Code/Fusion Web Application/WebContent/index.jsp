@@ -10,16 +10,25 @@
 <% 
 
 	 // Get the username from cookies
-	 CookieHelper Baker = new CookieHelper(request.getCookies());
-	 String userID = Baker.getValue("reg_id");
+	 // CookieHelper Baker = new CookieHelper(request.getCookies());
+	 // String userID = Baker.getValue("reg_id");
+	 
+	 // Get session userID
+	 String userID = new String();
+	 if(request.getSession().getAttribute("userID") != null){
+		 userID = request.getSession().getAttribute("userID").toString();
+		 System.out.println("Session userID: " + userID);
+	 }
 
 	if (userID.isEmpty()) {
 		
+		System.out.println("userID is empty");
 		// Render the page.
 		out.println(new HomePage().render());
 		
 	} else {
 		
+		System.out.println("userID is not empty");
 		// Get the user from the DB using the user ID.
 		DBHelper db = new DBHelper();
 		User user = db.getUser(userID.toCharArray());
@@ -30,9 +39,3 @@
 	}
 	
 %>
-
-<!-- replace "href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F" with link to our homepage -->
-
-<p style="text-align:center">
-<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.google.com&layout=button_count&size=small&mobile_iframe=true&width=86&height=20&appId" width="86" height="20" style="border:none;overflow:hidden;padding:2px" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-</p>

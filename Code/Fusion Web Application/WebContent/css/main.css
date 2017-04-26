@@ -1,21 +1,64 @@
 *{
 	margin: 0;
 	padding: 0;
-	font-family: "Garamond", Serif;
+	font-family: Futura, “Trebuchet MS”, Arial, sans-serif;
 }/* Allows us to define our specific spacing between elements */
 
-<!-- Header -->
+html, body {
+	height: 100%;
+	margin: 0;
+	background-color: #fff7ec;
+}
+
+p {
+	line-height: 1.2;
+	margin: 5px 2px 5px 2px; /* top right bottom left */
+	text-indent: 50px;
+}
+
+h3 {
+	padding: 7px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+}
+
+hr {
+	margin: 8px;
+}
+
+/* Header */
 
 div#header {
 	width:100%; 
 	overflow: hidden;
+	background-color: #ffc97f;
+}
+
+div#header img {
+	width: 92px;
+	height: 82px;
+	float: left;
+	margin: 5px;
 }
 
 h1.header {
-	text-align: center;
+	text-align: left;
 	background-color: #ffc97f;
-	padding-top: 15px;
+	padding-top: 18px;
 	padding-bottom: 15px;
+	font-size: 3em;
+	font-family: Futura, “Trebuchet MS”, Arial, sans-serif;
+}
+
+p.center {
+	text-align: center;
+}
+
+/* Menu */
+
+div#menu {
+	width: 100%;
+	clear: both;
 }
 
 ul#menu {
@@ -43,20 +86,92 @@ ul#menu li a:hover {
 	background-color: #111;
 }
 
+ul#menu li.floatRight {
+	border-left: 1px solid #aaa;
+	border-right: none;
+	float: right;
+}
+
 div.header-account-box {
 	float: right;
 	width:50%; 
 	overflow: hidden;
 }
 
-<!-- Footer -->
+/* Body */
+
+#body {
+	background-color: #dbdbdb;
+	width: 85%;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 20px;
+}
+
+a.item-link:link {color: black;}
+a.item-link:visited {color: black;}
+a.item-link:hover {color: #555;}
+a.item-link:active {color: #888;}
+
+a.item-link {text-decoration: none;} /* Remove Underline */
+
+table.sale-report {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+table.sale-report th, td {
+	border: 1px solid black;
+}
+
+table.telemarketer-report {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+tabel.telemarketer-report th, td {
+	border: 1px solid black;
+}
+
+/* Footer */
+
+iframe.share-button {
+	width: 86px;
+	height: 20px;
+	border: none;
+	overflow: hidden;
+	padding: 2px;
+	frameborder: 0px;
+	float: left;
+	margin-top: 3px;
+	margin-left: 5px;
+	z-index: 2;
+}
+
+.wrapper {
+	min-height: 100%;
+	
+	margin-bottom: -42px;
+}
+
+.push {
+	height: 35px;
+}
 
 div#footer {
+	height: 35px;
 	clear: both;
 	text-align: center;
+	z-index: 1;
 }
 
 p.footer {
-	clear: both;
+	background-color: #ffc97f;
 	text-align: center;
+	width: 100%;
+	font-size: 18px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	z-index: 1;
 }

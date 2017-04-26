@@ -12,14 +12,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fusion.sql.DBHelper;
 import com.fusion.sql.DBHelper.DBHelperException;
 
-/**
- * Servlet implementation class Home
- */
-@WebServlet("/")
 public class Home extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,41 +28,11 @@ public class Home extends HttpServlet implements Servlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		System.out.println("Home Init");
 	}
 
-	/**
-	 * @see Servlet#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-		System.out.println("Home Destroy");
-	}
-
-	/**
-	 * @see Servlet#getServletConfig()
-	 */
-	public ServletConfig getServletConfig() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @see Servlet#getServletInfo()
-	 */
-	public String getServletInfo() {
-		// TODO Auto-generated method stub
-		return null; 
-	}
-
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("Home Service");
@@ -94,11 +61,17 @@ public class Home extends HttpServlet implements Servlet {
 			userCookie.setMaxAge(60);
 			
 			response.addCookie(userCookie);
+			
+			// set session
+			HttpSession session = request.getSession();
+			session.setAttribute("userID", reg_id);
+			session.setMaxInactiveInterval(60);
+			System.out.println("Set session");
 		}
-		
-		RequestDispatcher rd = null;
-		rd = request.getRequestDispatcher("/index.jsp");
-		rd.forward(request, response);
+	}
+	
+	public void destroy() {
+		System.out.println("Home Destroy");
 	}
 
 }

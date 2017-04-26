@@ -55,6 +55,19 @@ public class SaleItem {
 		ratings = new ArrayList<>();
 	}
 	
+	public SaleItem(int id, String name, int sellerID, int price, int reservePrice, int quantity, Category category, String detailedDescriptionURL, TypeOfSale typeOfSale, String description){
+		this.id = id;
+		this.name = name;
+		this.sellerID = sellerID;
+		this.price = price;
+		this.reservePrice = reservePrice;
+		this.quantity = quantity;
+		this.category = category;
+		this.detailedDescriptionURL = detailedDescriptionURL;
+		this.typeOfSale = typeOfSale;
+		this.description = description;
+	}
+	
 	public ArrayList<ItemRating> getRatings() {
 		return ratings;
 	}

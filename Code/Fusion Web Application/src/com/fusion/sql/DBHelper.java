@@ -388,6 +388,48 @@ public class DBHelper {
 	}
 	
 	/**
+	 * Returns a list of Sales Items from a particular seller
+	 * @return siL 	list of sales items to be displayed on supplier page
+	 */
+	public ArrayList<SaleItem> getSaleItemBySeller(char[] seller) throws DBHelperException {
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<SaleItem> siL = new ArrayList<SaleItem>();
+		
+		try{
+			
+			//Check for Open Connection
+			if (connection.isClosed()){
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			//Create Statement
+			statement = connection.createStatement();
+			
+			//Execute Statement
+			String sql = "SELECT * FROM sale_items WHERE seller=" + new String(seller) + ";";
+			rs = statement.executeQuery(sql);
+			
+			//Assemble Data Structure
+			while(rs.next()){
+				siL.add(new SaleItem(rs.getInt("id"),rs.getString("name"),rs.getInt("seller"),
+						rs.getInt("price"),rs.getInt("reservePrice"), rs.getInt("quantity"),
+						getCategory(Integer.parseInt(rs.getString("category"))),rs.getString("detailedDescriptionURL"),
+						SaleItem.TypeOfSale.fromInt(Integer.parseInt(rs.getString("typeOfSale"))),
+						rs.getString("description")));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return siL;
+	}
+	
+	/**
 	 * Fetches sale item from db.
 	 * @param	itemid			item ID used to find item
 	 * @return 	si 			sale item object
@@ -442,8 +484,53 @@ public class DBHelper {
 		throw new RuntimeException("Not yet implemented...");
 	}
 	
+	
+	/**
+	 * Fetches supplier from db.
+	 * @param	supplierid			supplier ID to find supplier
+	 * @return 	supplier 		supplier object
+	 * @throws	DBHelperException 	thrown if there's an error fetching or the supplierid is absent in the db
+	 */	
 	public Supplier getSupplier(char[] supplierid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+		Statement statement = null;
+		ResultSet rs = null;
+		Supplier supplier = null;
+		try{
+			//Check for Open Connection
+			if(connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed");
+			}
+			
+			//Create statement
+			statement = connection.createStatement();
+			
+			//Execute statement
+			String sql = "SELECT * FROM suppliers WHERE supplier_id=" + new String(supplierid) + ";";
+			rs = statement.executeQuery(sql);
+			
+			supplier = new Supplier();
+			if (!rs.next()){
+				throw new DBHelperException("No value found for id [" + String.valueOf(supplierid) + "]");
+			}
+			
+			supplier.setSupplierID(rs.getInt(1));
+			supplier.setCompanyName(rs.getString(2));
+			supplier.setPassword(rs.getString(3));
+			supplier.setCategory(rs.getString(4));
+			supplier.setYearlyRevenue(rs.getInt(5));
+			supplier.setUrlExtention(rs.getString(6));
+			supplier.setBannerImg(rs.getString(7));
+			supplier.setDescription(rs.getString(8));
+			
+		}catch(SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		}
+		finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return supplier;
 	}
 	
 	public User getUser(char[] userid) throws DBHelperException {
@@ -462,7 +549,7 @@ public class DBHelper {
 			statement = connection.createStatement();
 			
 			// Execute Statement
-			String sql = "SELECT * FROM users WHERE reg_id='" + new String(userid) + "';";
+			String sql = "SELECT * FROM users WHERE reg_id=" + new String(userid) + ";";
 			rs = statement.executeQuery(sql);
 			
 			// Assemble Data Structure

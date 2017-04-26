@@ -2,21 +2,21 @@
 
 	<servlet>
         <servlet-name>Home</servlet-name>
-        <jsp-file>index.jsp</jsp-file>
+        <jsp-file>/index.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/index.jsp</url-pattern>
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>Login</servlet-name>
+    	<display-name>LogIn</display-name>
+        <servlet-name>LogIn</servlet-name>
         <servlet-class>com.fusion.servlets.LogIn</servlet-class>
-        <jsp-file>login.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <servlet-name>LogIn</servlet-name>
+        <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
     
     <servlet>
