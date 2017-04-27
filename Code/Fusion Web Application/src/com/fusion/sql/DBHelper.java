@@ -6,12 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.sql.Timestamp;
 
 import com.fusion.objects.*;
 import com.fusion.objects.SaleItem.TypeOfSale;
-import com.mysql.jdbc.PreparedStatement;
 
 public class DBHelper {
 	
