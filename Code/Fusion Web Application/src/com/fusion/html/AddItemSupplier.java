@@ -100,26 +100,26 @@ public class AddItemSupplier extends AbstractPage {
 												td("Type of Sale: "),
 												td().with(
 														input()
-														.withType("radio")
-														.withName("typeOfSale")
-														.withValue("1")
-														.withStyle("color: #000000")
-														.attr("size","30"),
-														p("Buy"),
+															.withType("radio")
+															.withName("typeOfSale")
+															.withValue("Buy")
+															.withStyle("color: #000000")
+															.attr("size","30"),
+															p("Buy"),
 														input()
-														.withType("radio")
-														.withName("typeOfSale")
-														.withValue("2")
-														.withStyle("color: #000000")
-														.attr("size", "30"),
-														p("Bid"),
+															.withType("radio")
+															.withName("typeOfSale")
+															.withValue("Bid")
+															.withStyle("color: #000000")
+															.attr("size", "30"),
+															p("Bid"),
 														input()
-														.withType("radio")
-														.withName("typeOfSale")
-														.withValue("0")
-														.withStyle("color: #000000")
-														.attr("size", "30"),
-														p("both")
+															.withType("radio")
+															.withName("typeOfSale")
+															.withValue("both")
+															.withStyle("color: #000000")
+															.attr("size", "30"),
+															p("both")
 														)
 												),
 										tr().with(
