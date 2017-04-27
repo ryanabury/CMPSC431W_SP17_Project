@@ -96,7 +96,7 @@ public class BrowsePage extends AbstractPage {
 					div().with(
 							a().with(
 									h3(searchResult.getName())
-							).withHref("/item?id=" + searchResult.getId()),
+							).withHref("./item.jsp?item_ID=" + searchResult.getId()),
 							p(searchResult.getDescription())
 					)
 			);
