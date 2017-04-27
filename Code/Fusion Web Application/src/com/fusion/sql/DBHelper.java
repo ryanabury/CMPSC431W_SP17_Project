@@ -577,6 +577,61 @@ public class DBHelper {
 		return si;
 	}
 	
+	/**
+	 * Fetches all sale items from db.
+	 * @return 	array of sale item objects
+	 * @throws	DBHelperException
+	 */	
+	public SaleItem[] getAllSaleItems() throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<SaleItem> saleItems = new ArrayList<>();
+		
+		try {
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM sale_items;";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			while (rs.next()) {
+				SaleItem si = new SaleItem();
+				si.setId(Integer.parseInt(rs.getString(1)));
+				si.setName(rs.getString(2));
+				si.setSellerID(Integer.parseInt(rs.getString(3)));
+				si.setPrice(Integer.parseInt(rs.getString(4)));
+				si.setReservePrice(Integer.parseInt(rs.getString(5)));
+				si.setQuantity(Integer.parseInt(rs.getString(6)));
+				si.setCategory(getCategory(Integer.parseInt(rs.getString(7))));
+				si.setDetailedDescriptionURL(rs.getString(8));
+				si.setTypeOfSale(SaleItem.TypeOfSale.fromInt(Integer.parseInt(rs.getString(9))));
+				si.setDescription(rs.getString(10));
+				saleItems.add(si);
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		// Convert to static array.
+		SaleItem[] saleItemArray = new SaleItem[saleItems.size()];
+		saleItems.toArray(saleItemArray);
+		return saleItemArray;
+		
+	}
+	
+	
 	public SaleTransaction getSaleTransaction(char[] saleid) throws DBHelperException {
 		throw new RuntimeException("Not yet implemented...");
 	}

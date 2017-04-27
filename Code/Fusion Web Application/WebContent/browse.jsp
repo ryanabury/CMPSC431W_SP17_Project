@@ -12,6 +12,7 @@
 	DBHelper db = null;
 	Category categoryTree = null;
 	String userID = new String();
+	SaleItem[] saleItems = new SaleItem[0];
 	try {
 		db = new DBHelper();
 
@@ -32,6 +33,8 @@
 			filterCategory = db.getCategory(categoryFilterId);
 		}
 		
+		// Get all Sale Items
+		saleItems = db.getAllSaleItems();
 
 	} finally {
 		if (db != null) {
