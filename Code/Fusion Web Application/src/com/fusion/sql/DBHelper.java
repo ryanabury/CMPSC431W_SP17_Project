@@ -5,11 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.fusion.objects.*;
-import com.mysql.jdbc.PreparedStatement;
+import com.fusion.objects.SaleItem.TypeOfSale;
 
 public class DBHelper {
 	
@@ -30,6 +29,7 @@ public class DBHelper {
 	
 	public DBHelper(String address, int port) throws DBHelperException {
 		
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection(
@@ -37,14 +37,8 @@ public class DBHelper {
 					USERNAME, 
 					PASSWORD
 			);
-		} catch (SQLException e) {
+		} catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			throw new DBHelperException("Failed to initialize the database connection.", e);
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -712,7 +706,83 @@ public class DBHelper {
 		return UserID;
 	}
 	
-
+	/**
+	 * Performs a search on all of the items in the DB. If you wanted to perform a search of the 
+	 * string "samsung phone" then you would input an array that looks like ["samsung", "phone"].
+	 * 
+	 * @param searchTerms	this is a list of strings that will be used as the terms of the search
+	 * @return	A list of items returned by the search.
+	 * @throws DBHelperException	when something goes wrong
+	 */
+	public SaleItem[] getSaleItemsFromSearchTerms(String[] searchTerms) throws DBHelperException {
+		
+		if (searchTerms == null) {
+			return new SaleItem[0];
+		}
+		if (searchTerms.length == 0) {
+			return new SaleItem[0];
+		}
+		
+		ArrayList<SaleItem> itemList = new ArrayList<>();
+		Statement statement = null;
+		ResultSet rs = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM sale_items WHERE ";
+			for (int i = 0; i < searchTerms.length; i++) {
+				sql += "\n\t(name LIKE '%" + searchTerms[i] + "%' )";
+				if (i < searchTerms.length - 1) {
+					sql += " OR ";
+				}
+			}
+			sql += " OR ";
+			for (int i = 0; i < searchTerms.length; i++) {
+				sql += "\n\t(description LIKE '%" + searchTerms[i] + "%' )";
+				if (i < searchTerms.length - 1) {
+					sql += " OR ";
+				}
+			}
+			sql += ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			while (rs.next()) {
+				SaleItem saleItem = new SaleItem();
+				saleItem.setId(rs.getInt(1));
+				saleItem.setName(rs.getString(2));
+				saleItem.setSellerID(rs.getInt(3));
+				saleItem.setPrice(rs.getInt(4));
+				saleItem.setReservePrice(rs.getInt(5));
+				saleItem.setQuantity(rs.getInt(6));
+				saleItem.setCategory(getCategory(rs.getInt(7)));
+				saleItem.setDetailedDescriptionURL(rs.getString(8));
+				saleItem.setTypeOfSale(TypeOfSale.fromInt(rs.getInt(9)));
+				saleItem.setDescription(rs.getString(10));
+				itemList.add(saleItem);
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		SaleItem[] saleItems = new SaleItem[itemList.size()];
+		itemList.toArray(saleItems);
+		return saleItems;
+		
+	}
+	
 	/**
 	 * Assembles a tree of categories from those stored in the DB. The category returned is 
 	 * a dummy category called "ROOT" which contains all of the top level categories as 

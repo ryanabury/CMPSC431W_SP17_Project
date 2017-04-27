@@ -136,5 +136,15 @@ public class SaleItem {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	@Override
+	public String toString() {
+		String str = "[ ";
+		str += "id=" + getId() + ", ";
+		str += "name=" + getName() + ", ";
+		str += "price=" + getPrice() + " cents ";
+		str += "]";
+		return str;
+	}
 
 }
