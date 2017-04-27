@@ -89,7 +89,19 @@ public class BrowsePage extends AbstractPage {
 	}
 	
 	private ContainerTag generateItemList() {
-		return div();
+		ContainerTag div = div();
+		for (int i = 0; i < saleItems.size(); i++) {
+			SaleItem searchResult = saleItems.get(i);
+			div.with(
+					div().with(
+							a().with(
+									h3(searchResult.getName())
+							).withHref("/item?id=" + searchResult.getId()),
+							p(searchResult.getDescription())
+					)
+			);
+		}
+		return div;
 	}
 
 	@Override
