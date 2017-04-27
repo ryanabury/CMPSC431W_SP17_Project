@@ -48,8 +48,7 @@ public class ItemSearchPage extends AbstractPage {
 
 	@Override
 	protected String pageTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Search for Item";
 	}
 
 }
