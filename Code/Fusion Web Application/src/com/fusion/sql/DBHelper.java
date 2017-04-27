@@ -18,8 +18,8 @@ public class DBHelper {
 	
 	// Database Credentials
 	private static final String DB_NAME = "fusion";
-	private static final String USERNAME = "root";
-	private static final String PASSWORD = "sentence429&pattern&yes&";
+	private static final String USERNAME = "fusion";
+	private static final String PASSWORD = "fusion_pass";
 	
 	private Connection connection;
 	
@@ -729,30 +729,7 @@ public class DBHelper {
 					sql += " OR ";
 				}
 			}
-			sql += ";";
-			rs = statement.executeQuery(sql);
-			
-			// Assemble Data Structure
-			while (rs.next()) {
-				SaleItem saleItem = new SaleItem();
-				saleItem.setId(rs.getInt(1));
-				saleItem.setName(rs.getString(2));
-				saleItem.setSellerID(rs.getInt(3));
-				saleItem.setPrice(rs.getInt(4));
-				saleItem.setReservePrice(rs.getInt(5));
-				saleItem.setQuantity(rs.getInt(6));
-				saleItem.setCategory(getCategory(rs.getInt(7)));
-				saleItem.setDetailedDescriptionURL(rs.getString(8));
-				saleItem.setTypeOfSale(TypeOfSale.fromInt(rs.getInt(9)));
-				saleItem.setDescription(rs.getString(10));
-				itemList.add(saleItem);
-			}
-			
-			// Close first result set
-			rs.close();
-			
-			// Execute Statement
-			sql = "SELECT * FROM sale_items WHERE ";
+			sql += " OR ";
 			for (int i = 0; i < searchTerms.length; i++) {
 				sql += "\n\t(description LIKE '%" + searchTerms[i] + "%' )";
 				if (i < searchTerms.length - 1) {
