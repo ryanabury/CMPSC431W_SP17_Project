@@ -18,14 +18,11 @@
 
 	if (userID.isEmpty()) {
 		
-		System.out.println("userID is empty");
-		
 		// Render the page.
 		out.println(new HomePage().render());
 		
 	} else {
 		
-		System.out.println("userID is not empty");
 		// Get the user from the DB using the user ID.
 		DBHelper db = new DBHelper();
 		User user = db.getUser(userID.toCharArray());

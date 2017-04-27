@@ -75,7 +75,10 @@ public abstract class AbstractPage {
 		} else {
 			ul.with(
 					li().withClass("floatRight").with(
-						a("My Account").withHref("./account_page.jsp")
+							a("Log Out").withHref("LogOut")
+					),
+					li().withClass("floatRight").with(
+						a("My Account").withHref("./userpage.jsp")
 					)
 			);
 		}

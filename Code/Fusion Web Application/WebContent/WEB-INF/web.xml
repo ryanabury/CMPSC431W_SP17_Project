@@ -27,11 +27,12 @@
     <url-pattern>/LogIn</url-pattern>
   </servlet-mapping>
   <servlet>
+  	<display-name>LogOut</display-name>
     <servlet-name>LogOut</servlet-name>
     <servlet-class>com.fusion.servlets.LogOut</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LogOut</servlet-name>
-    <url-pattern>/logout</url-pattern>
+    <url-pattern>/LogOut</url-pattern>
   </servlet-mapping>
 </web-app>
