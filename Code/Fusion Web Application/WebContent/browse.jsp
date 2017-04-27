@@ -1,5 +1,6 @@
 <%@page import="com.fusion.sql.DBHelper"%>
-<%@page import="com.fusion.html.AboutPage"%>
+<%@page import="com.fusion.html.BrowsePage"%>
+<%@page import="com.fusion.html.BrowsePage.Sort"%>
 <%@page import="com.fusion.objects.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,6 +13,6 @@
 	 	System.out.println("Session userID: " + userID);
 	}
 
-	out.println(new BrowsePage(userID.toCharArray()).render());
+	out.println(new BrowsePage(userID.toCharArray(), Sort.ALPHABETICAL_DESCENDING).render());
 	
 %>
