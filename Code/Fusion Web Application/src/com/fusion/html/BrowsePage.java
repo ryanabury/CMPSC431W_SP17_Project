@@ -14,10 +14,10 @@ public class BrowsePage extends AbstractPage {
 	private Sort itemSort;
 	private Category categoryTree;
 	
-	public BrowsePage(char[] userID, Sort itemSort) throws DBHelperException {
+	public BrowsePage(char[] userID, Sort itemSort, Category categoryTree) throws DBHelperException {
 		super(userID);
 		this.itemSort = itemSort;
-		setCategoryTree();
+		this.categoryTree = categoryTree;
 	}
 	
 	@Override
@@ -74,18 +74,6 @@ public class BrowsePage extends AbstractPage {
 	@Override
 	protected String pageTitle() {
 		return "Browse for Items";
-	}
-	
-	private void setCategoryTree() throws DBHelperException {
-		DBHelper db = null;
-		try {
-			db = new DBHelper();
-			categoryTree = db.getCategoryTree();
-		} finally {
-			if (db != null) {
-				db.close();
-			}
-		}
 	}
 	
 	public enum Sort {
