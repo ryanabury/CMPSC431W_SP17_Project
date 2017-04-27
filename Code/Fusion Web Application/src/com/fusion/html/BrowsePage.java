@@ -6,6 +6,7 @@ import static j2html.TagCreator.*;
 import java.util.ArrayList;
 
 import com.fusion.objects.Category;
+import com.fusion.objects.SaleItem;
 import com.fusion.sql.DBHelper;
 import com.fusion.sql.DBHelper.DBHelperException;
 
@@ -14,12 +15,14 @@ public class BrowsePage extends AbstractPage {
 	private Sort itemSort;
 	private Category categoryTree;
 	private int categoryFilter;
+	private ArrayList<SaleItem> saleItems;
 	
-	public BrowsePage(char[] userID, Sort itemSort, Category categoryTree, int categoryFilter) throws DBHelperException {
+	public BrowsePage(char[] userID, Sort itemSort, Category categoryTree, int categoryFilter, ArrayList<SaleItem> saleItems) throws DBHelperException {
 		super(userID);
 		this.itemSort = itemSort;
 		this.categoryTree = categoryTree;
 		this.categoryFilter = categoryFilter;
+		this.saleItems = saleItems;
 	}
 	
 	@Override

@@ -88,7 +88,9 @@
 			new BrowsePage(
 					userID.toCharArray(), 
 					sort, 
-					categoryTree,0
+					categoryTree,
+					0,
+					saleItems
 			).render()
 	);
 	
