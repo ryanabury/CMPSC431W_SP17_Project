@@ -35,6 +35,15 @@
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>Search</servlet-name>
+    <servlet-class>com.fusion.servlets.Search</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Search</servlet-name>
+    <url-pattern>/itemsearch.jsp</url-pattern>
+    <url-pattern>/Search</url-pattern>
+  </servlet-mapping>
+  <servlet>
   	<display-name>PurchaseItem</display-name>
   	<servlet-name>PurchaseItem</servlet-name>
   	<servlet-class>com.fusion.servlets.PurchaseItem</servlet-class>
@@ -42,3 +51,5 @@
   <servlet-mapping>
   	<servlet-name>PurchaseItem</servlet-name>
   	<url-pattern>/PurchaseItem</url-pattern></servlet-mapping></web-app>
+  </servlet-mapping>
+</web-app>
