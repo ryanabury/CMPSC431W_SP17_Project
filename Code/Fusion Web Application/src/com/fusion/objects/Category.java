@@ -81,6 +81,10 @@ public class Category {
 		this.children.add(category);
 	}
 	
+	public void setChildren(ArrayList<Category> children) {
+		this.children = children;
+	}
+	
 	@Override
 	public String toString() {
 		String s = "";

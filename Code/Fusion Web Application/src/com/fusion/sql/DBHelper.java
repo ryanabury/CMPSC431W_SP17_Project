@@ -81,7 +81,7 @@ public class DBHelper {
 			address.setStreetAddress(rs.getString(1));
 			address.setCity(rs.getString(2));
 			address.setState(rs.getString(3));
-			address.setZipCode(rs.getString(4).getBytes());
+			address.setZipCode(Integer.parseInt(rs.getString(4)));
 			
 		} catch (SQLException e) {
 			throw new DBHelperException("Encountered an error.", e);
@@ -127,7 +127,7 @@ public class DBHelper {
 			address.setStreetAddress(rs.getString(2));
 			address.setCity(rs.getString(3));
 			address.setState(rs.getString(4));
-			address.setZipCode(rs.getString(5).getBytes());
+			address.setZipCode(Integer.parseInt(rs.getString(5)));
 			
 		} catch (SQLException e) {
 			throw new DBHelperException("Encountered an error.", e);
@@ -325,7 +325,7 @@ public class DBHelper {
 	 * @return 	creditCard		credit card object
 	 * @throws 	DBHelperException	thrown if there's an issue fetching or the userid is absent in the db
 	 */
-	public CreditCard getCreditCard(char[] userid) throws DBHelperException {
+	public CreditCard getCreditCard(char[] userid, char[] card_number) throws DBHelperException {
 		
 		Statement statement = null;
 		ResultSet rs = null;
@@ -341,7 +341,7 @@ public class DBHelper {
 			statement = connection.createStatement();
 			
 			// Execute Statement
-			String sql = "SELECT * FROM credit_card WHERE reg_id=" + new String(userid) + ";";
+			String sql = "SELECT * FROM credit_card WHERE reg_id=" + new String(userid) + " AND card_number = " + new String(card_number) + ";";
 			rs = statement.executeQuery(sql);
 			
 			// Assemble Data Structure
@@ -710,6 +710,169 @@ public class DBHelper {
 		}
 		
 		return UserID;
+	}
+	
+
+	/**
+	 * Assembles a tree of categories from those stored in the DB. The category returned is 
+	 * a dummy category called "ROOT" which contains all of the top level categories as 
+	 * children.
+	 * @throws DBHelperException
+	 */
+	public Category getCategoryTree() throws DBHelperException {
+		return getCategoryTree(null);
+	}
+	
+	private Category getCategoryTree(Category parent) throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<Category> children = new ArrayList<>();
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM Categories ";
+			if (parent == null) {
+				sql += "WHERE parentID=0;";
+			} else {
+				sql += "WHERE parentID=" + parent.getId() + ";";
+			}
+			rs = statement.executeQuery(sql);
+			
+			// Assemble List
+			while (rs.next()) {
+				Category c = new Category();
+				c.setId(rs.getInt(1));
+				c.setName(rs.getString(2));
+				children.add(c);
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		for (int i = 0; i < children.size(); i++) {
+			getCategoryTree(children.get(i));
+		}
+		
+		if (parent == null) {
+			Category root = new Category();
+			root.setId(0);
+			root.setChildren(children);
+			root.setParent(null);
+			root.setName("ROOT");
+			return root;
+		} else {
+			if (children.size() > 0){
+				parent.setChildren(children);
+			}
+			return parent;
+		}
+	}
+		
+	public void submitTransaction(SaleTransaction transaction, User user) throws DBHelperException{
+		java.sql.PreparedStatement p = null;
+		Statement s = null;
+		String sql;
+		ResultSet rs;
+		
+		try {
+			
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has closed");
+			}
+			
+			// Create/Update Credit Card information
+			
+			CreditCard cc = transaction.getCreditCard();
+			int n;
+			
+			try {
+				getCreditCard(user.getRegId(), cc.getCardNumber().toCharArray());
+				System.out.println("Found Credit Card");
+				// If it did not throw an exception, the card already exists!
+			} catch (Exception e) {
+				// Create the new card
+				
+				sql = "INSERT INTO credit_card(card_number, type, cvv, exp_date_month, exp_date_year, first_name, last_name, reg_id) " + 
+				"VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				
+				p = connection.prepareStatement(sql);
+				p.setString(1, cc.getCardNumber());
+				p.setString(2, cc.getType());
+				p.setInt(3, Integer.parseInt(cc.getCvv()));
+				p.setInt(4, cc.getDate()[0]);
+				p.setInt(5, cc.getDate()[1]);
+				p.setString(6, cc.getFirstName());
+				p.setString(7, cc.getLastName());
+				p.setInt(8, Integer.parseInt(new String(user.getRegId())));
+				
+				n = p.executeUpdate();
+				
+				if (n > 0) { System.out.println("Successfully added Credit Card"); }
+				else { System.out.println("Failed to add Credit Card"); }
+			}
+			
+			// TODO: Create/Update Billing Address
+			
+			// ** May not actually be necessary
+			
+			// Submit transaction
+			
+			// Find new ID
+			s = connection.createStatement();
+			
+			sql = "SELECT MAX(sale_id) as max_sale_id FROM sales_transaction";
+			
+			rs = s.executeQuery(sql);
+			
+			if(!rs.next()) { n = 0; }
+			else { n = rs.getInt("max_sale_id") + 1; }
+			
+			// Actually Submit Transaction			
+			sql = "INSERT INTO sales_transaction(sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) " + 
+			"VALUES (?, ?, ?, ?, ?, ?, ?)";
+			
+			/* IF NO ONE IS LOGGED IN TO BUY AN ITEM, WE HAVE A PROBLEM */
+		
+			p = connection.prepareStatement(sql);
+			p.setInt(1, n); // MAX(ID) + 1 to create unique ID
+			p.setString(2, transaction.getCreditCard().getCardNumber());
+			p.setString(3, transaction.getStatus());
+			p.setTimestamp(4, transaction.getCompletionDate());
+			p.setInt(5, transaction.getSaleItem().getId());
+			p.setInt(6, transaction.getQuantity());
+			p.setInt(7, transaction.getSalePrice());
+			
+			n = p.executeUpdate();
+			
+			// TODO: Create Credit Card Record
+			
+			// TODO: Create Address record
+			
+			if (n > 0) {
+				System.out.println("Successfully Completed Transaction");
+			}
+			else {
+				System.err.println("Error Processing Transaction");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DBHelperException("Encountered an error submitting transaction. ", e);
+		}
+
 	}
 	
 	public void close() {
