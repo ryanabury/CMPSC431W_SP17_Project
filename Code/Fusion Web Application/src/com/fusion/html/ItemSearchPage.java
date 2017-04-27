@@ -27,7 +27,7 @@ public class ItemSearchPage extends AbstractPage {
 	}
 
 	@Override
-	protected ContainerTag generageBody() {
+	protected ContainerTag generateBody() {
 		return div().with(generateSearchBar(), generateSearchResults());
 	}
 	
@@ -44,6 +44,12 @@ public class ItemSearchPage extends AbstractPage {
 	
 	private ContainerTag generateSearchResults() {
 		return new ContainerTag("p");
+	}
+
+	@Override
+	protected String pageTitle() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
