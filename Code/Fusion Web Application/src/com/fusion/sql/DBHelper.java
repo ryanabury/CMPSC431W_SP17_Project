@@ -712,6 +712,75 @@ public class DBHelper {
 		return UserID;
 	}
 	
+	/**
+	 * Assembles a tree of categories from those stored in the DB. The category returned is 
+	 * a dummy category called "ROOT" which contains all of the top level categories as 
+	 * children.
+	 * @throws DBHelperException
+	 */
+	public Category getCategoryTree() throws DBHelperException {
+		return getCategoryTree(null);
+	}
+	
+	private Category getCategoryTree(Category parent) throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<Category> children = new ArrayList<>();
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM Categories ";
+			if (parent == null) {
+				sql += "WHERE parentID=0;";
+			} else {
+				sql += "WHERE parentID=" + parent.getId() + ";";
+			}
+			rs = statement.executeQuery(sql);
+			
+			// Assemble List
+			while (rs.next()) {
+				Category c = new Category();
+				c.setId(rs.getInt(1));
+				c.setName(rs.getString(2));
+				children.add(c);
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		for (int i = 0; i < children.size(); i++) {
+			getCategoryTree(children.get(i));
+		}
+		
+		if (parent == null) {
+			Category root = new Category();
+			root.setId(0);
+			root.setChildren(children);
+			root.setParent(null);
+			root.setName("ROOT");
+			return root;
+		} else {
+			if (children.size() > 0){
+				parent.setChildren(children);
+			}
+			return parent;
+		}
+		
+	}
+	
 	public void close() {
 		try {
 			connection.close();
