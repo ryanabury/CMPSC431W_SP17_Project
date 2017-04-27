@@ -72,19 +72,19 @@ public class BrowsePage extends AbstractPage {
 		return div().with(
 				a().with(p("Descending")).withHref(
 						"./browse.jsp?category=" + categoryFilter + "&" + "sort=" + Sort.toInt(Sort.ALPHABETICAL_DESCENDING)
-				).withStyle("float: left; size: 10pt"),
-				p(" / ").withStyle("float: left; size: 10pt"),
+				),
+				p(" / "),
 				a().with(p("Ascending")).withHref(
 						"./browse.jsp?category=" + categoryFilter + "&" + "sort=" + Sort.toInt(Sort.ALPHABETICAL_ASCENDING)
-				).withStyle("float: left; size: 10pt"),
-				p(" / ").withStyle("float: left; size: 10pt"),
+				),
+				p(" / "),
 				a().with(p("Price : Low-to-High")).withHref(
 						"./browse.jsp?category=" + categoryFilter + "&" + "sort=" + Sort.toInt(Sort.PRICE_LOW_TO_HIGH)
-				).withStyle("float: left; size: 10pt"),
-				p(" / ").withStyle("float: left; size: 10pt"),
+				),
+				p(" / "),
 				a().with(p("Price : High-to-Low")).withHref(
 						"./browse.jsp?category=" + categoryFilter + "&" + "sort=" + Sort.toInt(Sort.PRICE_HIGH_TO_LOW)
-				).withStyle("float: left; size: 10pt")
+				)
 		);
 	}
 	
