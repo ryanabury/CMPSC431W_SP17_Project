@@ -526,6 +526,64 @@ public class DBHelper {
 		return siL;
 	}
 	
+
+	/**
+	 * Returns a list of Sales Items from a particular category and all of it's children.
+	 * @return siL 	list of sales items
+	 */
+	public SaleItem[] getSaleItemByCategory(Category category) throws DBHelperException {
+		
+		getCategoryTree(category);
+		ArrayList<Integer> IDList = new ArrayList<>();
+		compileCategoryList(IDList, category);
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<SaleItem> siL = new ArrayList<SaleItem>();
+		
+		try{
+			
+			//Check for Open Connection
+			if (connection.isClosed()){
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			//Create Statement
+			statement = connection.createStatement();
+			
+			//Execute Statement
+			String sql = "SELECT * FROM sale_items WHERE (";
+			for (int i = 0; i < IDList.size(); i++) {
+				sql += "category=" + IDList.get(i);
+				if (i < IDList.size() - 1) {
+					sql += " OR ";
+				}
+			}
+			sql += ");";
+			rs = statement.executeQuery(sql);
+			
+			//Assemble Data Structure
+			while(rs.next()){
+				siL.add(new SaleItem(rs.getInt("id"),rs.getString("name"),rs.getInt("seller"),
+						rs.getInt("price"),rs.getInt("reservePrice"), rs.getInt("quantity"),
+						getCategory(Integer.parseInt(rs.getString("category"))),rs.getString("detailedDescriptionURL"),
+						SaleItem.TypeOfSale.fromInt(Integer.parseInt(rs.getString("typeOfSale"))),
+						rs.getString("description")));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		SaleItem[] sia = new SaleItem[siL.size()];
+		siL.toArray(sia);
+		return sia;
+	}
+	
+	
 	/**
 	 * Fetches sale item from db.
 	 * @param	itemid			item ID used to find item
@@ -952,6 +1010,18 @@ public class DBHelper {
 				r.close();
 			} catch (SQLException e) {}
 		}
+	}
+	
+	private void compileCategoryList(ArrayList<Integer> IDlist, Category root) {
+		
+		if (root != null) {
+			IDlist.add(root.getId());
+		}
+		
+		for (int i = 0; i < root.getChildren().size(); i++) {
+			compileCategoryList(IDlist, root.getChildren().get(i));
+		}
+		
 	}
 	
 	public static class DBHelperException extends Exception {

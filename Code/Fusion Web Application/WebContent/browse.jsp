@@ -34,7 +34,12 @@
 		}
 		
 		// Get all Sale Items
-		saleItems = db.getAllSaleItems();
+		if (filterCategory == null) {
+			saleItems = db.getAllSaleItems();
+		} else {
+			saleItems = db.getSaleItemByCategory(filterCategory);
+		}
+		
 
 	} finally {
 		if (db != null) {
