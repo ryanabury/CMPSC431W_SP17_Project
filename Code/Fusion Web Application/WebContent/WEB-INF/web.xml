@@ -51,6 +51,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>PurchaseItem</servlet-name>
-  	<url-pattern>/PurchaseItem</url-pattern></servlet-mapping></web-app>
+  	<url-pattern>/PurchaseItem</url-pattern>
   </servlet-mapping>
 </web-app>
