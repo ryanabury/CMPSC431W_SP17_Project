@@ -4,6 +4,7 @@ DB_USERNAME=fusion
 DB_PASSWORD=fusion_pass
 DB_NAME=fusion
 DB_SCRIPTS="../Fusion Web Application/sql"
+PROJECT_SRC="../Fusion Web Application/"
 WEB_CONTENT_SRC="../Fusion Web Application/WebContent/"
 WEB_CONTENT_DEST=/opt/tomcat/webapps/ROOT
 
@@ -20,3 +21,4 @@ mysql -u $DB_USERNAME -p < "$DB_SCRIPTS"/populate-test-data.sql
 # Deploy Web Site
 mkdir $WEB_CONTENT_DEST
 cp -R "$WEB_CONTENT_SRC"/* $WEB_CONTENT_DEST/
+cp -R "$PROJECT_SRC".classpath $WEB_CONTENT_DEST/WEB-INF/
