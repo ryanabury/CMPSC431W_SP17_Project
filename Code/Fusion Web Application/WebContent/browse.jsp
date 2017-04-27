@@ -52,29 +52,34 @@
 			sort = Sort.valueOf(sortInteger);
 		}
 		
-		switch (sort) {
-			case ALPHABETICAL_ASCENDING:
-				saleItems.sort(new Comparator<SaleItem>() {
-					public int compare(SaleItem o1, SaleItem o2) {
-						return o1.getName().compareTo(o2.getName());
-					}
-				});
-			case ALPHABETICAL_DESCENDING:
+		if (sort == Sort.ALPHABETICAL_ASCENDING){
 				saleItems.sort(new Comparator<SaleItem>() {
 					public int compare(SaleItem o1, SaleItem o2) {
 						return -o1.getName().compareTo(o2.getName());
 					}
 				});
-			case PRICE_LOW_TO_HIGH:
+		} else if (sort == Sort.ALPHABETICAL_DESCENDING) {
+				saleItems.sort(new Comparator<SaleItem>() {
+					public int compare(SaleItem o1, SaleItem o2) {
+						return o1.getName().compareTo(o2.getName());
+					}
+				});
+		} else if (sort == Sort.PRICE_LOW_TO_HIGH) {
 				saleItems.sort(new Comparator<SaleItem>() {
 					public int compare(SaleItem o1, SaleItem o2) {
 						return o2.getPrice() - o1.getPrice();
 					}
 				});
-			case PRICE_HIGH_TO_LOW:
+		}else if (sort == Sort.PRICE_HIGH_TO_LOW) {
 				saleItems.sort(new Comparator<SaleItem>() {
 					public int compare(SaleItem o1, SaleItem o2) {
 						return o1.getPrice() - o2.getPrice();
+					}
+				});
+		} else {
+				saleItems.sort(new Comparator<SaleItem>() {
+					public int compare(SaleItem o1, SaleItem o2) {
+						return -o1.getName().compareTo(o2.getName());
 					}
 				});
 		}
