@@ -3,6 +3,8 @@ package com.fusion.html;
 import static j2html.TagCreator.*;
 
 import com.fusion.objects.User;
+import com.fusion.sql.DBHelper;
+import com.fusion.sql.DBHelper.DBHelperException;
 
 import j2html.tags.ContainerTag;
 
@@ -21,6 +23,18 @@ public abstract class AbstractPage {
 		myUser = user;
 	}
 	
+	public AbstractPage(char[] userID) {
+		DBHelper db;
+		try {
+			db = new DBHelper();
+			
+			myUser = db.getUser(userID);
+			
+		} catch (DBHelperException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private ContainerTag generateHead() {
 		return head().with(
 				title(pageTitle()),
@@ -30,8 +44,7 @@ public abstract class AbstractPage {
 	
 	private ContainerTag generateHeader(User user) {
 		return div().with(
-				img().withSrc("images/Logo.png"),
-				h1("Fusion LTD.").withClass("header"), 	
+				img().withSrc("images/TitleImage.png"), 	
 				div().with(					
 						generateMenu(user)
 				).withId("menu")
@@ -85,21 +98,6 @@ public abstract class AbstractPage {
 		
 		return ul.withId("menu");
 	}
-	
-	/*private static ContainerTag generateAccountInfo(User user) {
-		ContainerTag div = div();
-		if (user == null) {
-			div.with(a("Login").withHref("./login.jsp"));
-			div.withText(" / "); 
-			div.with(a("Create Account").withHref("./create_user.jsp"));
-		} else {
-			div.with(a("My Account ").withHref("./account"));
-			div.with(text(" (" + user.getFullName() + ")"));
-			div.withText(" / "); 
-			div.with(a("Log Out").withHref("./logout"));
-		}
-		return div.withClass("header-account-box");
-	}*/
 	
 	public final String render() {
 		return html().with(

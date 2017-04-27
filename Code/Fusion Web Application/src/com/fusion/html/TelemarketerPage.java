@@ -15,6 +15,10 @@ public class TelemarketerPage extends AbstractPage{
 		
 	}
 	
+	public TelemarketerPage(char[] userID) {
+		super(userID);
+	}
+	
 	@Override
 	protected ContainerTag generateBody() {
 		try {

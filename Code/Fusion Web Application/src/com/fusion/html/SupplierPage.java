@@ -16,6 +16,12 @@ public class SupplierPage extends AbstractPage {
 	public SupplierPage(char[] supplierID){
 		this.supplierID = supplierID;
 	}
+	
+	public SupplierPage(char[] supplierID, char[] userID) {
+		super(userID);
+		this.supplierID = supplierID;
+	}
+	
 	@Override
 	protected ContainerTag generateBody() {
 		//Generate body for Supplier Page

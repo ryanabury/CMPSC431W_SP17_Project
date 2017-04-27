@@ -7,7 +7,7 @@
 html, body {
 	height: 100%;
 	margin: 0;
-	background-color: #fff7ec;
+	background-color: #fdfdff;
 }
 
 p {
@@ -31,11 +31,11 @@ hr {
 div#header {
 	width:100%; 
 	overflow: hidden;
-	background-color: #ffc97f;
+	background-color: #8ecfe8;
 }
 
 div#header img {
-	width: 92px;
+	width: 338px;
 	height: 82px;
 	float: left;
 	margin: 5px;
@@ -43,7 +43,7 @@ div#header img {
 
 h1.header {
 	text-align: left;
-	background-color: #ffc97f;
+	background-color: #8ecfe8;
 	padding-top: 18px;
 	padding-bottom: 15px;
 	font-size: 3em;
@@ -174,7 +174,7 @@ div#footer {
 }
 
 p.footer {
-	background-color: #ffc97f;
+	background-color: #8ecfe8;
 	text-align: center;
 	width: 100%;
 	font-size: 18px;

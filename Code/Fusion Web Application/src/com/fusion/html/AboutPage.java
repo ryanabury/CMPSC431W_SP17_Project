@@ -3,10 +3,13 @@ package com.fusion.html;
 import j2html.tags.ContainerTag;
 import static j2html.TagCreator.*;
 
+import com.fusion.sql.DBHelper;
+import com.fusion.sql.DBHelper.DBHelperException;
+
 public class AboutPage extends AbstractPage{
 	
-	public AboutPage() {
-		super();
+	public AboutPage(char[] userID) {
+		super(userID);
 	}
 
 	@Override

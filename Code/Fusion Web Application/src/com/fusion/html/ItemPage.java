@@ -11,7 +11,8 @@ public class ItemPage extends AbstractPage{
 
 	private char[] itemID;
 	
-	public ItemPage(char[] itemID) {
+	public ItemPage(char[] itemID, char[] userID) {
+		super(userID);
 		this.itemID = itemID;
 	}
 	
