@@ -32,13 +32,13 @@ public class ItemSearchPage extends AbstractPage {
 	}
 	
 	private ContainerTag generateSearchBar() {
-		return form().with(
+		return form().withMethod("GET").withAction("itemsearch.jsp").with(
 				input()
-						.attr("type", "text")
-						.attr("name", PostParameters.SEARCH_TERMS),
+						.withType("text")
+						.withName(PostParameters.SEARCH_TERMS),
 				input()
-						.attr("type", "submit")
-						.attr("value", "Search")
+						.withType("submit")
+						.withValue("Search")
 		);
 	}
 	

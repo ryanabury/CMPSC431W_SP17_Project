@@ -25,11 +25,14 @@
 	String searchParameters = request.getParameter(PostParameters.SEARCH_TERMS);
 	String[] params = null;
 	if (searchParameters != null) {
-		params = searchParameters.split("+");
+		params = searchParameters.split("\\+");
 	}
 	
 	// Get the search results.
-	SaleItem[] searchResults = db.getSaleItemsFromSearchTerms(params);
+	SaleItem[] searchResults = null;
+	if (params != null) {
+		searchResults = db.getSaleItemsFromSearchTerms(params);
+	}
 	
 	out.println(new ItemSearchPage(user, params, searchResults).render());
 	
