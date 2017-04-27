@@ -28,7 +28,7 @@
 			new BrowsePage(
 					userID.toCharArray(), 
 					Sort.ALPHABETICAL_DESCENDING, 
-					categoryTree
+					categoryTree,0
 			).render()
 	);
 	
