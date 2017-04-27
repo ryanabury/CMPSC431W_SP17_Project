@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.sql.Timestamp;
 
 import com.fusion.objects.*;
+import com.fusion.objects.SaleItem.TypeOfSale;
 import com.mysql.jdbc.PreparedStatement;
 
 public class DBHelper {
@@ -41,12 +42,6 @@ public class DBHelper {
 			);
 		} catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			throw new DBHelperException("Failed to initialize the database connection.", e);
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -751,7 +746,7 @@ public class DBHelper {
 				saleItem.setQuantity(rs.getInt(6));
 				saleItem.setCategory(getCategory(rs.getInt(7)));
 				saleItem.setDetailedDescriptionURL(rs.getString(8));
-				saleItem.setTypeOfSale(rs.getInt(9));
+				saleItem.setTypeOfSale(TypeOfSale.fromInt(rs.getInt(9)));
 				saleItem.setDescription(rs.getString(10));
 				itemList.add(saleItem);
 			}
@@ -781,7 +776,7 @@ public class DBHelper {
 				saleItem.setQuantity(rs.getInt(6));
 				saleItem.setCategory(getCategory(rs.getInt(7)));
 				saleItem.setDetailedDescriptionURL(rs.getString(8));
-				saleItem.setTypeOfSale(rs.getInt(9));
+				saleItem.setTypeOfSale(TypeOfSale.fromInt(rs.getInt(9)));
 				saleItem.setDescription(rs.getString(10));
 				itemList.add(saleItem);
 			}
