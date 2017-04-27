@@ -716,6 +716,13 @@ public class DBHelper {
 	 */
 	public SaleItem[] getSaleItemsFromSearchTerms(String[] searchTerms) throws DBHelperException {
 		
+		if (searchTerms == null) {
+			return new SaleItem[0];
+		}
+		if (searchTerms.length == 0) {
+			return new SaleItem[0];
+		}
+		
 		ArrayList<SaleItem> itemList = new ArrayList<>();
 		Statement statement = null;
 		ResultSet rs = null;
