@@ -42,7 +42,7 @@ public class BrowsePage extends AbstractPage {
 	
 	enum Sort {
 		ALPHABETICAL_DESCENDING,
-		ALPHABETICAL_ASCENINGM,
+		ALPHABETICAL_ASCENDING,
 		PRICE_LOW_TO_HIGH,
 		PRICE_HIGH_TO_LOW
 	}
