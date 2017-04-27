@@ -706,6 +706,14 @@ public class DBHelper {
 		return UserID;
 	}
 	
+	/**
+	 * Performs a search on all of the items in the DB. If you wanted to perform a search of the 
+	 * string "samsung phone" then you would input an array that looks like ["samsung", "phone"].
+	 * 
+	 * @param searchTerms	this is a list of strings that will be used as the terms of the search
+	 * @return	A list of items returned by the search.
+	 * @throws DBHelperException	when something goes wrong
+	 */
 	public SaleItem[] getSaleItemsFromSearchTerms(String[] searchTerms) throws DBHelperException {
 		
 		ArrayList<SaleItem> itemList = new ArrayList<>();
