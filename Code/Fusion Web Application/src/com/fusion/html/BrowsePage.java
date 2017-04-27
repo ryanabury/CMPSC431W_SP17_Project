@@ -70,21 +70,18 @@ public class BrowsePage extends AbstractPage {
 	
 	private ContainerTag generateSortBar() {
 		return div().with(
-				a().with(p("Descending")).withHref(
+				a("Descending").withHref(
 						"./browse.jsp?category=" + categoryFilter + "&" + "sort=" + Sort.toInt(Sort.ALPHABETICAL_DESCENDING)
-				),
-				p(" / "),
-				a().with(p("Ascending")).withHref(
+				).withStyle("margin-right: 10px;"),
+				a("Ascending").withHref(
 						"./browse.jsp?category=" + categoryFilter + "&" + "sort=" + Sort.toInt(Sort.ALPHABETICAL_ASCENDING)
-				),
-				p(" / "),
-				a().with(p("Price : Low-to-High")).withHref(
+				).withStyle("margin-right: 10px; margin-left: 10px;"),
+				a("Price : Low-to-High").withHref(
 						"./browse.jsp?category=" + categoryFilter + "&" + "sort=" + Sort.toInt(Sort.PRICE_LOW_TO_HIGH)
-				),
-				p(" / "),
-				a().with(p("Price : High-to-Low")).withHref(
+				).withStyle("margin-right: 10px; margin-left: 10px;"),
+				a("Price : High-to-Low").withHref(
 						"./browse.jsp?category=" + categoryFilter + "&" + "sort=" + Sort.toInt(Sort.PRICE_HIGH_TO_LOW)
-				)
+				).withStyle("margin-left: 10px;")
 		);
 	}
 	
