@@ -43,7 +43,7 @@ public class LogIn extends HttpServlet implements Servlet {
 			// set session
 			HttpSession session = request.getSession();
 			session.setAttribute("userID", reg_id);
-			session.setMaxInactiveInterval(60);
+			session.setMaxInactiveInterval(60*60);
 			System.out.println("Session started");
 			
 			response.sendRedirect("/Fusion_Web_Application/index.jsp");
