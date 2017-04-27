@@ -13,7 +13,7 @@ public class Address {
 	private String city;
 	private String state;
 	private String streetAddress;
-	private byte[] zipCode;
+	private int zipCode;
 	
 	/**
 	 * Sets default empty values.
@@ -22,7 +22,7 @@ public class Address {
 		streetAddress = "";
 		city = "";
 		state = "";
-		zipCode = new byte[9];
+		zipCode = 0;
 	}
 
 	public String getCity() {
@@ -37,7 +37,7 @@ public class Address {
 		return streetAddress;
 	}
 
-	public byte[] getZipCode() {
+	public int getZipCode() {
 		return zipCode;
 	}
 
@@ -62,19 +62,16 @@ public class Address {
 		this.streetAddress = streetAddress;
 	}
 
-	public void setZipCode(byte[] zipCode) {
-		if (zipCode == null) {
+	public void setZipCode(int zipCode) {
+		if (zipCode == 0) {
 			throw new RuntimeException("Tried to set the zipcode value to null.");
-		}
-		if (zipCode.length != ZIP_CODE_SIZE) {
-			throw new RuntimeException("Tried to set the zipcode value to an invalid zipcode [" + zipCode + "]");
 		}
 		this.zipCode = zipCode;
 	}
 	
 	@Override
 	public String toString() {
-		return "[" + streetAddress + ", " + city + ", " + state + " " + Arrays.toString(zipCode) + "]";
+		return "[" + streetAddress + ", " + city + ", " + state + " " + Integer.toString(zipCode) + "]";
 	}
 	
 }

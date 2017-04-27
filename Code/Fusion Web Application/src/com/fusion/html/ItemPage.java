@@ -20,6 +20,8 @@ public class ItemPage extends AbstractPage{
 	protected ContainerTag generateBody() {
 		// Generate body based on itemID
 		
+		System.out.println("On item page: " + new String(itemID));
+		
 		try {
 			DBHelper db = new DBHelper();
 		
@@ -29,7 +31,9 @@ public class ItemPage extends AbstractPage{
 					h2(item.getName()),
 					p("Sold By: " + item.getSellerID()),
 					p(item.getDescription()),
-					a("Detailed Description").withHref(item.getDetailedDescriptionURL())
+					a("Detailed Description").withHref(item.getDetailedDescriptionURL()),
+					// TODO: Make this a button 
+					a("Buy Item").withHref("./buyItem.jsp?item_ID=" + new String(itemID))					
 					);
 			
 		} catch (DBHelperException e) {
