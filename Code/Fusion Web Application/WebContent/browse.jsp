@@ -1,3 +1,4 @@
+<%@page import="java.util.Comparator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.fusion.html.PostParameters"%>
 <%@page import="com.fusion.sql.DBHelper"%>
@@ -14,6 +15,7 @@
 	Category categoryTree = null;
 	String userID = new String();
 	ArrayList<SaleItem> saleItems = new ArrayList<>();
+	Sort sort = Sort.ALPHABETICAL_DESCENDING;
 	try {
 		db = new DBHelper();
 
@@ -41,6 +43,40 @@
 			saleItems = db.getSaleItemByCategory(filterCategory);
 		}
 		
+		// Get Sort
+		String sortParameterString = request.getParameter(PostParameters.SORT);
+		if (sortParameterString != null) {
+			int sortInteger = Integer.parseInt(sortParameterString);
+			sort = Sort.valueOf(sortInteger);
+		}
+		
+		switch (sort) {
+			case ALPHABETICAL_ASCENDING:
+				saleItems.sort(new Comparator<SaleItem>() {
+					public int compare(SaleItem o1, SaleItem o2) {
+						return o1.getName().compareTo(o2.getName());
+					}
+				});
+			case ALPHABETICAL_DESCENDING:
+				saleItems.sort(new Comparator<SaleItem>() {
+					public int compare(SaleItem o1, SaleItem o2) {
+						return -o1.getName().compareTo(o2.getName());
+					}
+				});
+			case PRICE_LOW_TO_HIGH:
+				saleItems.sort(new Comparator<SaleItem>() {
+					public int compare(SaleItem o1, SaleItem o2) {
+						return o2.getPrice() - o1.getPrice();
+					}
+				});
+			case PRICE_HIGH_TO_LOW:
+				saleItems.sort(new Comparator<SaleItem>() {
+					public int compare(SaleItem o1, SaleItem o2) {
+						return o1.getPrice() - o2.getPrice();
+					}
+				});
+		}
+		
 
 	} finally {
 		if (db != null) {
@@ -51,7 +87,7 @@
 	out.println(
 			new BrowsePage(
 					userID.toCharArray(), 
-					Sort.ALPHABETICAL_DESCENDING, 
+					sort, 
 					categoryTree,0
 			).render()
 	);
