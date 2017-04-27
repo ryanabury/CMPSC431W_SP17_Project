@@ -18,6 +18,15 @@
     <url-pattern>/CreateUser</url-pattern>
   </servlet-mapping>
   <servlet>
+  	<display-name>AddItemSupp</display-name>
+  	<servlet-name>AddItemSupp</servlet-name>
+  	<servlet-class>com.fusion.servlets.AddItemSupp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddItemSupp</servlet-name>
+  	<url-pattern>/AddItemSupp</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <display-name>LogIn</display-name>
     <servlet-name>LogIn</servlet-name>
     <servlet-class>com.fusion.servlets.LogIn</servlet-class>
