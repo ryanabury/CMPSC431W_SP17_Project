@@ -235,6 +235,63 @@ public class DBHelper {
 		return 1;
 	}
 	
+	public int setNewSalesItem(String name, String seller, String price, String reservePrice, String quantity, String category, String detailedDescriptionURL, String typeOfSale, String description) throws DBHelperException{
+		
+		java.sql.PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try{
+			if(connection.isClosed()){
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			String sql = "SELECT SI1.id FROM sale_items SI1 WHERE SI1.id >= ALL (SELECT SI2.id FROM sale_items SI2)";
+			
+			pst = connection.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			int id = 0;
+			int updateQuery = 0;
+			
+			while(rs.next()){
+				id = Integer.parseInt(rs.getString("id")) + 1;
+			}
+			
+			pst.close();
+			rs.close();
+			
+			pst = null;
+			rs = null;
+			
+			if(name != null && seller != null && price != null && reservePrice != null && quantity != null && category != null && detailedDescriptionURL != null && typeOfSale != null && description != null){
+				sql = "INSERT INTO sale_items (id,name,seller,price,reservePrice,quantity,category,detailedDescriptionURL,typeOfSale,description) VALUES (?,?,?,?,?,?,?,?,?,?);";
+						
+				pst = connection.prepareStatement(sql);
+				pst.setInt(1,id);
+				pst.setString(2,name);
+				pst.setString(3, seller);
+				pst.setString(4, price);
+				pst.setString(5, reservePrice);
+				pst.setString(6, quantity);
+				pst.setString(7, category);
+				pst.setString(8, detailedDescriptionURL);
+				pst.setString(9, typeOfSale);
+				pst.setString(10, description);
+				updateQuery = pst.executeUpdate();
+				
+				if(updateQuery == 0){
+					throw new DBHelperException("Unable to add item.");	
+				}
+				pst.close();
+				return 0;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 1;
+	}
+	
+	
 	
 	/**
 	 * Fetches a category from the DB.
