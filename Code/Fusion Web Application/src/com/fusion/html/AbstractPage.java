@@ -3,13 +3,15 @@ package com.fusion.html;
 import static j2html.TagCreator.*;
 
 import com.fusion.objects.User;
+import com.fusion.sql.DBHelper;
+import com.fusion.sql.DBHelper.DBHelperException;
 
 import j2html.tags.ContainerTag;
 
 public abstract class AbstractPage {
 	
 	private static final String[] MENU_ITEMS = {"Home", "Browse", "About"};
-	private static final String[] MENU_ITEM_LINKS = {"./", "./browse", "./about"};
+	private static final String[] MENU_ITEM_LINKS = {"./", "./browse.jsp", "./about.jsp"};
 	
 	protected User myUser;
 	
@@ -21,51 +23,102 @@ public abstract class AbstractPage {
 		myUser = user;
 	}
 	
-	private ContainerTag generateHeader(User user) {
-		return div().with(							// Main Header Box
-				h1("Fusion"), 						// Title
-				div().with(							// Menu / Login Box
-						generateMenu(),
-						generateAccountInfo(user)
-				)
-		).withClass("header-main-box");
+	public AbstractPage(char[] userID) {
+		DBHelper db;
+		try {
+			db = new DBHelper();
+			
+			myUser = db.getUser(userID);
+			
+		} catch (DBHelperException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	protected abstract ContainerTag generageBody();
+	private ContainerTag generateHead() {
+		return head().with(
+				title(pageTitle()),
+				link().withRel("Stylesheet").withHref("css/main.css")
+				);
+	}
+	
+	private ContainerTag generateHeader(User user) {
+		return div().with(
+				img().withSrc("images/TitleImage.png"), 	
+				div().with(					
+						generateMenu(user)
+				).withId("menu")
+		).withId("header");
+	}
+	
+	protected abstract ContainerTag generateBody();
+	
+	protected abstract String pageTitle();
 	
 	private ContainerTag generateFooter() {
-		return p("(C) 2017, Fusion Ltd.").withClass("footer");
+		return div().with(
+				p().withClass("center").with(
+					// Replace 'https%3A%2F%2Fwww.google.com' with our site URL
+					iframe().withSrc("https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.google.com&layout=button_count&size=small&mobile_iframe=true&width=86&height=20&appId")
+					.withClass("share-button")
+				),
+				p("\u00a9 2017 Fusion Ltd.").withClass("footer")
+				).withId("footer");
 	}
 	
-	private static ContainerTag generateMenu() {
-		ContainerTag div = div();
+	private static ContainerTag generateMenu(User user) {
+		ContainerTag ul = ul();
 		for (int i = 0; i < MENU_ITEMS.length; i++) {
-			div.with(
-					a(MENU_ITEMS[i]).withHref(MENU_ITEM_LINKS[i])
+			ul.with(
+					li().with(
+						a(MENU_ITEMS[i]).withHref(MENU_ITEM_LINKS[i])
+					)
 			);
 		}
-		return div.withClass("header-menu-box");
+		
+		if (user == null) {
+			ul.with(
+					li().withClass("floatRight").with(
+						a("Login").withHref("./login.jsp")
+					),
+					li().withClass("floatRight").with(
+						a("Sign Up").withHref("./create_user.jsp")
+					)
+			);
+		} else {
+			ul.with(
+					li().withClass("floatRight").with(
+						a("My Account").withHref("./userpage.jsp")
+					)
+			);
+		}
+		
+		return ul.withId("menu");
 	}
 	
-	private static ContainerTag generateAccountInfo(User user) {
+	/*private static ContainerTag generateAccountInfo(User user) {
 		ContainerTag div = div();
 		if (user == null) {
-			div.with(a("Login"));
+			div.with(a("Login").withHref("./login.jsp"));
 			div.withText(" / "); 
-			div.with(a("Create Account"));
+			div.with(a("Create Account").withHref("./create_user.jsp"));
 		} else {
-			return div().with(
-					a("My Account"), 
-					text(" (" + user.getFullName() + ")")
-			).withClass("header-account-box");
+			div.with(a("My Account ").withHref("./account"));
+			div.with(text(" (" + user.getFullName() + ")"));
+			div.withText(" / "); 
+			div.with(a("Log Out").withHref("./logout"));
 		}
 		return div.withClass("header-account-box");
-	}
+	}*/
 	
 	public final String render() {
 		return html().with(
-				generateHeader(myUser), 
-				generageBody(), 
+				div().withClass("wrapper").with(
+					generateHead(),
+					generateHeader(myUser), 
+					generateBody().withId("body"), 
+					div().withClass("push")
+				),
 				generateFooter()
 		).render();
 	}

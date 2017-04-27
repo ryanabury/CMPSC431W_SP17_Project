@@ -29,6 +29,30 @@ public class PhoneNumber {
 		}
 	}
 	
+	public static boolean validPhoneNumber(String number){
+		
+		// check if correct length (including dashes)
+		if(number.length() != 12 || number == ""){
+			return false;
+		}
+		
+		// check if all numbers or dashes
+		for (char c : number.toCharArray()) {
+	        if (!Character.isDigit(c) && c != '-') return false;
+	    }
+		
+		// check for correct formating
+		String[] split = number.split("-");
+		if(split.length != 3){
+			return false;
+		}
+		if(split[0].length() != 3 || split[1].length() != 3 || split[2].length() != 4){
+			return false;
+		}
+		
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		String s = "";
