@@ -43,7 +43,23 @@ public class ItemSearchPage extends AbstractPage {
 	}
 	
 	private ContainerTag generateSearchResults() {
-		return new ContainerTag("p");
+		if (searchResults.length == 0) {
+			return new ContainerTag("p");
+		} else {
+			ContainerTag div = div();
+			for (int i = 0; i < searchResults.length; i++) {
+				SaleItem searchResult = searchResults[i];
+				div.with(
+						div().with(
+								a().with(
+										h3(searchResult.getName())
+								).withHref("/item?id=" + searchResult.getId()),
+								p(searchResult.getDescription())
+						)
+				);
+			}
+			return div;
+		}
 	}
 
 	@Override
