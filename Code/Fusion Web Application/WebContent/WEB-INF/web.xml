@@ -42,7 +42,6 @@
   <servlet-mapping>
     <servlet-name>Search</servlet-name>
     <url-pattern>/itemsearch.jsp</url-pattern>
-    <url-pattern>/Search</url-pattern>
   </servlet-mapping>
   <servlet>
   	<display-name>PurchaseItem</display-name>
