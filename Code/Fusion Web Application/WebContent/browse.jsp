@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.fusion.html.PostParameters"%>
 <%@page import="com.fusion.sql.DBHelper"%>
 <%@page import="com.fusion.html.BrowsePage"%>
@@ -12,7 +13,7 @@
 	DBHelper db = null;
 	Category categoryTree = null;
 	String userID = new String();
-	SaleItem[] saleItems = new SaleItem[0];
+	ArrayList<SaleItem> saleItems = new ArrayList<>();
 	try {
 		db = new DBHelper();
 

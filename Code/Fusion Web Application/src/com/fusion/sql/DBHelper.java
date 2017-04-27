@@ -531,7 +531,7 @@ public class DBHelper {
 	 * Returns a list of Sales Items from a particular category and all of it's children.
 	 * @return siL 	list of sales items
 	 */
-	public SaleItem[] getSaleItemByCategory(Category category) throws DBHelperException {
+	public ArrayList<SaleItem> getSaleItemByCategory(Category category) throws DBHelperException {
 		
 		getCategoryTree(category);
 		ArrayList<Integer> IDList = new ArrayList<>();
@@ -578,9 +578,7 @@ public class DBHelper {
 			closeQuietly(rs);
 		}
 		
-		SaleItem[] sia = new SaleItem[siL.size()];
-		siL.toArray(sia);
-		return sia;
+		return siL;
 	}
 	
 	
@@ -640,7 +638,7 @@ public class DBHelper {
 	 * @return 	array of sale item objects
 	 * @throws	DBHelperException
 	 */	
-	public SaleItem[] getAllSaleItems() throws DBHelperException {
+	public ArrayList<SaleItem> getAllSaleItems() throws DBHelperException {
 		
 		Statement statement = null;
 		ResultSet rs = null;
@@ -682,10 +680,7 @@ public class DBHelper {
 			closeQuietly(rs);
 		}
 		
-		// Convert to static array.
-		SaleItem[] saleItemArray = new SaleItem[saleItems.size()];
-		saleItems.toArray(saleItemArray);
-		return saleItemArray;
+		return saleItems;
 		
 	}
 	
