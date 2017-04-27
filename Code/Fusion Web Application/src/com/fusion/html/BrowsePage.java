@@ -33,7 +33,9 @@ public class BrowsePage extends AbstractPage {
 	
 	private ContainerTag generateFilterColumn() {
 		ContainerTag d = div();
-		generateFilterColumn(d, categoryTree, 0);
+		for (int i = 0; i <categoryTree.getChildren().size(); i++) {
+			generateFilterColumn(d, categoryTree.getChildren().get(i), 0);
+		}
 		return d;
 	}
 	
