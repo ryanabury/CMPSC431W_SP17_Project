@@ -88,6 +88,9 @@ public abstract class AbstractPage {
 		} else {
 			ul.with(
 					li().withClass("floatRight").with(
+							a("Log Out").withHref("LogOut")
+					),
+					li().withClass("floatRight").with(
 						a("My Account").withHref("./userpage.jsp")
 					)
 			);
@@ -95,21 +98,6 @@ public abstract class AbstractPage {
 		
 		return ul.withId("menu");
 	}
-	
-	/*private static ContainerTag generateAccountInfo(User user) {
-		ContainerTag div = div();
-		if (user == null) {
-			div.with(a("Login").withHref("./login.jsp"));
-			div.withText(" / "); 
-			div.with(a("Create Account").withHref("./create_user.jsp"));
-		} else {
-			div.with(a("My Account ").withHref("./account"));
-			div.with(text(" (" + user.getFullName() + ")"));
-			div.withText(" / "); 
-			div.with(a("Log Out").withHref("./logout"));
-		}
-		return div.withClass("header-account-box");
-	}*/
 	
 	public final String render() {
 		return html().with(

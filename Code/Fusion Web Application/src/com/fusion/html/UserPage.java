@@ -1,14 +1,10 @@
 package com.fusion.html;
 
-import com.fusion.sql.DBHelper;
-import com.fusion.sql.DBHelper.DBHelperException;
-
-import com.fusion.objects.User;
 import j2html.tags.ContainerTag;
 import static j2html.TagCreator.*;
 
 public class UserPage extends AbstractPage {
-	
+
 	public UserPage(char[] userID){
 		super(userID);
 	}
@@ -16,9 +12,7 @@ public class UserPage extends AbstractPage {
 	@Override
 	protected ContainerTag generateBody() {
 		//Generate body based on userID
-		
 		if (myUser != null){
-			
 			return div().with(
 					table().with(
 							thead().with(
@@ -35,8 +29,7 @@ public class UserPage extends AbstractPage {
 											td(myUser.getPhoneNumber())
 											)
 									));
-		}
-		else {
+		} else{
 			return div().with(
 					p("Error retrieving User.")
 					);
