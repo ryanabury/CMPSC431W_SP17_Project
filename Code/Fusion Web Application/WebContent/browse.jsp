@@ -33,7 +33,9 @@
 		Category filterCategory = null;
 		if (categoryFilterIdString != null) {
 			int categoryFilterId = Integer.parseInt(request.getParameter(PostParameters.CATEGORY_FILTER));
-			filterCategory = db.getCategory(categoryFilterId);
+			if (categoryFilterId != 0) {
+				filterCategory = db.getCategory(categoryFilterId);
+			}
 		}
 		
 		// Get all Sale Items
