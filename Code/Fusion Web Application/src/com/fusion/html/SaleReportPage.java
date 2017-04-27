@@ -60,7 +60,7 @@ public class SaleReportPage extends AbstractPage{
 	@Override
 	protected String pageTitle() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Sale Reports";
 	}
 
 }
