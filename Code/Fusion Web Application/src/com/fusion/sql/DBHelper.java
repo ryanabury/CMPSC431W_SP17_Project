@@ -520,6 +520,62 @@ public class DBHelper {
 		return siL;
 	}
 	
+
+	/**
+	 * Returns a list of Sales Items from a particular category and all of it's children.
+	 * @return siL 	list of sales items
+	 */
+	public ArrayList<SaleItem> getSaleItemByCategory(Category category) throws DBHelperException {
+		
+		getCategoryTree(category);
+		ArrayList<Integer> IDList = new ArrayList<>();
+		compileCategoryList(IDList, category);
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<SaleItem> siL = new ArrayList<SaleItem>();
+		
+		try{
+			
+			//Check for Open Connection
+			if (connection.isClosed()){
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			//Create Statement
+			statement = connection.createStatement();
+			
+			//Execute Statement
+			String sql = "SELECT * FROM sale_items WHERE (";
+			for (int i = 0; i < IDList.size(); i++) {
+				sql += "category=" + IDList.get(i);
+				if (i < IDList.size() - 1) {
+					sql += " OR ";
+				}
+			}
+			sql += ");";
+			rs = statement.executeQuery(sql);
+			
+			//Assemble Data Structure
+			while(rs.next()){
+				siL.add(new SaleItem(rs.getInt("id"),rs.getString("name"),rs.getInt("seller"),
+						rs.getInt("price"),rs.getInt("reservePrice"), rs.getInt("quantity"),
+						getCategory(Integer.parseInt(rs.getString("category"))),rs.getString("detailedDescriptionURL"),
+						SaleItem.TypeOfSale.fromInt(Integer.parseInt(rs.getString("typeOfSale"))),
+						rs.getString("description")));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return siL;
+	}
+	
+	
 	/**
 	 * Fetches sale item from db.
 	 * @param	itemid			item ID used to find item
@@ -570,6 +626,58 @@ public class DBHelper {
 		
 		return si;
 	}
+	
+	/**
+	 * Fetches all sale items from db.
+	 * @return 	array of sale item objects
+	 * @throws	DBHelperException
+	 */	
+	public ArrayList<SaleItem> getAllSaleItems() throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<SaleItem> saleItems = new ArrayList<>();
+		
+		try {
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM sale_items;";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			while (rs.next()) {
+				SaleItem si = new SaleItem();
+				si.setId(Integer.parseInt(rs.getString(1)));
+				si.setName(rs.getString(2));
+				si.setSellerID(Integer.parseInt(rs.getString(3)));
+				si.setPrice(Integer.parseInt(rs.getString(4)));
+				si.setReservePrice(Integer.parseInt(rs.getString(5)));
+				si.setQuantity(Integer.parseInt(rs.getString(6)));
+				si.setCategory(getCategory(Integer.parseInt(rs.getString(7))));
+				si.setDetailedDescriptionURL(rs.getString(8));
+				si.setTypeOfSale(SaleItem.TypeOfSale.fromInt(Integer.parseInt(rs.getString(9))));
+				si.setDescription(rs.getString(10));
+				saleItems.add(si);
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return saleItems;
+		
+	}
+	
 	
 	public SaleTransaction getSaleTransaction(char[] saleid) throws DBHelperException {
 		throw new RuntimeException("Not yet implemented...");
@@ -967,6 +1075,18 @@ public class DBHelper {
 				r.close();
 			} catch (SQLException e) {}
 		}
+	}
+	
+	private void compileCategoryList(ArrayList<Integer> IDlist, Category root) {
+		
+		if (root != null) {
+			IDlist.add(root.getId());
+		}
+		
+		for (int i = 0; i < root.getChildren().size(); i++) {
+			compileCategoryList(IDlist, root.getChildren().get(i));
+		}
+		
 	}
 	
 	public static class DBHelperException extends Exception {
