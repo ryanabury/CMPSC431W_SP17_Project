@@ -11,6 +11,6 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/ethanraymond/Penn State University/Semester VIII/CMPSC 431W/Semester Project/Project.git/Code/Fusion Web Application/WebContent/WEB-INF/lib/fusion.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/fusion.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
