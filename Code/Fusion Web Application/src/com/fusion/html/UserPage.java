@@ -17,18 +17,30 @@ public class UserPage extends AbstractPage {
 					table().with(
 							thead().with(
 									tr().with(
-											th(myUser.getUsername())
+											td("Username: "),
+											td(myUser.getUsername())
 											)
 									),
 							tbody().with(
 									tr().with(
-											td(myUser.getEmailAddress())
-											)
-									),
+											td("Name: "),
+											td(myUser.getFirstName() + " " + myUser.getLastName())
+											),
 									tr().with(
+											td("Email: "),
+											td(myUser.getEmailAddress())
+											),
+									tr().with(
+											td("Phone Number: "),
 											td(myUser.getPhoneNumber())
+											),
+									tr().with(
+											td("Address: "),
+											td(myUser.getPrimaryAddress())
 											)
-									));
+										)
+								).withClass("about")
+					);
 		} else{
 			return div().with(
 					p("Error retrieving User.")
