@@ -973,9 +973,7 @@ public class DBHelper {
 				sql = "SELECT item_id FROM sales_transaction WHERE credit_card =" + card_number + ";";
 				rs = statement.executeQuery(sql);
 				
-				if (!rs.next()){
-					System.out.println("No items have been purchased with that credit card.");
-				} else {
+				while (rs.next()){
 					itemIDs.add(rs.getString("item_id").toCharArray());
 				}
 				
