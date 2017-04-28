@@ -24,7 +24,7 @@ public class LogOut extends HttpServlet {
 		session.invalidate();
 		System.out.println("Session ended");
 		
-		response.sendRedirect("/Fusion_Web_Application/index.jsp");
+		response.sendRedirect("./index.jsp");
 		
 	}
 	
