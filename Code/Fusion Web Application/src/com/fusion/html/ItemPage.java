@@ -32,7 +32,9 @@ public class ItemPage extends AbstractPage{
 			
 			return div().with(
 					h2(item.getName()),
-					p("Sold By: " + supplier.getCompanyName()),
+					p("Sold By: ").with(
+						a(supplier.getCompanyName()).withHref("./supplierPage.jsp?supplier_ID=" + supplier.getSupplierID())	
+						),
 					p(item.getDescription()),
 					p().with(a("Detailed Description").withHref(item.getDetailedDescriptionURL())),
 					hr(),
