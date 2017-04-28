@@ -3,6 +3,7 @@ package com.fusion.html;
 import j2html.tags.ContainerTag;
 import static j2html.TagCreator.*;
 
+import com.fusion.sql.DBHelper;
 import com.fusion.sql.DBHelper.DBHelperException;
 import com.fusion.objects.Category;
 
@@ -16,6 +17,12 @@ public class AddItemSupplier extends AbstractPage {
 	
 	@Override
 	protected ContainerTag generateBody() {
+		
+		try{
+			
+		DBHelper db = new DBHelper();
+		Category catList = db.getCategoryTree();
+		
 		return form()
 				.withMethod("post")
 				.withAction("AddItemSupp")
@@ -67,22 +74,143 @@ public class AddItemSupplier extends AbstractPage {
 														.attr("size", "30")
 														)
 												),
-										tr().with(
-												td("Category: "),
-												td().with(
-														select()
-														.withName("category")
-														.withId("category")
-														.with(
-																optgroup()
-																.attr("label","Sports")
+										tr().with(							
+														td("Categories"),
+														td().with(
+																select()
+																.withName("Electronics & Computers")
+																.withId("0")
 																.with(
-																		option("1")
-																		.withValue("1"),
-																		option("2")
-																		.withValue("2"),
-																		option("3")
-																		.withValue("3")
+																		optgroup()
+																		.attr("label","Home Audio & Theater")
+																		.with(
+																				option("Speakers")
+																				.withValue("3"),
+																				option("BlueTooth")
+																				.withValue("4"),
+																				option("Bookshelf")
+																				.withValue("5"),
+																				option("Ceiling & in-wall")
+																				.withValue("6"),
+																				option("Subwoofers")
+																				.withValue("7"),
+																				option("Surround sound")
+																				.withValue("8")
+																				),
+																		optgroup()
+																		.attr("label", "Stereo System components")
+																		.with(
+																				option("Receivers& amplifiers")
+																				.withValue("10"),
+																				option("Tuners")
+																				.withValue("11"),
+																				option("Turntables")
+																				.withValue("12")
+																				),
+																		optgroup()
+																		.attr("label", "Stereo System components")
+																		.with(
+																				option("Cables")
+																				.withValue("14"),
+																				option("Speaker accessories")
+																				.withValue("15"),
+																				option("Home entertainment furniture")
+																				.withValue("16")
+																				),
+																		optgroup()
+																		.attr("label", "Cell Phones & Accessories")
+																		.with(
+																				option("Cell Phones")
+																				.withValue("18"),
+																				option("Cases")
+																				.withValue("19")
+																				),
+																		optgroup()
+																		.attr("label", "Connected Devices")
+																		.with(
+																				option("Mobile Hotspots")
+																				.withValue("21"),
+																				option("Smart Watches")
+																				.withValue("22"),
+																				option("Wearable Tech")
+																				.withValue("23")
+																				),
+																		optgroup()
+																		.attr("label","Accessories")
+																		.with(
+																				option("Batteries")
+																				.withValue("25"),
+																				option("Chargers")
+																				.withValue("26"),
+																				option("Mounts")
+																				.withValue("27"),
+																				option("Screen Protectors")
+																				.withValue("28")
+																				),
+																		optgroup()
+																		.attr("label", "HeadPhones")
+																		.with(
+																				option("Earbud Headphones")
+																				.withValue("30"),
+																				option("Over Ear Headphones")
+																				.withValue("31"),
+																				option("On Ear Headphones")
+																				.withValue("32"),
+																				option("Noise cancelling Headphones")
+																				.withValue("33")
+																				),
+																		optgroup()
+																		.attr("label", "Computers & Tablets")
+																		.with(
+																				optgroup()
+																				.attr("label","Desktops")
+																				.with(
+																						option("Towers")
+																						.withValue("36"),
+																						option("All-in-ones")
+																						.withValue("37"),
+																						option("Minis")
+																						.withValue("38")
+																						),
+																				optgroup()
+																				.attr("label","Laptops")
+																				.with(
+																						option("Traditional")
+																						.withValue("40"),
+																						option("2-in-1")
+																						.withValue("41")
+																						),
+																				option("Tablets")
+																				.withValue("42")
+																				),
+																		optgroup()
+																		.attr("label", "Computer Parts & Components")
+																		.with(
+																				option("Processors")
+																				.withValue("44"),
+																				option("Motherboards")
+																				.withValue("45"),
+																				option("Graphics Card")
+																				.withValue("46"),
+																				option("Storage")
+																				.withValue("47"),
+																				option("Memory")
+																				.withValue("48"),
+																				option("Power Supplies & Fans")
+																				.withValue("49"),
+																				option("Software")
+																				.withValue("50")
+																				),
+																		optgroup()
+																		.attr("label", "Printers & ink")
+																		.with(
+																				option("InkJet printers")
+																				.withValue("52"),
+																				option("Laser printers")
+																				.withValue("53"),
+																				option("Label printers")
+																				.withValue("54")
+																				)
 																		)
 																)
 														),
@@ -100,26 +228,26 @@ public class AddItemSupplier extends AbstractPage {
 												td("Type of Sale: "),
 												td().with(
 														input()
-															.withType("radio")
-															.withName("typeOfSale")
-															.withValue("1")
-															.withStyle("color: #000000")
-															.attr("size","30"),
-															p("Buy"),
+														.withType("radio")
+														.withName("typeOfSale")
+														.withValue("1")
+														.withStyle("color: #000000")
+														.attr("size","30"),
+														span("Buy"),
 														input()
-															.withType("radio")
-															.withName("typeOfSale")
-															.withValue("2")
-															.withStyle("color: #000000")
-															.attr("size", "30"),
-															p("Bid"),
+														.withType("radio")
+														.withName("typeOfSale")
+														.withValue("2")
+														.withStyle("color: #000000")
+														.attr("size", "30"),
+														span("Bid"),
 														input()
-															.withType("radio")
-															.withName("typeOfSale")
-															.withValue("0")
-															.withStyle("color: #000000")
-															.attr("size", "30"),
-															p("both")
+														.withType("radio")
+														.withName("typeOfSale")
+														.withValue("0")
+														.withStyle("color: #000000")
+														.attr("size", "30"),
+														span("Both")
 														)
 												),
 										tr().with(
@@ -138,7 +266,15 @@ public class AddItemSupplier extends AbstractPage {
 														.withType("submit")
 														.withValue("Add Item")
 														)
-												)))));
+												))));
+		
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return div().with(
+				p("Error retrieving categories.")
+				);
 													
 	}
 
