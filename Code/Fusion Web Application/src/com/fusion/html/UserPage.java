@@ -68,15 +68,15 @@ public class UserPage extends AbstractPage {
 			  } catch(DBHelperException e){
 				  e.getStackTrace();
 			  }
-    } else {
-        return div().with(
-                p("Error retrieving User.")
-                );
-    }
+    		} else {
+        		return div().with(
+                	p("Error retrieving User.")
+                	);
+    		}
     
-		return div().with(
-				p("Error retrieving User.")
-		);
+	return div().with(
+		p("Error retrieving User.")
+	);
 		
 		
 	}
