@@ -21,6 +21,7 @@ public class UserPage extends AbstractPage {
 	protected ContainerTag generateBody() {
 		//Generate body based on userID
 		if (myUser != null){
+
 			
 			try{
 				DBHelper db = new DBHelper();
@@ -63,12 +64,16 @@ public class UserPage extends AbstractPage {
 												td("$" + Integer.toString(purchaseItem.getPrice())).attr("width","300")
 										)
 								))));
-			
-			
-			} catch(DBHelperException e){
-				e.getStackTrace();
-			}
-		}
+		
+			  } catch(DBHelperException e){
+				  e.getStackTrace();
+			  }
+    } else {
+        return div().with(
+                p("Error retrieving User.")
+                );
+    }
+    
 		return div().with(
 				p("Error retrieving User.")
 		);
