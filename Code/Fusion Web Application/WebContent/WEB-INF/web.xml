@@ -36,6 +36,15 @@
     <url-pattern>/LogOut</url-pattern>
   </servlet-mapping>
   <servlet>
+  	<display-name>AddItemSupp</display-name>
+  	<servlet-name>AddItemSupp</servlet-name>
+  	<servlet-class>com.fusion.servlets.AddItemSupp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddItemSupp</servlet-name>
+  	<url-pattern>/AddItemSupp</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Search</servlet-name>
     <servlet-class>com.fusion.servlets.Search</servlet-class>
   </servlet>
