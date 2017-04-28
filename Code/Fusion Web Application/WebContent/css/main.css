@@ -1,7 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
-	font-family: Futura, “Trebuchet MS”, Arial, sans-serif;
+	font-family: Futura, ï¿½Trebuchet MSï¿½, Arial, sans-serif;
 }/* Allows us to define our specific spacing between elements */
 
 html, body {
@@ -47,7 +47,7 @@ h1.header {
 	padding-top: 18px;
 	padding-bottom: 15px;
 	font-size: 3em;
-	font-family: Futura, “Trebuchet MS”, Arial, sans-serif;
+	font-family: Futura, ï¿½Trebuchet MSï¿½, Arial, sans-serif;
 }
 
 p.center {
@@ -139,6 +139,43 @@ table.telemarketer-report th, table.telemarketer-report td {
 
 table.telemarketer-report tr:nth-child(even) {
 	background-color: #dadada;
+}
+
+/* forms */
+
+table{
+	margin-left: auto;
+    margin-right: auto;
+}
+
+table td:nth-child(2){
+	width: 60%;
+}
+
+input[type="text"], input[type="password"]{
+    border-radius: 3px;
+    border: 1px;
+    padding: 5px;
+    width: 80%; 
+}
+
+td span{
+	padding: 10px;
+}
+
+input[type="submit"]{
+	margin: 0 auto;
+	background-color: #067DAB;
+    border-radius: 3px;
+    border: 1px;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+input[type="submit"]:hover{
+	background-color: white;
+    color: #067DAB;
 }
 
 /* Footer */

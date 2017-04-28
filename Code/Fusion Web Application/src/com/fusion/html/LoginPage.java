@@ -16,7 +16,7 @@ public class LoginPage extends AbstractPage {
 				table().with(
 						thead().with(
 								tr().with(
-										th("Login")
+										th("Login").attr("colspan", "2")
 										)
 								),
 						tbody().with(
