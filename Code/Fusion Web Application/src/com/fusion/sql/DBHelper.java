@@ -390,6 +390,8 @@ public class DBHelper {
 				throw new DBHelperException("No value found for id [" + userid + "]");
 			}
 			
+			return rs.getString(2);
+			
 		} catch (SQLException e) {
 			throw new DBHelperException("Encountered an error.", e);
 		} finally {
@@ -397,7 +399,7 @@ public class DBHelper {
 			closeQuietly(rs);
 		}
 		
-		return rs.getString(2);
+		
 	}
 	
 	public ItemRating getItemRating(char[] itemid) throws DBHelperException {

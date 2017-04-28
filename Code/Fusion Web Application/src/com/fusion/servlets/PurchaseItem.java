@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
 import javax.activation.*;
 
 import com.fusion.objects.Address;
@@ -78,27 +76,6 @@ public class PurchaseItem extends HttpServlet implements Servlet{
 					a);
 			
 			db.submitTransaction(transaction, user);
-			
-			String to = db.getEmailAddress(user_ID);
-			String from = "fusionltd@gmail.com";
-			String host = "localhost";
-			Properties properties = System.getProperties();
-			properties.setProperty("mail.smtp.host", host);
-			Session session = Session.getDefaultInstance(properties);
-			
-			try {
-				MimeMessage message = new MimeMessage(session);
-				message.setFrom(new InternetAddress(from));
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-				message.setSubject("Fusion Ltd. Confirmation Email");
-				message.setText("Thank you for purchasing an item via Fusion Ltd.");
-				Transport.send(message);
-				System.out.println("Message send was successful.");
-			}
-			
-			catch (MessagingException mex) {
-				mex.printStackTrace();
-			}
 			
 			response.sendRedirect("./userpage.jsp");
 			
