@@ -361,8 +361,43 @@ public class DBHelper {
 		
 	}
 	
-	public EmailAddress getEmailAddress(char[] userid) throws DBHelperException {
-		throw new RuntimeException("Not yet implemented...");
+	/**
+	 * Fetches email address for specific user from db.
+	 * @param	userid			the user ID used for searching the db
+	 * @return 	<email> 		the email address of any user(s) with a matching user ID
+	 * @throws	DBHelperException	thrown if there's an issue fetching or the userid is absent in the db
+	 */
+	public String getEmailAddress(char[] userid) throws DBHelperException {
+		
+		Statement statement = null;
+		ResultSet rs = null;
+		try {
+			
+			// Check for Open Connection
+			if (connection.isClosed()) {
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			// Create Statement
+			statement = connection.createStatement();
+			
+			// Execute Statement
+			String sql = "SELECT * FROM users WHERE reg_id=" + new String(userid) + ";";
+			rs = statement.executeQuery(sql);
+			
+			// Assemble Data Structure
+			if (!rs.next()) {
+				throw new DBHelperException("No value found for id [" + userid + "]");
+			}
+			
+		} catch (SQLException e) {
+			throw new DBHelperException("Encountered an error.", e);
+		} finally {
+			closeQuietly(statement);
+			closeQuietly(rs);
+		}
+		
+		return rs.getString(2);
 	}
 	
 	public ItemRating getItemRating(char[] itemid) throws DBHelperException {
