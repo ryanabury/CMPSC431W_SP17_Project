@@ -1,6 +1,7 @@
 package com.fusion.html;
 
 import com.fusion.objects.SaleItem;
+import com.fusion.objects.Supplier;
 import com.fusion.sql.DBHelper;
 import com.fusion.sql.DBHelper.DBHelperException;
 
@@ -27,13 +28,16 @@ public class ItemPage extends AbstractPage{
 		
 			SaleItem item = db.getSaleItem(itemID);
 			
+			Supplier supplier = db.getSupplier(Integer.toString(item.getSellerID()).toCharArray());
+			
 			return div().with(
 					h2(item.getName()),
-					p("Sold By: " + item.getSellerID()),
+					p("Sold By: " + supplier.getCompanyName()),
 					p(item.getDescription()),
-					a("Detailed Description").withHref(item.getDetailedDescriptionURL()),
+					p().with(a("Detailed Description").withHref(item.getDetailedDescriptionURL())),
+					hr(),
 					// TODO: Make this a button 
-					a("Buy Item").withHref("./buyItem.jsp?item_ID=" + new String(itemID))					
+					p().with(a("Buy Item").withHref("./buyItem.jsp?item_ID=" + new String(itemID)).withClass("buyButton"))					
 					);
 			
 		} catch (DBHelperException e) {

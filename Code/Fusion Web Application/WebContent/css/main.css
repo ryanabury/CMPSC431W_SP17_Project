@@ -109,6 +109,16 @@ div.header-account-box {
 	padding: 20px;
 }
 
+a.buyButton {
+	text-decoration: none;
+	background-color: #8ecfe8;
+	padding: 8px 10px;
+	margin: 8px 10px;
+	margin-top: 20px;
+	border: 1px solid #aaa;
+	box-shadow: 2px 2px 1px #555555;
+}
+
 a.item-link:link {color: black;}
 a.item-link:visited {color: black;}
 a.item-link:hover {color: #555;}
