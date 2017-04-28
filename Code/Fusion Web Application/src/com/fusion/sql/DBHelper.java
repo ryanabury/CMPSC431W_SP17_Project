@@ -19,7 +19,7 @@ public class DBHelper {
 	// Database Credentials
 	private static final String DB_NAME = "fusion";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "sentence429&pattern&yes&";
+	private static final String PASSWORD = "JDsdljad2340!";
 	
 	private Connection connection;
 	
@@ -891,6 +891,62 @@ public class DBHelper {
 		
 	}
 	
+	public int setNewSalesItem(String name, String seller, String price, String reservePrice, String quantity, String category, String detailedDescriptionURL, String typeOfSale, String description) throws DBHelperException{
+		
+		java.sql.PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try{
+			if(connection.isClosed()){
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			String sql = "SELECT SI1.id FROM sale_items SI1 WHERE SI1.id >= ALL (SELECT SI2.id FROM sale_items SI2)";
+			
+			pst = connection.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			int id = 0;
+			int updateQuery = 0;
+			
+			while(rs.next()){
+				id = Integer.parseInt(rs.getString("id")) + 1;
+			}
+			
+			pst.close();
+			rs.close();
+			
+			pst = null;
+			rs = null;
+			
+			if(name != null && seller != null && price != null && reservePrice != null && quantity != null && category != null && detailedDescriptionURL != null && typeOfSale != null && description != null){
+				sql = "INSERT INTO sale_items (id,name,seller,price,reservePrice,quantity,category,detailedDescriptionURL,typeOfSale,description) VALUES (?,?,?,?,?,?,?,?,?,?);";
+						
+				pst = connection.prepareStatement(sql);
+				pst.setInt(1,id);
+				pst.setString(2,name);
+				pst.setString(3, seller);
+				pst.setString(4, price);
+				pst.setString(5, reservePrice);
+				pst.setString(6, quantity);
+				pst.setString(7, category);
+				pst.setString(8, detailedDescriptionURL);
+				pst.setString(9, typeOfSale);
+				pst.setString(10, description);
+				updateQuery = pst.executeUpdate();
+				
+				if(updateQuery == 0){
+					throw new DBHelperException("Unable to add item.");	
+				}
+				pst.close();
+				return 0;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 1;
+}
+	
 	/**
 	 * Assembles a tree of categories from those stored in the DB. The category returned is 
 	 * a dummy category called "ROOT" which contains all of the top level categories as 
@@ -1051,6 +1107,90 @@ public class DBHelper {
 			throw new DBHelperException("Encountered an error submitting transaction. ", e);
 		}
 
+	}
+	
+	public ArrayList<SaleItem> getUserPurchases(char[] userID) throws DBHelperException {
+		Statement statement = null;
+		ResultSet rs = null;
+		ArrayList<SaleItem> siL = new ArrayList<SaleItem>();
+		
+		try {
+			
+			//Check for open connection
+			if(connection.isClosed()){
+				throw new DBHelperException("The connection has been closed.");
+			}
+			
+			String card_number = "";
+			
+			//Create Statement
+			statement = connection.createStatement();
+			
+			//Execute statement
+			String sql = "SELECT card_number FROM credit_card WHERE reg_id =" + new String(userID) + ";";
+			rs = statement.executeQuery(sql);
+			
+			if (!rs.next()){
+				System.out.println("The user does not have a credit card in the system.");
+			} else {
+				card_number = rs.getString("card_number");
+			}
+			
+			statement.close();
+			rs.close();
+			
+			statement = null;
+			rs = null;
+			
+			ArrayList<char[]> itemIDs = new ArrayList<char[]>();
+			
+			if (card_number != null){
+				statement = connection.createStatement();
+				
+				sql = "SELECT item_id FROM sales_transaction WHERE credit_card =" + card_number + ";";
+				rs = statement.executeQuery(sql);
+				
+				while(rs.next()) {
+					itemIDs.add(rs.getString("item_id").toCharArray());
+				}
+				
+				statement.close();
+				rs.close();
+				
+				statement = null;
+				rs = null;
+				
+				int i = 0;
+				
+				for(i = 0; i < itemIDs.size(); i++){
+					statement = connection.createStatement();
+					
+					sql = "SELECT * FROM sale_items WHERE id=" + new String(itemIDs.get(i)) + ";";
+					rs = statement.executeQuery(sql);
+					
+					while(rs.next()){
+						siL.add(new SaleItem(rs.getInt("id"),rs.getString("name"),rs.getInt("seller"),
+								rs.getInt("price"),rs.getInt("reservePrice"), rs.getInt("quantity"),
+								getCategory(Integer.parseInt(rs.getString("category"))),rs.getString("detailedDescriptionURL"),
+								SaleItem.TypeOfSale.fromInt(Integer.parseInt(rs.getString("typeOfSale"))),
+								rs.getString("description")));
+					}
+					
+					statement.close();
+					rs.close();
+					
+					statement = null;
+					rs = null;
+				}
+			} else {
+				System.out.println("Error with credit card value.");
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return siL;
 	}
 	
 	public void close() {
