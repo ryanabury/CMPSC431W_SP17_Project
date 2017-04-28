@@ -20,7 +20,7 @@ public class CreateUserPage extends AbstractPage {
 						table().with(
 								thead().with(
 										tr().with(
-												th("Create Fusion Account")
+												th("Create Fusion Account").attr("colspan", "2")
 												)
 										),
 								tbody().with(
@@ -30,8 +30,6 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("text")
 														.withName("first_name")
-														.withStyle("border:2px solid #000000")
-														.attr("size", "30")
 														)
 												),
 										tr().with(
@@ -40,8 +38,6 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("text")
 														.withName("last_name")
-														.withStyle("border:2px solid #000000")
-														.attr("size", "30")
 														)
 												),
 										tr().with(
@@ -50,8 +46,6 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("text")
 														.withName("username")
-														.withStyle("border:2px solid #000000")
-														.attr("size", "30")
 														)
 												),
 										tr().with(
@@ -60,8 +54,6 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("text")
 														.withName("email")
-														.withStyle("border:2px solid #000000")
-														.attr("size", "30")
 														)
 												),
 										tr().with(
@@ -70,8 +62,6 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("password")
 														.withName("password")
-														.withStyle("border:2px solid #000000")
-														.attr("size", "30")
 														)
 												),
 										tr().with(
@@ -80,8 +70,6 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("text")
 														.withName("age")
-														.withStyle("border:2px solid #000000")
-														.attr("size", "30")
 														)
 												),
 										tr().with(
@@ -90,8 +78,6 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("text")
 														.withName("phone_num")
-														.withStyle("border:2px solid #000000")
-														.attr("size", "30")
 														)
 												),
 										tr().with(
@@ -101,24 +87,21 @@ public class CreateUserPage extends AbstractPage {
 														.withType("radio")
 														.withName("gender")
 														.withValue("m")
-														.withStyle("color: #000000")
 														.attr("size", "30"),
-														p("Male"),
+														span("Male"),
 														input()
 														.withType("radio")
 														.withName("gender")
 														.withValue("f")
-														.withStyle("color: #000000")
 														.attr("size", "30"),
-														p("Female"),
+														span("Female"),
 														input()
 														.withType("radio")
 														.withName("gender")
 														.attr("checked","checked")
 														.withValue("o")
-														.withStyle("color: #000000")
 														.attr("size", "30"),
-														p("Other")
+														span("Other")
 														)
 												),
 										tr().with(
@@ -127,8 +110,6 @@ public class CreateUserPage extends AbstractPage {
 														input()
 														.withType("text")
 														.withName("annual_salary")
-														.withStyle("border:2px solid #000000")
-														.attr("size", "30")
 														)
 												),
 										tr().with(
