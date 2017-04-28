@@ -44,7 +44,17 @@ public abstract class AbstractPage {
 	
 	private ContainerTag generateHeader(User user) {
 		return div().with(
-				img().withSrc("images/TitleImage.png"), 	
+				div().with(
+						img().withSrc("images/TitleImage.png"),
+						form().withMethod("GET").withAction("itemsearch.jsp").with(
+								input()
+										.withType("text")
+										.withName(PostParameters.SEARCH_TERMS),
+								input()
+										.withType("submit")
+										.withValue("Search")
+						).withStyle("float: right; margin-top: 40px; margin-right: 10px;")
+				), 	
 				div().with(					
 						generateMenu(user)
 				).withId("menu")
