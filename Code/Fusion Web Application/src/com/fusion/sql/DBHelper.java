@@ -18,8 +18,8 @@ public class DBHelper {
 	
 	// Database Credentials
 	private static final String DB_NAME = "fusion";
-	private static final String USERNAME = "root";
-	private static final String PASSWORD = "sentence429&pattern&yes&";
+	private static final String USERNAME = "fusion";
+	private static final String PASSWORD = "fusion_pass";
 	
 	private Connection connection;
 	
