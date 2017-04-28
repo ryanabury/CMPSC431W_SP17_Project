@@ -4,13 +4,14 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/j2html-0.99.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.41-bin.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fusion.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/j2html-0.99.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.41-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.corevac **/*.java.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="E:/Penn State University/Semester VIII/CMPSC 431W/Semester Project/Development Project.git/Code/Fusion Web Application/WebContent/WEB-INF/lib/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/Penn State University/Semester VIII/CMPSC 431W/Semester Project/Development Project.git/Code/Fusion Web Application/WebContent/WEB-INF/lib/fusion.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
