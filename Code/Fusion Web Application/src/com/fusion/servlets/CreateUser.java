@@ -30,7 +30,7 @@ public class CreateUser extends HttpServlet {
 		String annual_salary = request.getParameter("annual_salary");
 		
 		if(first_name.isEmpty() || last_name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || age.isEmpty() || phone_num.isEmpty() || annual_salary.isEmpty()){
-			response.sendRedirect("/Fusion_Web_Application/create_user.jsp");
+			response.sendRedirect("./create_user.jsp");
 		}else{
 			
 			DBHelper db = null;
@@ -49,7 +49,7 @@ public class CreateUser extends HttpServlet {
 			}
 			
 			if(result == 0){
-				response.sendRedirect("/Fusion_Web_Application/login.jsp");
+				response.sendRedirect("./login.jsp");
 			}
 		}
 	}
