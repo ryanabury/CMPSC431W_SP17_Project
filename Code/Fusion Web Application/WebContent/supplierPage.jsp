@@ -16,6 +16,11 @@
 		 System.out.println("Session userID: " + userID);
 	}	
 
-	char[] suppID = ("2").toCharArray(); // Testing page for supplier ID 2 in db
-	out.println(new SupplierPage(suppID, userID.toCharArray()).render());
+	String suppID = request.getParameter("supplier_ID");
+	if (suppID == null) {
+		suppID = "1";
+	}
+	char[] supplier_ID = suppID.toCharArray();
+	// Testing page for supplier ID 2 in db
+	out.println(new SupplierPage(supplier_ID, userID.toCharArray()).render());
 %>
