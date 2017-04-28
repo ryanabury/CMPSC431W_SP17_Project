@@ -20,3 +20,4 @@ mysql -u $DB_USERNAME -p$DB_PASSWORD < "$DB_SCRIPTS"/populate-test-data.sql
 # Deploy Web Site
 mkdir $WEB_CONTENT_DEST
 cp -R "$PROJECT_SRC"fusion.war $WEB_CONTENT_DEST
+chmod -R a+rw $WEB_CONTENT_DEST/*
