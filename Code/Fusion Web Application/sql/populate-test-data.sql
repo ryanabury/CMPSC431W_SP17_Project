@@ -130,3 +130,15 @@ INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("628-605
 INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("4178 Pellentesque Ave", "Lachine", "QC", 06509, 18);
 INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("1161 Nunc St.", "São Gonçalo", "RJ", 60511, 19);
 INSERT INTO postal_addr (street_addr, city, state, zip, reg_id) VALUES ("1990 Iaculis Av.", "Morwell", "VIC", 54391, 20);
+
+/* --------------------- Populate sales_transaction Table --------------------------*/
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (1,"4485944851395678","valid","2017/04/27",1,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (2,"4485944851395678","valid","2017/04/27",2,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (3,"4485944851395678","valid","2017/04/27",3,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (4,"4485944851395678","valid","2017/04/27",4,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (5,"4485944851395678","valid","2017/04/27",5,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (6,"4485944851395678","valid","2017/04/27",6,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (7,"4485944851395678","valid","2017/04/27",7,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (8,"4485944851395678","valid","2017/04/27",8,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (9,"4485944851395678","valid","2017/04/27",9,1,10000);
+INSERT INTO sales_transaction (sale_id, credit_card, status, completion_date, item_id, quantity, sale_price) VALUE (10,"4485944851395678","valid","2017/04/27",10,1,10000);
